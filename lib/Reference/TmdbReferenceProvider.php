@@ -130,9 +130,13 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 		// https://www.themoviedb.org/movie/293-blabla
 		// https://www.themoviedb.org/person/3636-blabla
 		// https://www.themoviedb.org/tv/42009-blabla
+		// https://www.imdb.com/name/nm0000602/blabla
+		// https://www.imdb.com/title/tt0216787/blabla
 		return preg_match('/^(?:https?:\/\/)?(?:www\.)?themoviedb\.org\/movie\/\d+/i', $referenceText) === 1
 			|| preg_match('/^(?:https?:\/\/)?(?:www\.)?themoviedb\.org\/person\/\d+/i', $referenceText) === 1
-			|| preg_match('/^(?:https?:\/\/)?(?:www\.)?themoviedb\.org\/tv\/\d+/i', $referenceText) === 1;
+			|| preg_match('/^(?:https?:\/\/)?(?:www\.)?themoviedb\.org\/tv\/\d+/i', $referenceText) === 1
+			|| preg_match('/^(?:https?:\/\/)?(?:www\.)?imdb\.com\/name\/[^\/]+/i', $referenceText) === 1
+			|| preg_match('/^(?:https?:\/\/)?(?:www\.)?imdb\.com\/title\/[^\/]+/i', $referenceText) === 1;
 	}
 
 	/**
@@ -142,110 +146,149 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 		if ($this->matchReference($referenceText)) {
 			$urlInfo = $this->getUrlInfo($referenceText);
 			if ($urlInfo !== null) {
-				if ($urlInfo['type'] === 'tmdb-movie') {
-					$movieInfo = $this->tmdbAPIService->getMovieInfo($this->userId, $urlInfo['id']);
+				if ($urlInfo['type'] === 'tmdb-movie' || $urlInfo['type'] === 'imdb-movie') {
+					if ($urlInfo['type'] === 'tmdb-movie') {
+						$movieInfo = $this->tmdbAPIService->getMovieInfo($this->userId, $urlInfo['id']);
+					} else {
+						$movieInfo = $this->tmdbAPIService->getMovieInfoFromImdbId($this->userId, $urlInfo['id']);
+					}
 					if (!isset($movieInfo['error'])) {
-						$movieInfo['tmdb_url'] = $referenceText;
-						$reference = new Reference($referenceText);
-						if (isset($movieInfo['title'], $movieInfo['original_title']) && $movieInfo['title'] !== $movieInfo['original_title']) {
-							$reference->setTitle($movieInfo['title'] . ' (' . $movieInfo['original_title'] . ')');
-						} else {
-							$reference->setTitle($movieInfo['title'] ?? $movieInfo['original_title'] ?? '???');
+						// this is one ugly way to find out if we got a tv imdb link
+						if (isset($movieInfo['title'])) {
+							return $this->buildMovieReference($referenceText, $movieInfo);
+						} elseif ($movieInfo['name']) {
+							return $this->buildTvReference($referenceText, $movieInfo);
 						}
-						if (isset($movieInfo['release_date']) && is_string($movieInfo['release_date'])) {
-							$date = $this->utilsService->formatDate($movieInfo['release_date']);
-							$reference->setDescription($date . ' - ' . $movieInfo['overview']);
-						} else {
-							$reference->setDescription($movieInfo['overview']);
-						}
-						$fallbackName = $movieInfo['name'] ?? $movieInfo['original_name'] ?? '???';
-						if (isset($movieInfo['poster_path']) && $movieInfo['poster_path']) {
-							$imagePath = preg_replace('/^\/+/', '', $movieInfo['poster_path']);
-							$imageUrl = $this->urlGenerator->linkToRouteAbsolute(
-								Application::APP_ID . '.tmdbAPI.getImage',
-								['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]
-							);
-						} else {
-							$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
-						}
-						$reference->setImageUrl($imageUrl);
-
-						/*
-						$reference->setRichObject(
-							self::RICH_OBJECT_TYPE_MOVIE,
-							$movieInfo,
-						);
-						*/
 					}
 				} elseif ($urlInfo['type'] === 'tmdb-tv') {
 					$tvInfo = $this->tmdbAPIService->getTvInfo($this->userId, $urlInfo['id']);
 					if (!isset($tvInfo['error'])) {
-						$tvInfo['tmdb_url'] = $referenceText;
-						$reference = new Reference($referenceText);
-						if (isset($tvInfo['name'], $tvInfo['original_name']) && $tvInfo['name'] !== $tvInfo['original_name']) {
-							$reference->setTitle($tvInfo['name'] . ' (' . $tvInfo['original_name'] . ')');
-						} else {
-							$reference->setTitle($tvInfo['name'] ?? $tvInfo['original_name'] ?? '???');
-						}
-						if (isset($tvInfo['first_air_date']) && is_string($tvInfo['first_air_date'])) {
-							$date = $this->utilsService->formatDate($tvInfo['first_air_date']);
-							$reference->setDescription($date . ' - ' . $tvInfo['overview']);
-						} else {
-							$reference->setDescription($tvInfo['overview']);
-						}
-						$fallbackName = $tvInfo['name'] ?? $tvInfo['original_name'] ?? '???';
-						if (isset($tvInfo['poster_path']) && $tvInfo['poster_path']) {
-							$imagePath = preg_replace('/^\/+/', '', $tvInfo['poster_path']);
-							$imageUrl = $this->urlGenerator->linkToRouteAbsolute(
-								Application::APP_ID . '.tmdbAPI.getImage',
-								['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]
-							);
-						} else {
-							$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
-						}
-						$reference->setImageUrl($imageUrl);
-
-						/*
-						$reference->setRichObject(
-							self::RICH_OBJECT_TYPE_MOVIE,
-							$tvInfo,
-						);
-						*/
+						return $this->buildTvReference($referenceText, $tvInfo);
 					}
-				} elseif ($urlInfo['type'] === 'tmdb-person') {
-					$personInfo = $this->tmdbAPIService->getPersonInfo($this->userId, $urlInfo['id']);
+				} elseif ($urlInfo['type'] === 'tmdb-person' || $urlInfo['type'] === 'imdb-person') {
+					if ($urlInfo['type'] === 'tmdb-person') {
+						$personInfo = $this->tmdbAPIService->getPersonInfo($this->userId, $urlInfo['id']);
+					} else {
+						$personInfo = $this->tmdbAPIService->getPersonInfoFromImdbId($this->userId, $urlInfo['id']);
+					}
 					if (!isset($personInfo['error'])) {
-						$personInfo['tmdb_url'] = $referenceText;
-						$reference = new Reference($referenceText);
-						$reference->setTitle($personInfo['name']);
-						$reference->setDescription($personInfo['biography'] ?? '???');
-						$fallbackName = $personInfo['name'] ?? '???';
-						if (isset($personInfo['profile_path']) && $personInfo['profile_path']) {
-							$imagePath = preg_replace('/^\/+/', '', $personInfo['profile_path']);
-							$imageUrl = $this->urlGenerator->linkToRouteAbsolute(
-								Application::APP_ID . '.tmdbAPI.getImage',
-								['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]
-							);
-						} else {
-							$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
-						}
-						$reference->setImageUrl($imageUrl);
-
-						/*
-						$reference->setRichObject(
-							self::RICH_OBJECT_TYPE_PERSON,
-							$movieInfo,
-						);
-						*/
+						return $this->buildPersonReference($referenceText, $personInfo);
 					}
 				}
-				return $reference;
 			}
 			// fallback to opengraph
 			return $this->linkReferenceProvider->resolveReference($referenceText);
 		}
 
 		return null;
+	}
+
+	/**
+	 * @param string $referenceText
+	 * @param array $personInfo
+	 * @return Reference
+	 */
+	private function buildPersonReference(string $referenceText, array $personInfo): Reference {
+		$reference = new Reference($referenceText);
+		$reference->setTitle($personInfo['name']);
+		$reference->setDescription($personInfo['biography'] ?? '???');
+		$fallbackName = $personInfo['name'] ?? '???';
+		if (isset($personInfo['profile_path']) && $personInfo['profile_path']) {
+			$imagePath = preg_replace('/^\/+/', '', $personInfo['profile_path']);
+			$imageUrl = $this->urlGenerator->linkToRouteAbsolute(
+				Application::APP_ID . '.tmdbAPI.getImage',
+				['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]
+			);
+		} else {
+			$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
+		}
+		$reference->setImageUrl($imageUrl);
+
+		/*
+		$reference->setRichObject(
+			self::RICH_OBJECT_TYPE_PERSON,
+			$movieInfo,
+		);
+		*/
+		return $reference;
+	}
+
+	/**
+	 * @param string $referenceText
+	 * @param array $tvInfo
+	 * @return Reference
+	 */
+	private function buildTvReference(string $referenceText, array $tvInfo): Reference {
+		$reference = new Reference($referenceText);
+		if (isset($tvInfo['name'], $tvInfo['original_name']) && $tvInfo['name'] !== $tvInfo['original_name']) {
+			$reference->setTitle($tvInfo['name'] . ' (' . $tvInfo['original_name'] . ')');
+		} else {
+			$reference->setTitle($tvInfo['name'] ?? $tvInfo['original_name'] ?? '???');
+		}
+		if (isset($tvInfo['first_air_date']) && is_string($tvInfo['first_air_date'])) {
+			$date = $this->utilsService->formatDate($tvInfo['first_air_date']);
+			$reference->setDescription($date . ' - ' . $tvInfo['overview']);
+		} else {
+			$reference->setDescription($tvInfo['overview']);
+		}
+		$fallbackName = $tvInfo['name'] ?? $tvInfo['original_name'] ?? '???';
+		if (isset($tvInfo['poster_path']) && $tvInfo['poster_path']) {
+			$imagePath = preg_replace('/^\/+/', '', $tvInfo['poster_path']);
+			$imageUrl = $this->urlGenerator->linkToRouteAbsolute(
+				Application::APP_ID . '.tmdbAPI.getImage',
+				['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]
+			);
+		} else {
+			$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
+		}
+		$reference->setImageUrl($imageUrl);
+
+		/*
+		$reference->setRichObject(
+			self::RICH_OBJECT_TYPE_MOVIE,
+			$tvInfo,
+		);
+		*/
+		return $reference;
+	}
+
+	/**
+	 * @param string $referenceText
+	 * @param array $movieInfo
+	 * @return Reference
+	 */
+	private function buildMovieReference(string $referenceText, array $movieInfo): Reference {
+		$reference = new Reference($referenceText);
+		if (isset($movieInfo['title'], $movieInfo['original_title']) && $movieInfo['title'] !== $movieInfo['original_title']) {
+			$reference->setTitle($movieInfo['title'] . ' (' . $movieInfo['original_title'] . ')');
+		} else {
+			$reference->setTitle($movieInfo['title'] ?? $movieInfo['original_title'] ?? '???');
+		}
+		if (isset($movieInfo['release_date']) && is_string($movieInfo['release_date'])) {
+			$date = $this->utilsService->formatDate($movieInfo['release_date']);
+			$reference->setDescription($date . ' - ' . $movieInfo['overview']);
+		} else {
+			$reference->setDescription($movieInfo['overview']);
+		}
+		$fallbackName = $movieInfo['name'] ?? $movieInfo['original_name'] ?? '???';
+		if (isset($movieInfo['poster_path']) && $movieInfo['poster_path']) {
+			$imagePath = preg_replace('/^\/+/', '', $movieInfo['poster_path']);
+			$imageUrl = $this->urlGenerator->linkToRouteAbsolute(
+				Application::APP_ID . '.tmdbAPI.getImage',
+				['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]
+			);
+		} else {
+			$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
+		}
+		$reference->setImageUrl($imageUrl);
+
+		/*
+		$reference->setRichObject(
+			self::RICH_OBJECT_TYPE_MOVIE,
+			$movieInfo,
+		);
+		*/
+		return $reference;
 	}
 
 	/**
@@ -274,6 +317,22 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 			return [
 				'type' => 'tmdb-person',
 				'id' => (int) $matches[1],
+			];
+		}
+
+		preg_match('/^(?:https?:\/\/)?(?:www\.)?imdb\.com\/name\/([^\/]+)/i', $url, $matches);
+		if (count($matches) > 1) {
+			return [
+				'type' => 'imdb-person',
+				'id' => $matches[1],
+			];
+		}
+
+		preg_match('/^(?:https?:\/\/)?(?:www\.)?imdb\.com\/title\/([^\/]+)/i', $url, $matches);
+		if (count($matches) > 1) {
+			return [
+				'type' => 'imdb-movie',
+				'id' => $matches[1],
 			];
 		}
 

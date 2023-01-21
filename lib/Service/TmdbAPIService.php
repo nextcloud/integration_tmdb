@@ -112,6 +112,70 @@ class TmdbAPIService {
 	}
 
 	/**
+	 * @param string|null $userId
+	 * @param string $movieId
+	 * @return array
+	 */
+	public function getMovieInfoFromImdbId(?string $userId, string $movieId): array {
+		$language = $this->l10nFactory->findLanguage();
+		$params = [
+			'language' => $language,
+			'external_source' => 'imdb_id',
+		];
+		$result = $this->request($userId, 'find/' . $movieId, $params);
+		if (isset($result['error'])) {
+			return $result;
+		}
+		if (isset($result['movie_results']) && is_array($result['movie_results']) && count($result['movie_results']) > 0) {
+			if (isset($result['movie_results'][0])) {
+				$shortMovie = $result['movie_results'][0];
+				if (isset($shortMovie['id'])) {
+					return $this->getMovieInfo($userId, $shortMovie['id']);
+				}
+			}
+		}
+		if (isset($result['tv_results']) && is_array($result['tv_results']) && count($result['tv_results']) > 0) {
+			if (isset($result['tv_results'][0])) {
+				$shortTv = $result['tv_results'][0];
+				if (isset($shortTv['id'])) {
+					return $this->getTvInfo($userId, $shortTv['id']);
+				}
+			}
+		}
+		return [
+			'error' => 'no result',
+		];
+	}
+
+	/**
+	 * @param string|null $userId
+	 * @param string $personId
+	 * @return array
+	 */
+	public function getPersonInfoFromImdbId(?string $userId, string $personId): array {
+		$language = $this->l10nFactory->findLanguage();
+		$params = [
+			'language' => $language,
+			'external_source' => 'imdb_id',
+		];
+		$result = $this->request($userId, 'find/' . $personId, $params);
+		if (isset($result['error'])) {
+			return $result;
+		}
+		if (isset($result['person_results']) && is_array($result['person_results']) && count($result['person_results']) > 0) {
+			if (isset($result['person_results'][0])) {
+				$shortPerson = $result['person_results'][0];
+				if (isset($shortPerson['id'])) {
+					return $this->getPersonInfo($userId, $shortPerson['id']);
+				}
+			}
+		}
+		return [
+			'error' => 'no result',
+		];
+	}
+
+	/**
 	 * @param int $movieId
 	 * @return string
 	 */
