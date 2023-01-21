@@ -19,6 +19,7 @@ use OCP\Http\Client\IClient;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
+use OCP\L10N\IFactory;
 use Psr\Log\LoggerInterface;
 use OCP\Http\Client\IClientService;
 use Throwable;
@@ -29,6 +30,7 @@ class TmdbAPIService {
 	private IConfig $config;
 	private IURLGenerator $urlGenerator;
 	private IClient $client;
+	private IFactory $l10nFactory;
 
 	/**
 	 * Service to make requests to Tmdb REST API
@@ -38,29 +40,30 @@ class TmdbAPIService {
 								IL10N $l10n,
 								IConfig $config,
 								IURLGenerator $urlGenerator,
+								IFactory $l10nFactory,
 								IClientService $clientService) {
 		$this->client = $clientService->newClient();
 		$this->logger = $logger;
 		$this->l10n = $l10n;
 		$this->config = $config;
 		$this->urlGenerator = $urlGenerator;
+		$this->l10nFactory = $l10nFactory;
 	}
 
 	/**
 	 * Search items
 	 *
-	 * @param string $userId
+	 * @param string|null $userId
 	 * @param string $query
 	 * @param int $offset
 	 * @param int $limit
 	 * @return array request result
 	 */
-	public function searchMovie(string $userId, string $query, int $offset = 0, int $limit = 5): array {
-		// no pagination...
+	public function searchMovie(?string $userId, string $query, int $offset = 0, int $limit = 5): array {
+		$language = $this->l10nFactory->findLanguage();
 		$params = [
 			'query' => $query,
-			//'language' => $language,
-			'language' => 'en-US',
+			'language' => $language,
 		];
 		$result = $this->request($userId, 'search/multi', $params);
 		if (!isset($result['error']) && isset($result['results']) && is_array($result['results'])) {
@@ -70,11 +73,108 @@ class TmdbAPIService {
 	}
 
 	/**
-	 * @param string $userId
+	 * @param string|null $userId
+	 * @param int $movieId
+	 * @return array
+	 */
+	public function getMovieInfo(?string $userId, int $movieId): array {
+		$language = $this->l10nFactory->findLanguage();
+		$params = [
+			'language' => $language,
+		];
+		return $this->request($userId, 'movie/' . $movieId, $params);
+	}
+
+	/**
+	 * @param string|null $userId
+	 * @param int $personId
+	 * @return array
+	 */
+	public function getPersonInfo(?string $userId, int $personId): array {
+		$language = $this->l10nFactory->findLanguage();
+		$params = [
+			'language' => $language,
+		];
+		return $this->request($userId, 'person/' . $personId, $params);
+	}
+
+	/**
+	 * @param string|null $userId
+	 * @param int $tvInfo
+	 * @return array
+	 */
+	public function getTvInfo(?string $userId, int $tvInfo): array {
+		$language = $this->l10nFactory->findLanguage();
+		$params = [
+			'language' => $language,
+		];
+		return $this->request($userId, 'tv/' . $tvInfo, $params);
+	}
+
+	/**
+	 * @param int $movieId
 	 * @return string
 	 */
-	private function getApiKey(string $userId): string {
+	public function getMovieLinkFromTmdbId(int $movieId): string {
+		return Application::TMDB_URL . '/movie/' . $movieId;
+	}
+
+	/**
+	 * @param int $personId
+	 * @return string
+	 */
+	public function getPersonLinkFromTmdbId(int $personId): string {
+		return Application::TMDB_URL . '/person/' . $personId;
+	}
+
+	/**
+	 * @param int $tvId
+	 * @return string
+	 */
+	public function getTvLinkFromTmdbId(int $tvId): string {
+		return Application::TMDB_URL . '/tv/' . $tvId;
+	}
+
+	/**
+	 * @param string $size
+	 * @param string $imagePath
+	 * @return array
+	 */
+	public function getImage(string $size, string $imagePath): array {
+		$url = 'https://image.tmdb.org/t/p/' . $size . '/' . $imagePath;
+		$options = [
+			'headers' => [
+				'User-Agent' => 'Nextcloud TMDB integration',
+			],
+		];
+		try {
+			$response = $this->client->get($url, $options);
+			$body = $response->getBody();
+			$respCode = $response->getStatusCode();
+
+			if ($respCode >= 400) {
+				return ['error' => $this->l10n->t('Bad credentials')];
+			} else {
+				return [
+					'body' => $body,
+					'headers' => $response->getHeaders(),
+				];
+			}
+		} catch (Exception | Throwable $e) {
+			$this->logger->warning('Tmdb get image error : ' . $e->getMessage(), ['app' => Application::APP_ID]);
+			return ['error' => $e->getMessage()];
+		}
+	}
+
+	/**
+	 * @param string|null $userId
+	 * @return string
+	 */
+	private function getApiKey(?string $userId): string {
 		$adminApiKey = $this->config->getAppValue(Application::APP_ID, 'api_key', Application::DEFAULT_API_KEY_V3) ?: Application::DEFAULT_API_KEY_V3;
+		if ($userId === null) {
+			return $adminApiKey;
+		}
 		return $this->config->getUserValue($userId, Application::APP_ID, 'api_key', $adminApiKey) ?: $adminApiKey;
 	}
 

@@ -23,6 +23,7 @@
 namespace OCA\Tmdb\Reference;
 
 use OC\Collaboration\Reference\LinkReferenceProvider;
+use OCA\Tmdb\Service\UtilsService;
 use OCP\Collaboration\Reference\ADiscoverableReferenceProvider;
 use OCP\Collaboration\Reference\ISearchableReferenceProvider;
 use OCP\Collaboration\Reference\Reference;
@@ -48,6 +49,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 	private IL10N $l10n;
 	private IURLGenerator $urlGenerator;
 	private LinkReferenceProvider $linkReferenceProvider;
+	private UtilsService $utilsService;
 
 	public function __construct(TmdbAPIService $tmdbAPIService,
 								IConfig $config,
@@ -55,6 +57,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 								IURLGenerator $urlGenerator,
 								ReferenceManager $referenceManager,
 								LinkReferenceProvider $linkReferenceProvider,
+								UtilsService $utilsService,
 								?string $userId) {
 		$this->tmdbAPIService = $tmdbAPIService;
 		$this->userId = $userId;
@@ -63,6 +66,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 		$this->l10n = $l10n;
 		$this->urlGenerator = $urlGenerator;
 		$this->linkReferenceProvider = $linkReferenceProvider;
+		$this->utilsService = $utilsService;
 	}
 
 	/**
@@ -100,9 +104,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 	 */
 	public function getSupportedSearchProviderIds(): array {
 		$searchProviderIds = [
-			'tmdb-search-movie',
-			'tmdb-search-person',
-			'tmdb-search-series',
+			'tmdb-search-multi',
 		];
 		if ($this->userId !== null) {
 			$searchItemsEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_enabled', '1') === '1';
@@ -150,13 +152,88 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 						} else {
 							$reference->setTitle($movieInfo['title'] ?? $movieInfo['original_title'] ?? '???');
 						}
-						$reference->setDescription($movieInfo['overview']);
-						$logoUrl = $this->urlGenerator->linkToRouteAbsolute(Application::APP_ID . '.tmdbAPI.getImage', ['size' => 'w500', 'imagePath' => $movieInfo['poster_path']]);
-						$reference->setImageUrl($logoUrl);
+						if (isset($movieInfo['release_date']) && is_string($movieInfo['release_date'])) {
+							$date = $this->utilsService->formatDate($movieInfo['release_date']);
+							$reference->setDescription($date . ' - ' . $movieInfo['overview']);
+						} else {
+							$reference->setDescription($movieInfo['overview']);
+						}
+						$fallbackName = $movieInfo['name'] ?? $movieInfo['original_name'] ?? '???';
+						if (isset($movieInfo['poster_path']) && $movieInfo['poster_path']) {
+							$imagePath = preg_replace('/^\/+/', '', $movieInfo['poster_path']);
+							$imageUrl = $this->urlGenerator->linkToRouteAbsolute(
+								Application::APP_ID . '.tmdbAPI.getImage',
+								['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]
+							);
+						} else {
+							$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
+						}
+						$reference->setImageUrl($imageUrl);
 
 						/*
 						$reference->setRichObject(
 							self::RICH_OBJECT_TYPE_MOVIE,
+							$movieInfo,
+						);
+						*/
+					}
+				} elseif ($urlInfo['type'] === 'tmdb-tv') {
+					$tvInfo = $this->tmdbAPIService->getTvInfo($this->userId, $urlInfo['id']);
+					if (!isset($tvInfo['error'])) {
+						$tvInfo['tmdb_url'] = $referenceText;
+						$reference = new Reference($referenceText);
+						if (isset($tvInfo['name'], $tvInfo['original_name']) && $tvInfo['name'] !== $tvInfo['original_name']) {
+							$reference->setTitle($tvInfo['name'] . ' (' . $tvInfo['original_name'] . ')');
+						} else {
+							$reference->setTitle($tvInfo['name'] ?? $tvInfo['original_name'] ?? '???');
+						}
+						if (isset($tvInfo['first_air_date']) && is_string($tvInfo['first_air_date'])) {
+							$date = $this->utilsService->formatDate($tvInfo['first_air_date']);
+							$reference->setDescription($date . ' - ' . $tvInfo['overview']);
+						} else {
+							$reference->setDescription($tvInfo['overview']);
+						}
+						$fallbackName = $tvInfo['name'] ?? $tvInfo['original_name'] ?? '???';
+						if (isset($tvInfo['poster_path']) && $tvInfo['poster_path']) {
+							$imagePath = preg_replace('/^\/+/', '', $tvInfo['poster_path']);
+							$imageUrl = $this->urlGenerator->linkToRouteAbsolute(
+								Application::APP_ID . '.tmdbAPI.getImage',
+								['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]
+							);
+						} else {
+							$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
+						}
+						$reference->setImageUrl($imageUrl);
+
+						/*
+						$reference->setRichObject(
+							self::RICH_OBJECT_TYPE_MOVIE,
+							$tvInfo,
+						);
+						*/
+					}
+				} elseif ($urlInfo['type'] === 'tmdb-person') {
+					$personInfo = $this->tmdbAPIService->getPersonInfo($this->userId, $urlInfo['id']);
+					if (!isset($personInfo['error'])) {
+						$personInfo['tmdb_url'] = $referenceText;
+						$reference = new Reference($referenceText);
+						$reference->setTitle($personInfo['name']);
+						$reference->setDescription($personInfo['biography'] ?? '???');
+						$fallbackName = $personInfo['name'] ?? '???';
+						if (isset($personInfo['profile_path']) && $personInfo['profile_path']) {
+							$imagePath = preg_replace('/^\/+/', '', $personInfo['profile_path']);
+							$imageUrl = $this->urlGenerator->linkToRouteAbsolute(
+								Application::APP_ID . '.tmdbAPI.getImage',
+								['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]
+							);
+						} else {
+							$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
+						}
+						$reference->setImageUrl($imageUrl);
+
+						/*
+						$reference->setRichObject(
+							self::RICH_OBJECT_TYPE_PERSON,
 							$movieInfo,
 						);
 						*/
@@ -177,10 +254,26 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 	 */
 	private function getUrlInfo(string $url): ?array {
 		preg_match('/^(?:https?:\/\/)?(?:www\.)?themoviedb\.org\/movie\/(\d+)/i', $url, $matches);
-		if (count($matches) > 2) {
+		if (count($matches) > 1) {
 			return [
 				'type' => 'tmdb-movie',
-				'id' => $matches[1],
+				'id' => (int) $matches[1],
+			];
+		}
+
+		preg_match('/^(?:https?:\/\/)?(?:www\.)?themoviedb\.org\/tv\/(\d+)/i', $url, $matches);
+		if (count($matches) > 1) {
+			return [
+				'type' => 'tmdb-tv',
+				'id' => (int) $matches[1],
+			];
+		}
+
+		preg_match('/^(?:https?:\/\/)?(?:www\.)?themoviedb\.org\/person\/(\d+)/i', $url, $matches);
+		if (count($matches) > 1) {
+			return [
+				'type' => 'tmdb-person',
+				'id' => (int) $matches[1],
 			];
 		}
 

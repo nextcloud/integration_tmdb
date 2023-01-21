@@ -10,9 +10,8 @@
 namespace OCA\Tmdb\AppInfo;
 
 use Closure;
-use OCA\Tmdb\Listener\TmdbReferenceListener;
 use OCA\Tmdb\Reference\TmdbReferenceProvider;
-use OCP\Collaboration\Reference\RenderReferenceEvent;
+use OCA\Tmdb\Search\TmdbSearchProvider;
 use OCP\IConfig;
 
 use OCP\AppFramework\App;
@@ -43,7 +42,7 @@ class Application extends App implements IBootstrap {
 	}
 
 	public function register(IRegistrationContext $context): void {
-		$context->registerSearchProvider(TmdbSearchMovieProvider::class);
+		$context->registerSearchProvider(TmdbSearchProvider::class);
 
 		$context->registerReferenceProvider(TmdbReferenceProvider::class);
 		// $context->registerEventListener(RenderReferenceEvent::class, TmdbReferenceListener::class);

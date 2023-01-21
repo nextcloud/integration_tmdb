@@ -1,0 +1,29 @@
+<?php
+/**
+ * Nextcloud - Tmdb
+ *
+ * This file is licensed under the Affero General Public License version 3 or
+ * later. See the COPYING file.
+ *
+ * @author Julien Veyssier
+ * @copyright Julien Veyssier 2023
+ */
+
+namespace OCA\Tmdb\Service;
+
+use DateTime;
+use OCP\IDateTimeFormatter;
+
+class UtilsService {
+
+	private IDateTimeFormatter $dateTimeFormatter;
+
+	public function __construct (string             $appName,
+								 IDateTimeFormatter $dateTimeFormatter) {
+		$this->dateTimeFormatter = $dateTimeFormatter;
+	}
+
+	public function formatDate(string $date, string $format = 'long'): string {
+		return $this->dateTimeFormatter->formatDate(new DateTime($date), $format);
+	}
+}

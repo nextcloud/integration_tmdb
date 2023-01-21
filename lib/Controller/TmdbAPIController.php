@@ -46,7 +46,7 @@ class TmdbAPIController extends OCSController {
 	 * @return DataDownloadResponse|RedirectResponse
 	 */
 	public function getImage(string $size, string $imagePath, string $fallbackName) {
-		$result = $this->tmdbAPIService->getImage($this->userId, $size, $imagePath);
+		$result = $this->tmdbAPIService->getImage($size, $imagePath);
 		if (isset($result['error'])) {
 			$fallbackAvatarUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
 			return new RedirectResponse($fallbackAvatarUrl);

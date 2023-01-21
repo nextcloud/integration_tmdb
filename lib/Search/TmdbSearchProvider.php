@@ -26,6 +26,7 @@ namespace OCA\Tmdb\Search;
 
 use OCA\Tmdb\Service\TmdbAPIService;
 use OCA\Tmdb\AppInfo\Application;
+use OCA\Tmdb\Service\UtilsService;
 use OCP\App\IAppManager;
 use OCP\IL10N;
 use OCP\IConfig;
@@ -35,31 +36,34 @@ use OCP\Search\IProvider;
 use OCP\Search\ISearchQuery;
 use OCP\Search\SearchResult;
 
-class TmdbSearchMovieProvider implements IProvider {
+class TmdbSearchProvider implements IProvider {
 
 	private IAppManager $appManager;
 	private IL10N $l10n;
 	private IConfig $config;
 	private TmdbAPIService $tmdbAPIService;
 	private IURLGenerator $urlGenerator;
+	private UtilsService $utilsService;
 
 	public function __construct(IAppManager        $appManager,
 								IL10N              $l10n,
 								IConfig            $config,
 								IURLGenerator      $urlGenerator,
+								UtilsService       $utilsService,
 								TmdbAPIService     $tmdbAPIService) {
 		$this->appManager = $appManager;
 		$this->l10n = $l10n;
 		$this->config = $config;
 		$this->tmdbAPIService = $tmdbAPIService;
 		$this->urlGenerator = $urlGenerator;
+		$this->utilsService = $utilsService;
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function getId(): string {
-		return 'tmdb-search-movie';
+		return 'tmdb-search-multi';
 	}
 
 	/**
@@ -107,13 +111,14 @@ class TmdbSearchMovieProvider implements IProvider {
 		}
 
 		$formattedResults = array_map(function (array $entry): TmdbSearchResultEntry {
+			[$rounded, $thumbnailUrl] = $this->getThumbnailUrl($entry);
 			return new TmdbSearchResultEntry(
-				$this->getThumbnailUrl($entry),
+				$thumbnailUrl,
 				$this->getMainText($entry),
 				$this->getSubline($entry),
 				$this->getLink($entry),
 				$this->getIconUrl($entry),
-				false
+				$rounded
 			);
 		}, $items);
 
@@ -125,30 +130,77 @@ class TmdbSearchMovieProvider implements IProvider {
 	}
 
 	protected function getMainText(array $entry): string {
-		if (isset($entry['title'], $entry['original_title']) && $entry['title'] !== $entry['original_title']) {
-			return $entry['title'] . ' (' . $entry['original_title'] . ')';
-		} else {
-			return $entry['title'] ?? $entry['original_title'] ?? '???';
+		if ($entry['media_type'] === 'movie') {
+			if (isset($entry['title'], $entry['original_title']) && $entry['title'] !== $entry['original_title']) {
+				return $entry['title'] . ' (' . $entry['original_title'] . ')';
+			} else {
+				return $entry['title'] ?? $entry['original_title'] ?? '???';
+			}
+		} elseif ($entry['media_type'] === 'tv') {
+			if (isset($entry['name'], $entry['original_name']) && $entry['name'] !== $entry['original_name']) {
+				return $entry['name'] . ' (' . $entry['original_name'] . ')';
+			} else {
+				return $entry['name'] ?? $entry['original_name'] ?? '???';
+			}
+		} elseif ($entry['media_type'] === 'person') {
+			return $entry['name'];
 		}
+		return '';
 	}
 
 	protected function getSubline(array $entry): string {
-		return $entry['overview'];
+		if ($entry['media_type'] === 'movie') {
+			if (isset($entry['release_date']) && is_string($entry['release_date'])) {
+				$date = $this->utilsService->formatDate($entry['release_date']);
+				return $date . ' - ' . $entry['overview'];
+			}
+		} elseif ($entry['media_type'] === 'tv') {
+			if (isset($entry['first_air_date']) && is_string($entry['first_air_date'])) {
+				$date = $this->utilsService->formatDate($entry['first_air_date']);
+				return $date . ' - ' . $entry['overview'];
+			}
+		}
+		return $entry['overview'] ?? '';
 	}
 
 	protected function getLink(array $entry): string {
-		// return $this->tmdbAPIService->getMovieLinkFromTmdbId($entry['id']);
+		if ($entry['media_type'] === 'movie') {
+			return $this->tmdbAPIService->getMovieLinkFromTmdbId($entry['id']);
+		} elseif ($entry['media_type'] === 'tv') {
+			return $this->tmdbAPIService->getTvLinkFromTmdbId($entry['id']);
+		} elseif ($entry['media_type'] === 'person') {
+			return $this->tmdbAPIService->getPersonLinkFromTmdbId($entry['id']);
+		}
 		return '';
 	}
 
 	protected function getIconUrl(array $entry): string {
-		return $this->urlGenerator->linkToRouteAbsolute(
-			Application::APP_ID . '.tmdbAPI.getImage',
-			['size' => 'w500', 'imagePath' => $entry['poster_path'], 'fallbackName' => $entry['title']]
-		);
+		return '';
+		// return $this->urlGenerator->imagePath(Application::APP_ID, 'tmdb.logo.svg');
 	}
 
-	protected function getThumbnailUrl(array $entry): string {
-		return $this->urlGenerator->imagePath(Application::APP_ID, 'tmdb.logo.svg');
+	protected function getThumbnailUrl(array $entry): array {
+		if ($entry['media_type'] === 'movie') {
+			$imagePath = $entry['poster_path'] ?? null;
+			$fallbackName = $entry['original_title'] ?? $entry['title'] ?? '???';
+		} elseif ($entry['media_type'] === 'tv') {
+			$imagePath = $entry['poster_path'] ?? null;
+			$fallbackName = $entry['original_name'] ?? $entry['name'] ?? '???';
+		} elseif ($entry['media_type'] === 'person') {
+			$imagePath = $entry['profile_path'] ?? null;
+			$fallbackName = $entry['name'] ?? '???';
+		} else {
+			return [false, ''];
+		}
+		if ($imagePath === null) {
+			$url = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
+			return [true, $url];
+		}
+		$imagePath = preg_replace('/^\/+/', '', $imagePath);
+		$url = $this->urlGenerator->linkToRouteAbsolute(
+			Application::APP_ID . '.tmdbAPI.getImage',
+			['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]
+		);
+		return [false, $url];
 	}
 }
