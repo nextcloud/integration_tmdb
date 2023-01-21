@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<info>
+    <id>integration_tmdb</id>
+    <name>The Movie Database integration</name>
+    <summary>Integration of The Movie Database</summary>
+    <description><![CDATA[TMDB integration provides...]]></description>
+    <version>1.0.0</version>
+    <licence>agpl</licence>
+    <author>Julien Veyssier</author>
+    <namespace>Tmdb</namespace>
+    <documentation>
+        <developer>https://github.com/julien-nc/integration_tmdb</developer>
+    </documentation>
+    <category>integration</category>
+    <website>https://github.com/julien-nc/integration_tmdb</website>
+    <bugs>https://github.com/julien-nc/integration_tmdb/issues</bugs>
+    <screenshot>https://github.com/julien-nc/integration_tmdb/raw/master/img/screenshot1.jpg</screenshot>
+    <dependencies>
+        <nextcloud min-version="26" max-version="26"/>
+    </dependencies>
+    <settings>
+        <admin>OCA\Tmdb\Settings\Admin</admin>
+        <admin-section>OCA\Tmdb\Settings\AdminSection</admin-section>
+        <personal>OCA\Tmdb\Settings\Personal</personal>
+        <personal-section>OCA\Tmdb\Settings\PersonalSection</personal-section>
+    </settings>
+</info>
