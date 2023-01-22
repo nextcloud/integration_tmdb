@@ -23,9 +23,33 @@ import { registerWidget } from '@nextcloud/vue-richtext'
 import './bootstrap.js'
 import Vue from 'vue'
 import TmdbMovieReferenceWidget from './components/TmdbMovieReferenceWidget.vue'
+import TmdbPersonReferenceWidget from './components/TmdbPersonReferenceWidget.vue'
+import TmdbTvReferenceWidget from './components/TmdbTvReferenceWidget.vue'
 
 registerWidget('integration_tmdb_movie', (el, { richObjectType, richObject, accessible }) => {
 	const Widget = Vue.extend(TmdbMovieReferenceWidget)
+	new Widget({
+		propsData: {
+			richObjectType,
+			richObject,
+			accessible,
+		},
+	}).$mount(el)
+})
+
+registerWidget('integration_tmdb_person', (el, { richObjectType, richObject, accessible }) => {
+	const Widget = Vue.extend(TmdbPersonReferenceWidget)
+	new Widget({
+		propsData: {
+			richObjectType,
+			richObject,
+			accessible,
+		},
+	}).$mount(el)
+})
+
+registerWidget('integration_tmdb_tv', (el, { richObjectType, richObject, accessible }) => {
+	const Widget = Vue.extend(TmdbTvReferenceWidget)
 	new Widget({
 		propsData: {
 			richObjectType,

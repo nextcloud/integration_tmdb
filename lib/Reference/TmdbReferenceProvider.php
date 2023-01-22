@@ -193,6 +193,14 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 		$reference->setTitle($personInfo['name']);
 		$reference->setDescription($personInfo['biography'] ?? '???');
 		$fallbackName = $personInfo['name'] ?? '???';
+		if (isset($personInfo['birthday']) && is_string($personInfo['birthday'])) {
+			$formattedBirthday = $this->utilsService->formatDate($personInfo['birthday']);
+			$personInfo['formatted_birthday'] = $formattedBirthday;
+		}
+		if (isset($personInfo['deathday']) && is_string($personInfo['deathday'])) {
+			$formattedDeathday = $this->utilsService->formatDate($personInfo['deathday']);
+			$personInfo['formatted_deathday'] = $formattedDeathday;
+		}
 		if (isset($personInfo['profile_path']) && $personInfo['profile_path']) {
 			$imagePath = preg_replace('/^\/+/', '', $personInfo['profile_path']);
 			$imageUrl = $this->urlGenerator->linkToRouteAbsolute(
@@ -203,6 +211,8 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 			$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
 		}
 		$reference->setImageUrl($imageUrl);
+		$personInfo['image_url'] = $imageUrl;
+		$personInfo['tmdb_url'] = $referenceText;
 		$reference->setRichObject(
 			self::RICH_OBJECT_TYPE_PERSON,
 			$personInfo,
@@ -218,15 +228,22 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 	private function buildTvReference(string $referenceText, array $tvInfo): Reference {
 		$reference = new Reference($referenceText);
 		if (isset($tvInfo['name'], $tvInfo['original_name']) && $tvInfo['name'] !== $tvInfo['original_name']) {
-			$reference->setTitle($tvInfo['name'] . ' (' . $tvInfo['original_name'] . ')');
+			$formattedName = $tvInfo['name'] . ' (' . $tvInfo['original_name'] . ')';
 		} else {
-			$reference->setTitle($tvInfo['name'] ?? $tvInfo['original_name'] ?? '???');
+			$formattedName = $tvInfo['name'] ?? $tvInfo['original_name'] ?? '???';
 		}
+		$tvInfo['formatted_name'] = $formattedName;
+		$reference->setTitle($formattedName);
 		if (isset($tvInfo['first_air_date']) && is_string($tvInfo['first_air_date'])) {
 			$date = $this->utilsService->formatDate($tvInfo['first_air_date']);
+			$tvInfo['formatted_first_air_date'] = $date;
 			$reference->setDescription($date . ' - ' . $tvInfo['overview']);
 		} else {
 			$reference->setDescription($tvInfo['overview']);
+		}
+		if (isset($tvInfo['last_air_date']) && is_string($tvInfo['last_air_date'])) {
+			$date = $this->utilsService->formatDate($tvInfo['last_air_date']);
+			$tvInfo['formatted_last_air_date'] = $date;
 		}
 		$fallbackName = $tvInfo['name'] ?? $tvInfo['original_name'] ?? '???';
 		if (isset($tvInfo['poster_path']) && $tvInfo['poster_path']) {
@@ -239,6 +256,8 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 			$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
 		}
 		$reference->setImageUrl($imageUrl);
+		$tvInfo['image_url'] = $imageUrl;
+		$tvInfo['tmdb_url'] = $referenceText;
 		$reference->setRichObject(
 			self::RICH_OBJECT_TYPE_TV,
 			$tvInfo,
@@ -278,6 +297,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 			$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
 		}
 		$movieInfo['image_url'] = $imageUrl;
+		$movieInfo['tmdb_url'] = $referenceText;
 		$reference->setImageUrl($imageUrl);
 		$reference->setRichObject(
 			self::RICH_OBJECT_TYPE_MOVIE,

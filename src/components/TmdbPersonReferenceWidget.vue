@@ -20,7 +20,7 @@
   -->
 
 <template>
-	<div class="movie-reference">
+	<div class="person-reference">
 		<div v-if="isError">
 			<h3 class="error-title">
 				<TmdbIcon :size="20" class="icon" />
@@ -39,32 +39,38 @@
 				{{ t('integration_tmdb', 'TMDB connected accounts settings') }}
 			</a>
 		</div>
-		<div class="movie-wrapper">
+		<div class="person-wrapper">
 			<div v-if="richObject.image_url" class="poster-wrapper">
 				<img :src="richObject.image_url">
 			</div>
 			<div class="content"
 				:class="{ expanded: expandContent }"
 				@click="expandContent = !expandContent">
-				<div class="title">
+				<div class="name">
 					<strong>
-						<a :href="richObject.tmdb_url" target="_blank">{{ richObject.formatted_title }}</a>
+						<a :href="richObject.tmdb_url" target="_blank">{{ richObject.name }}</a>
 					</strong>
 				</div>
-				<p v-if="richObject.formatted_release_date" class="release-date">
-					{{ t('integration_tmdb', 'Released on {date}' , { date: richObject.formatted_release_date }) }}
-					<span v-if="genres">
-						{{ genres }}
+				<p v-if="richObject.birthday" class="dates line">
+					<CalendarIcon :size="20" class="icon" />
+					<span v-if="richObject.place_of_birth">
+						{{ t('integration_tmdb', 'Born {date} at {place}' , { date: richObject.formatted_birthday, place: richObject.place_of_birth }) }}
 					</span>
-					<span v-if="duration">
-						{{ duration }}
+					<span v-else>
+						{{ t('integration_tmdb', 'Born {date}' , { date: richObject.formatted_birthday }) }}
 					</span>
 				</p>
-				<p v-if="richObject.tagline" class="tagline">
-					{{ richObject.tagline }}
+				<p v-if="richObject.deathday" class="dates line">
+					<CalendarBlankOutlineIcon :size="20" class="icon" />
+					<span v-if="richObject.deathday">
+						{{ t('integration_tmdb', 'Dead {date}' , { date: richObject.formatted_deathday }) }}
+					</span>
 				</p>
-				<p v-if="richObject.overview" class="overview">
-					{{ richObject.overview }}
+				<p v-if="richObject.known_for_department" class="knownfor">
+					{{ t('integration_tmdb', 'Known for {profession}' , { profession: richObject.known_for_department }) }}
+				</p>
+				<p v-if="richObject.biography" class="biography">
+					{{ richObject.biography }}
 				</p>
 			</div>
 		</div>
@@ -73,6 +79,8 @@
 
 <script>
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+import CalendarIcon from 'vue-material-design-icons/Calendar.vue'
+import CalendarBlankOutlineIcon from 'vue-material-design-icons/CalendarBlankOutline.vue'
 
 import TmdbIcon from './icons/TmdbIcon.vue'
 
@@ -83,11 +91,13 @@ import Vue from 'vue'
 Vue.directive('tooltip', Tooltip)
 
 export default {
-	name: 'TmdbMovieReferenceWidget',
+	name: 'TmdbPersonReferenceWidget',
 
 	components: {
 		TmdbIcon,
 		OpenInNewIcon,
+		CalendarIcon,
+		CalendarBlankOutlineIcon,
 	},
 
 	props: {
@@ -116,21 +126,6 @@ export default {
 		isError() {
 			return ['issue-error', 'pr-error'].includes(this.richObject.github_type)
 		},
-		genres() {
-			if (this.richObject.genres?.length > 0) {
-				return ' • ' + this.richObject.genres.map(g => g.name).join(', ')
-			}
-			return null
-		},
-		duration() {
-			if (this.richObject.runtime) {
-				const hours = Math.floor(this.richObject.runtime / 60)
-				const minutes = this.richObject.runtime % 60
-				const formattedRuntime = t('integration_tmdb', '{hours}h {minutes}min', { hours, minutes })
-				return ' • ' + formattedRuntime
-			}
-			return null
-		},
 	},
 
 	methods: {
@@ -139,7 +134,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.movie-reference {
+.person-reference {
 	width: 100%;
 	white-space: normal;
 
@@ -162,7 +157,7 @@ export default {
 		}
 	}
 
-	.movie-wrapper {
+	.person-wrapper {
 		width: 100%;
 		display: flex;
 		align-items: start;
@@ -171,9 +166,9 @@ export default {
 			display: flex;
 			align-items: center;
 
-			> .icon {
-				margin: 0 16px 0 8px;
-			}
+		}
+		.icon {
+			margin: 0 12px 0 4px;
 		}
 
 		.poster-wrapper {

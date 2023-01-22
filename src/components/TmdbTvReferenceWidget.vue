@@ -20,7 +20,7 @@
   -->
 
 <template>
-	<div class="movie-reference">
+	<div class="tv-reference">
 		<div v-if="isError">
 			<h3 class="error-title">
 				<TmdbIcon :size="20" class="icon" />
@@ -39,7 +39,7 @@
 				{{ t('integration_tmdb', 'TMDB connected accounts settings') }}
 			</a>
 		</div>
-		<div class="movie-wrapper">
+		<div class="tv-wrapper">
 			<div v-if="richObject.image_url" class="poster-wrapper">
 				<img :src="richObject.image_url">
 			</div>
@@ -48,16 +48,26 @@
 				@click="expandContent = !expandContent">
 				<div class="title">
 					<strong>
-						<a :href="richObject.tmdb_url" target="_blank">{{ richObject.formatted_title }}</a>
+						<a :href="richObject.tmdb_url" target="_blank">{{ richObject.formatted_name }}</a>
 					</strong>
 				</div>
-				<p v-if="richObject.formatted_release_date" class="release-date">
-					{{ t('integration_tmdb', 'Released on {date}' , { date: richObject.formatted_release_date }) }}
+				<p v-if="richObject.formatted_first_air_date" class="release-date line">
+					<CalendarIcon :size="20" class="icon" />
+					{{ t('integration_tmdb', 'First air date: {date}' , { date: richObject.formatted_first_air_date }) }}
+				</p>
+				<p v-if="richObject.formatted_last_air_date" class="release-date line">
+					<CalendarBlankOutlineIcon :size="20" class="icon" />
+					{{ t('integration_tmdb', 'Last air date: {date}' , { date: richObject.formatted_last_air_date }) }}
+				</p>
+				<p>
 					<span v-if="genres">
 						{{ genres }}
 					</span>
-					<span v-if="duration">
-						{{ duration }}
+					<span v-if="nbEpisodes">
+						{{ nbEpisodes }}
+					</span>
+					<span v-if="nbSeasons">
+						{{ nbSeasons }}
 					</span>
 				</p>
 				<p v-if="richObject.tagline" class="tagline">
@@ -73,6 +83,8 @@
 
 <script>
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+import CalendarIcon from 'vue-material-design-icons/Calendar.vue'
+import CalendarBlankOutlineIcon from 'vue-material-design-icons/CalendarBlankOutline.vue'
 
 import TmdbIcon from './icons/TmdbIcon.vue'
 
@@ -83,11 +95,13 @@ import Vue from 'vue'
 Vue.directive('tooltip', Tooltip)
 
 export default {
-	name: 'TmdbMovieReferenceWidget',
+	name: 'TmdbTvReferenceWidget',
 
 	components: {
 		TmdbIcon,
 		OpenInNewIcon,
+		CalendarIcon,
+		CalendarBlankOutlineIcon,
 	},
 
 	props: {
@@ -122,12 +136,15 @@ export default {
 			}
 			return null
 		},
-		duration() {
-			if (this.richObject.runtime) {
-				const hours = Math.floor(this.richObject.runtime / 60)
-				const minutes = this.richObject.runtime % 60
-				const formattedRuntime = t('integration_tmdb', '{hours}h {minutes}min', { hours, minutes })
-				return ' • ' + formattedRuntime
+		nbEpisodes() {
+			if (this.richObject.number_of_episodes) {
+				return ' • ' + t('integration_tmdb', '{nb} episodes', { nb: this.richObject.number_of_episodes })
+			}
+			return null
+		},
+		nbSeasons() {
+			if (this.richObject.number_of_seasons) {
+				return ' • ' + t('integration_tmdb', '{nb} seasons', { nb: this.richObject.number_of_seasons })
 			}
 			return null
 		},
@@ -139,7 +156,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.movie-reference {
+.tv-reference {
 	width: 100%;
 	white-space: normal;
 
@@ -162,7 +179,7 @@ export default {
 		}
 	}
 
-	.movie-wrapper {
+	.tv-wrapper {
 		width: 100%;
 		display: flex;
 		align-items: start;
@@ -172,7 +189,7 @@ export default {
 			align-items: center;
 
 			> .icon {
-				margin: 0 16px 0 8px;
+				margin: 0 12px 0 4px;
 			}
 		}
 
