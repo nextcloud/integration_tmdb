@@ -17,7 +17,7 @@ const appId = 'integration_tmdb'
 webpackConfig.entry = {
 	personalSettings: { import: path.join(__dirname, 'src', 'personalSettings.js'), filename: appId + '-personalSettings.js' },
 	adminSettings: { import: path.join(__dirname, 'src', 'adminSettings.js'), filename: appId + '-adminSettings.js' },
-	// reference: { import: path.join(__dirname, 'src', 'reference.js'), filename: appId + '-reference.js' },
+	reference: { import: path.join(__dirname, 'src', 'reference.js'), filename: appId + '-reference.js' },
 }
 
 webpackConfig.plugins.push(

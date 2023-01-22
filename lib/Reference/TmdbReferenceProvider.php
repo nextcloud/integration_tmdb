@@ -40,7 +40,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 
 	private const RICH_OBJECT_TYPE_MOVIE = Application::APP_ID . '_movie';
 	private const RICH_OBJECT_TYPE_PERSON = Application::APP_ID . '_person';
-	private const RICH_OBJECT_TYPE_SERIES = Application::APP_ID . '_series';
+	private const RICH_OBJECT_TYPE_TV = Application::APP_ID . '_tv';
 
 	private TmdbAPIService $tmdbAPIService;
 	private ?string $userId;
@@ -203,13 +203,10 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 			$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
 		}
 		$reference->setImageUrl($imageUrl);
-
-		/*
 		$reference->setRichObject(
 			self::RICH_OBJECT_TYPE_PERSON,
-			$movieInfo,
+			$personInfo,
 		);
-		*/
 		return $reference;
 	}
 
@@ -242,13 +239,10 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 			$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
 		}
 		$reference->setImageUrl($imageUrl);
-
-		/*
 		$reference->setRichObject(
-			self::RICH_OBJECT_TYPE_MOVIE,
+			self::RICH_OBJECT_TYPE_TV,
 			$tvInfo,
 		);
-		*/
 		return $reference;
 	}
 
@@ -260,12 +254,15 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 	private function buildMovieReference(string $referenceText, array $movieInfo): Reference {
 		$reference = new Reference($referenceText);
 		if (isset($movieInfo['title'], $movieInfo['original_title']) && $movieInfo['title'] !== $movieInfo['original_title']) {
-			$reference->setTitle($movieInfo['title'] . ' (' . $movieInfo['original_title'] . ')');
+			$formattedTitle = $movieInfo['title'] . ' (' . $movieInfo['original_title'] . ')';
 		} else {
-			$reference->setTitle($movieInfo['title'] ?? $movieInfo['original_title'] ?? '???');
+			$formattedTitle = $movieInfo['title'] ?? $movieInfo['original_title'] ?? '???';
 		}
+		$reference->setTitle($formattedTitle);
+		$movieInfo['formatted_title'] = $formattedTitle;
 		if (isset($movieInfo['release_date']) && is_string($movieInfo['release_date'])) {
 			$date = $this->utilsService->formatDate($movieInfo['release_date']);
+			$movieInfo['formatted_release_date'] = $date;
 			$reference->setDescription($date . ' - ' . $movieInfo['overview']);
 		} else {
 			$reference->setDescription($movieInfo['overview']);
@@ -280,14 +277,12 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 		} else {
 			$imageUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
 		}
+		$movieInfo['image_url'] = $imageUrl;
 		$reference->setImageUrl($imageUrl);
-
-		/*
 		$reference->setRichObject(
 			self::RICH_OBJECT_TYPE_MOVIE,
 			$movieInfo,
 		);
-		*/
 		return $reference;
 	}
 

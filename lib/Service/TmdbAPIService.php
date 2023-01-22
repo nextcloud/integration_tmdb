@@ -60,7 +60,7 @@ class TmdbAPIService {
 	 * @return array request result
 	 */
 	public function searchMovie(?string $userId, string $query, int $offset = 0, int $limit = 5): array {
-		$language = $this->l10nFactory->findLanguage();
+		$language = $this->getLanguage();
 		$params = [
 			'query' => $query,
 			'language' => $language,
@@ -72,13 +72,21 @@ class TmdbAPIService {
 		return $result;
 	}
 
+	private function getLanguage(): string {
+		$language = $this->l10nFactory->findLanguage();
+		if (strlen($language) === 2) {
+			return $language . '-' . strtoupper($language);
+		}
+		return $language;
+	}
+
 	/**
 	 * @param string|null $userId
 	 * @param int $movieId
 	 * @return array
 	 */
 	public function getMovieInfo(?string $userId, int $movieId): array {
-		$language = $this->l10nFactory->findLanguage();
+		$language = $this->getLanguage();
 		$params = [
 			'language' => $language,
 		];
@@ -91,7 +99,7 @@ class TmdbAPIService {
 	 * @return array
 	 */
 	public function getPersonInfo(?string $userId, int $personId): array {
-		$language = $this->l10nFactory->findLanguage();
+		$language = $this->getLanguage();
 		$params = [
 			'language' => $language,
 		];
@@ -104,7 +112,7 @@ class TmdbAPIService {
 	 * @return array
 	 */
 	public function getTvInfo(?string $userId, int $tvInfo): array {
-		$language = $this->l10nFactory->findLanguage();
+		$language = $this->getLanguage();
 		$params = [
 			'language' => $language,
 		];
@@ -117,7 +125,7 @@ class TmdbAPIService {
 	 * @return array
 	 */
 	public function getMovieInfoFromImdbId(?string $userId, string $movieId): array {
-		$language = $this->l10nFactory->findLanguage();
+		$language = $this->getLanguage();
 		$params = [
 			'language' => $language,
 			'external_source' => 'imdb_id',
@@ -153,7 +161,7 @@ class TmdbAPIService {
 	 * @return array
 	 */
 	public function getPersonInfoFromImdbId(?string $userId, string $personId): array {
-		$language = $this->l10nFactory->findLanguage();
+		$language = $this->getLanguage();
 		$params = [
 			'language' => $language,
 			'external_source' => 'imdb_id',
