@@ -80,7 +80,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 	 * @inheritDoc
 	 */
 	public function getTitle(): string {
-		return $this->l10n->t('TMDB items');
+		return $this->l10n->t('The Movie Database items');
 	}
 
 	/**
@@ -203,6 +203,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 		}
 		if (isset($personInfo['profile_path']) && $personInfo['profile_path']) {
 			$imagePath = preg_replace('/^\/+/', '', $personInfo['profile_path']);
+			$fallbackName = preg_replace('/\//', '', $fallbackName);
 			$imageUrl = $this->urlGenerator->linkToRouteAbsolute(
 				Application::APP_ID . '.tmdbAPI.getImage',
 				['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]
@@ -248,6 +249,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 		$fallbackName = $tvInfo['name'] ?? $tvInfo['original_name'] ?? '???';
 		if (isset($tvInfo['poster_path']) && $tvInfo['poster_path']) {
 			$imagePath = preg_replace('/^\/+/', '', $tvInfo['poster_path']);
+			$fallbackName = preg_replace('/\//', '', $fallbackName);
 			$imageUrl = $this->urlGenerator->linkToRouteAbsolute(
 				Application::APP_ID . '.tmdbAPI.getImage',
 				['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]
@@ -289,6 +291,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 		$fallbackName = $movieInfo['name'] ?? $movieInfo['original_name'] ?? '???';
 		if (isset($movieInfo['poster_path']) && $movieInfo['poster_path']) {
 			$imagePath = preg_replace('/^\/+/', '', $movieInfo['poster_path']);
+			$fallbackName = preg_replace('/\//', '', $fallbackName);
 			$imageUrl = $this->urlGenerator->linkToRouteAbsolute(
 				Application::APP_ID . '.tmdbAPI.getImage',
 				['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]

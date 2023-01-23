@@ -59,7 +59,7 @@ class TmdbAPIService {
 	 * @param int $limit
 	 * @return array request result
 	 */
-	public function searchMovie(?string $userId, string $query, int $offset = 0, int $limit = 5): array {
+	public function searchMulti(?string $userId, string $query, int $offset = 0, int $limit = 5): array {
 		$language = $this->getLanguage();
 		$params = [
 			'query' => $query,

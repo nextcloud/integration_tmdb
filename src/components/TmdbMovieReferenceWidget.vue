@@ -48,17 +48,23 @@
 				@click="expandContent = !expandContent">
 				<div class="title">
 					<strong>
-						<a :href="richObject.tmdb_url" target="_blank">{{ richObject.formatted_title }}</a>
+						<a :href="richObject.tmdb_url" target="_blank" class="line">
+							<FilmstripIcon :size="20" class="icon" />
+							{{ richObject.formatted_title }}
+						</a>
 					</strong>
 				</div>
-				<p v-if="richObject.formatted_release_date" class="release-date">
+				<p v-if="richObject.formatted_release_date" class="release-date line">
+					<CalendarIcon :size="20" class="icon" />
 					{{ t('integration_tmdb', 'Released on {date}' , { date: richObject.formatted_release_date }) }}
-					<span v-if="genres">
-						{{ genres }}
-					</span>
-					<span v-if="duration">
-						{{ duration }}
-					</span>
+				</p>
+				<p v-if="duration" class="release-date line">
+					<ClockOutlineIcon :size="20" class="icon" />
+					{{ duration }}
+				</p>
+				<p v-if="genres" class="release-date line">
+					<ShapeIcon :size="20" class="icon" />
+					{{ genres }}
 				</p>
 				<p v-if="richObject.tagline" class="tagline">
 					{{ richObject.tagline }}
@@ -72,7 +78,11 @@
 </template>
 
 <script>
+import ShapeIcon from 'vue-material-design-icons/Shape.vue'
+import ClockOutlineIcon from 'vue-material-design-icons/ClockOutline.vue'
+import CalendarIcon from 'vue-material-design-icons/Calendar.vue'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+import FilmstripIcon from 'vue-material-design-icons/Filmstrip.vue'
 
 import TmdbIcon from './icons/TmdbIcon.vue'
 
@@ -88,6 +98,10 @@ export default {
 	components: {
 		TmdbIcon,
 		OpenInNewIcon,
+		FilmstripIcon,
+		CalendarIcon,
+		ClockOutlineIcon,
+		ShapeIcon,
 	},
 
 	props: {
@@ -118,18 +132,18 @@ export default {
 		},
 		genres() {
 			if (this.richObject.genres?.length > 0) {
-				return ' • ' + this.richObject.genres.map(g => g.name).join(', ')
+				return this.richObject.genres.map(g => g.name).join(', ')
 			}
-			return null
+			return ''
 		},
 		duration() {
 			if (this.richObject.runtime) {
 				const hours = Math.floor(this.richObject.runtime / 60)
 				const minutes = this.richObject.runtime % 60
 				const formattedRuntime = t('integration_tmdb', '{hours}h {minutes}min', { hours, minutes })
-				return ' • ' + formattedRuntime
+				return formattedRuntime
 			}
-			return null
+			return ''
 		},
 	},
 
@@ -147,6 +161,7 @@ export default {
 		padding: 0 !important;
 		color: var(--color-main-text) !important;
 		text-decoration: unset !important;
+		cursor: pointer !important;
 		&:hover {
 			color: #58a6ff !important;
 		}
@@ -172,7 +187,7 @@ export default {
 			align-items: center;
 
 			> .icon {
-				margin: 0 16px 0 8px;
+				margin: 0 12px 0 4px;
 			}
 		}
 
@@ -191,6 +206,9 @@ export default {
 				max-height: 650px;
 				overflow: scroll;
 				scrollbar-width: auto;
+			}
+			.overview {
+				cursor: ns-resize;
 			}
 		}
 	}

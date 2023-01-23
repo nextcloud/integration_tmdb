@@ -70,7 +70,7 @@ class TmdbSearchProvider implements IProvider {
 	 * @inheritDoc
 	 */
 	public function getName(): string {
-		return $this->l10n->t('TMDB movies');
+		return $this->l10n->t('The Movie Database items');
 	}
 
 	/**
@@ -103,7 +103,7 @@ class TmdbSearchProvider implements IProvider {
 			return SearchResult::paginated($this->getName(), [], 0);
 		}
 
-		$searchResult = $this->tmdbAPIService->searchMovie($user->getUID(), $term, $offset, $limit);
+		$searchResult = $this->tmdbAPIService->searchMulti($user->getUID(), $term, $offset, $limit);
 		if (isset($searchResult['error'])) {
 			$items = [];
 		} else {
@@ -132,18 +132,18 @@ class TmdbSearchProvider implements IProvider {
 	protected function getMainText(array $entry): string {
 		if ($entry['media_type'] === 'movie') {
 			if (isset($entry['title'], $entry['original_title']) && $entry['title'] !== $entry['original_title']) {
-				return $entry['title'] . ' (' . $entry['original_title'] . ')';
+				return '🎥 ' . $entry['title'] . ' (' . $entry['original_title'] . ')';
 			} else {
-				return $entry['title'] ?? $entry['original_title'] ?? '???';
+				return '🎥 ' . $entry['title'] ?? $entry['original_title'] ?? '???';
 			}
 		} elseif ($entry['media_type'] === 'tv') {
 			if (isset($entry['name'], $entry['original_name']) && $entry['name'] !== $entry['original_name']) {
-				return $entry['name'] . ' (' . $entry['original_name'] . ')';
+				return '📺 ' . $entry['name'] . ' (' . $entry['original_name'] . ')';
 			} else {
-				return $entry['name'] ?? $entry['original_name'] ?? '???';
+				return '📺 ' . $entry['name'] ?? $entry['original_name'] ?? '???';
 			}
 		} elseif ($entry['media_type'] === 'person') {
-			return $entry['name'];
+			return '👤 ' . $entry['name'];
 		}
 		return '';
 	}
@@ -192,6 +192,7 @@ class TmdbSearchProvider implements IProvider {
 		} else {
 			return [false, ''];
 		}
+		$fallbackName = preg_replace('/\//', '', $fallbackName);
 		if ($imagePath === null) {
 			$url = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
 			return [true, $url];

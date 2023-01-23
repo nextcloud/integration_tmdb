@@ -48,7 +48,10 @@
 				@click="expandContent = !expandContent">
 				<div class="title">
 					<strong>
-						<a :href="richObject.tmdb_url" target="_blank">{{ richObject.formatted_name }}</a>
+						<a :href="richObject.tmdb_url" target="_blank" class="line">
+							<TelevisionClassicIcon :size="20" class="icon" />
+							{{ richObject.formatted_name }}
+						</a>
 					</strong>
 				</div>
 				<p v-if="richObject.formatted_first_air_date" class="release-date line">
@@ -59,16 +62,13 @@
 					<CalendarBlankOutlineIcon :size="20" class="icon" />
 					{{ t('integration_tmdb', 'Last air date: {date}' , { date: richObject.formatted_last_air_date }) }}
 				</p>
-				<p>
-					<span v-if="genres">
-						{{ genres }}
-					</span>
-					<span v-if="nbEpisodes">
-						{{ nbEpisodes }}
-					</span>
-					<span v-if="nbSeasons">
-						{{ nbSeasons }}
-					</span>
+				<p v-if="genres" class="line">
+					<ShapeIcon :size="20" class="icon" />
+					{{ genres }}
+				</p>
+				<p v-if="nbEpisodes && nbSeasons" class="line">
+					<InformationOutlineIcon :size="20" class="icon" />
+					{{ nbEpisodes }}{{ nbSeasons }}
 				</p>
 				<p v-if="richObject.tagline" class="tagline">
 					{{ richObject.tagline }}
@@ -82,6 +82,9 @@
 </template>
 
 <script>
+import ShapeIcon from 'vue-material-design-icons/Shape.vue'
+import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
+import TelevisionClassicIcon from 'vue-material-design-icons/TelevisionClassic.vue'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 import CalendarIcon from 'vue-material-design-icons/Calendar.vue'
 import CalendarBlankOutlineIcon from 'vue-material-design-icons/CalendarBlankOutline.vue'
@@ -102,6 +105,9 @@ export default {
 		OpenInNewIcon,
 		CalendarIcon,
 		CalendarBlankOutlineIcon,
+		TelevisionClassicIcon,
+		ShapeIcon,
+		InformationOutlineIcon,
 	},
 
 	props: {
@@ -132,13 +138,13 @@ export default {
 		},
 		genres() {
 			if (this.richObject.genres?.length > 0) {
-				return ' • ' + this.richObject.genres.map(g => g.name).join(', ')
+				return this.richObject.genres.map(g => g.name).join(', ')
 			}
 			return null
 		},
 		nbEpisodes() {
 			if (this.richObject.number_of_episodes) {
-				return ' • ' + t('integration_tmdb', '{nb} episodes', { nb: this.richObject.number_of_episodes })
+				return t('integration_tmdb', '{nb} episodes', { nb: this.richObject.number_of_episodes })
 			}
 			return null
 		},
@@ -164,6 +170,7 @@ export default {
 		padding: 0 !important;
 		color: var(--color-main-text) !important;
 		text-decoration: unset !important;
+		cursor: pointer !important;
 		&:hover {
 			color: #58a6ff !important;
 		}
@@ -208,6 +215,9 @@ export default {
 				max-height: 650px;
 				overflow: scroll;
 				scrollbar-width: auto;
+			}
+			.overview {
+				cursor: ns-resize;
 			}
 		}
 	}

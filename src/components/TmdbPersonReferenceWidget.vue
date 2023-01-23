@@ -48,7 +48,11 @@
 				@click="expandContent = !expandContent">
 				<div class="name">
 					<strong>
-						<a :href="richObject.tmdb_url" target="_blank">{{ richObject.name }}</a>
+						<a :href="richObject.tmdb_url" target="_blank" class="line">
+							<FaceManIcon v-if="richObject.gender === 2" :size="20" class="icon" />
+							<FaceWomanIcon v-else :size="20" class="icon" />
+							{{ richObject.name }}
+						</a>
 					</strong>
 				</div>
 				<p v-if="richObject.birthday" class="dates line">
@@ -78,6 +82,8 @@
 </template>
 
 <script>
+import FaceManIcon from 'vue-material-design-icons/FaceMan.vue'
+import FaceWomanIcon from 'vue-material-design-icons/FaceWoman.vue'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 import CalendarIcon from 'vue-material-design-icons/Calendar.vue'
 import CalendarBlankOutlineIcon from 'vue-material-design-icons/CalendarBlankOutline.vue'
@@ -98,6 +104,8 @@ export default {
 		OpenInNewIcon,
 		CalendarIcon,
 		CalendarBlankOutlineIcon,
+		FaceManIcon,
+		FaceWomanIcon,
 	},
 
 	props: {
@@ -142,6 +150,7 @@ export default {
 		padding: 0 !important;
 		color: var(--color-main-text) !important;
 		text-decoration: unset !important;
+		cursor: pointer !important;
 		&:hover {
 			color: #58a6ff !important;
 		}
@@ -186,6 +195,9 @@ export default {
 				max-height: 650px;
 				overflow: scroll;
 				scrollbar-width: auto;
+			}
+			.biography {
+				cursor: ns-resize;
 			}
 		}
 	}
