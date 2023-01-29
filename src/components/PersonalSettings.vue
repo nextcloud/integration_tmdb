@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import KeyIcon from 'vue-material-design-icons/Key.vue'
 import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
 
 import TmdbIcon from './icons/TmdbIcon.vue'
@@ -62,6 +63,7 @@ export default {
 		TmdbIcon,
 		NcCheckboxRadioSwitch,
 		InformationOutlineIcon,
+		KeyIcon,
 	},
 
 	props: [],
