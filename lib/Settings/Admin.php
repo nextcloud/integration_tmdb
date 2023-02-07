@@ -26,7 +26,7 @@ class Admin implements ISettings {
 	 * @return TemplateResponse
 	 */
 	public function getForm(): TemplateResponse {
-		$apiKey = $this->config->getAppValue(Application::APP_ID, 'api_key', Application::DEFAULT_API_KEY_V3) ?: Application::DEFAULT_API_KEY_V3;
+		$apiKey = $this->config->getAppValue(Application::APP_ID, 'api_key');
 
 		$state = [
 			'api_key' => $apiKey,

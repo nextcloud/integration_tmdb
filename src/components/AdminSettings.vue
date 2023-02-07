@@ -16,11 +16,21 @@
 					:placeholder="t('integration_tmdb', '...')"
 					@input="onInput">
 			</div>
+			<p class="settings-hint">
+				<InformationOutlineIcon :size="20" class="icon" />
+				{{ t('integration_tmdb', 'Leave this field empty to use the default API key which has a very large quota.') }}
+			</p>
+			<p class="settings-hint">
+				<a href="https://themoviedb.org" target="_blank">
+					{{ t('integration_tmdb', 'You can create an app and API key in the "API" section of your TMDB account settings.') }}
+				</a>
+			</p>
 		</div>
 	</div>
 </template>
 
 <script>
+import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
 import KeyIcon from 'vue-material-design-icons/Key.vue'
 
 import TmdbIcon from './icons/TmdbIcon.vue'
@@ -37,6 +47,7 @@ export default {
 	components: {
 		TmdbIcon,
 		KeyIcon,
+		InformationOutlineIcon,
 	},
 
 	props: [],
@@ -97,6 +108,7 @@ export default {
 	.settings-hint {
 		display: flex;
 		align-items: center;
+		margin-top: 12px;
 		.icon {
 			margin-right: 4px;
 		}
