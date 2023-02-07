@@ -210,7 +210,7 @@ export default {
 
 		.content {
 			padding: 12px;
-			max-height: 300px;
+			max-height: calc(300px - 2 * 12px);
 			&.expanded {
 				max-height: 650px;
 				overflow: scroll;
