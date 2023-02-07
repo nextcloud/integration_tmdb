@@ -4,7 +4,7 @@
     <name>The Movie Database integration</name>
     <summary>Integration of The Movie Database</summary>
     <description><![CDATA[TMDB integration provides...]]></description>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <licence>agpl</licence>
     <author>Julien Veyssier</author>
     <namespace>Tmdb</namespace>
@@ -15,8 +15,8 @@
     <website>https://github.com/julien-nc/integration_tmdb</website>
     <bugs>https://github.com/julien-nc/integration_tmdb/issues</bugs>
     <screenshot>https://github.com/julien-nc/integration_tmdb/raw/main/img/screenshot1.jpg</screenshot>
-    <screenshot>https://github.com/julien-nc/integration_tmdb/raw/main/img/screenshot1.jpg</screenshot>
-    <screenshot>https://github.com/julien-nc/integration_tmdb/raw/main/img/screenshot1.jpg</screenshot>
+    <screenshot>https://github.com/julien-nc/integration_tmdb/raw/main/img/screenshot2.jpg</screenshot>
+    <screenshot>https://github.com/julien-nc/integration_tmdb/raw/main/img/screenshot3.jpg</screenshot>
     <dependencies>
         <nextcloud min-version="26" max-version="26"/>
     </dependencies>
