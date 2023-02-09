@@ -20,13 +20,14 @@
  */
 
 import { registerWidget } from '@nextcloud/vue-richtext'
-import './bootstrap.js'
-import Vue from 'vue'
-import TmdbMovieReferenceWidget from './components/TmdbMovieReferenceWidget.vue'
-import TmdbPersonReferenceWidget from './components/TmdbPersonReferenceWidget.vue'
-import TmdbTvReferenceWidget from './components/TmdbTvReferenceWidget.vue'
 
-registerWidget('integration_tmdb_movie', (el, { richObjectType, richObject, accessible }) => {
+__webpack_nonce__ = btoa(OC.requestToken) // eslint-disable-line
+__webpack_public_path__ = OC.linkTo('integration_tmdb', 'js/') // eslint-disable-line
+
+registerWidget('integration_tmdb_movie', async (el, { richObjectType, richObject, accessible }) => {
+	const { default: Vue } = await import(/* webpackChunkName: "vue-lazy" */'vue')
+	Vue.mixin({ methods: { t, n } })
+	const { default: TmdbMovieReferenceWidget } = await import(/* webpackChunkName: "reference-movie-lazy" */'./components/TmdbMovieReferenceWidget.vue')
 	const Widget = Vue.extend(TmdbMovieReferenceWidget)
 	new Widget({
 		propsData: {
@@ -37,7 +38,10 @@ registerWidget('integration_tmdb_movie', (el, { richObjectType, richObject, acce
 	}).$mount(el)
 })
 
-registerWidget('integration_tmdb_person', (el, { richObjectType, richObject, accessible }) => {
+registerWidget('integration_tmdb_person', async (el, { richObjectType, richObject, accessible }) => {
+	const { default: Vue } = await import(/* webpackChunkName: "vue-lazy" */'vue')
+	Vue.mixin({ methods: { t, n } })
+	const { default: TmdbPersonReferenceWidget } = await import(/* webpackChunkName: "reference-person-lazy" */'./components/TmdbPersonReferenceWidget.vue')
 	const Widget = Vue.extend(TmdbPersonReferenceWidget)
 	new Widget({
 		propsData: {
@@ -48,7 +52,10 @@ registerWidget('integration_tmdb_person', (el, { richObjectType, richObject, acc
 	}).$mount(el)
 })
 
-registerWidget('integration_tmdb_tv', (el, { richObjectType, richObject, accessible }) => {
+registerWidget('integration_tmdb_tv', async (el, { richObjectType, richObject, accessible }) => {
+	const { default: Vue } = await import(/* webpackChunkName: "vue-lazy" */'vue')
+	Vue.mixin({ methods: { t, n } })
+	const { default: TmdbTvReferenceWidget } = await import(/* webpackChunkName: "reference-tv-lazy" */'./components/TmdbTvReferenceWidget.vue')
 	const Widget = Vue.extend(TmdbTvReferenceWidget)
 	new Widget({
 		propsData: {
