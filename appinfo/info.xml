@@ -4,7 +4,7 @@
     <name>The Movie Database integration</name>
     <summary>Integration of The Movie Database</summary>
     <description><![CDATA[TMDB integration provides...]]></description>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <licence>agpl</licence>
     <author>Julien Veyssier</author>
     <namespace>Tmdb</namespace>

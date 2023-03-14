@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 1.0.2 – 2023-03-14
+### Changed
+* lazy load reference stuff
+* add NC 27 compat
+* persons -> people
+
 ## 1.0.0 – 2022-12-19
 ### Added
 * the app
