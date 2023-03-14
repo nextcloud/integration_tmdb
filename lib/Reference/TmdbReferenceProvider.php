@@ -80,7 +80,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 	 * @inheritDoc
 	 */
 	public function getTitle(): string {
-		return $this->l10n->t('Movies, series and persons (by The Movie Database)');
+		return $this->l10n->t('Movies, series and people (by The Movie Database)');
 	}
 
 	/**
