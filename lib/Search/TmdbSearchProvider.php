@@ -35,6 +35,7 @@ use OCP\IUser;
 use OCP\Search\IProvider;
 use OCP\Search\ISearchQuery;
 use OCP\Search\SearchResult;
+use OCP\Search\SearchResultEntry;
 
 class TmdbSearchProvider implements IProvider {
 
@@ -98,9 +99,14 @@ class TmdbSearchProvider implements IProvider {
 		$offset = $query->getCursor();
 		$offset = $offset ? intval($offset) : 0;
 
-		$searchEnabled = $this->config->getAppValue(Application::APP_ID, 'search_enabled', '1') === '1';
-		if (!$searchEnabled) {
-			return SearchResult::paginated($this->getName(), [], 0);
+		$routeFrom = $query->getRoute();
+		$requestedFromSmartPicker = $routeFrom === '' || $routeFrom === 'smart-picker';
+
+		if (!$requestedFromSmartPicker) {
+			$searchEnabled = $this->config->getUserValue($user->getUID(), Application::APP_ID, 'search_enabled', '1') === '1';
+			if (!$searchEnabled) {
+				return SearchResult::paginated($this->getName(), [], 0);
+			}
 		}
 
 		$searchResult = $this->tmdbAPIService->searchMulti($user->getUID(), $term, $offset, $limit);
@@ -110,9 +116,9 @@ class TmdbSearchProvider implements IProvider {
 			$items = $searchResult;
 		}
 
-		$formattedResults = array_map(function (array $entry): TmdbSearchResultEntry {
+		$formattedResults = array_map(function (array $entry): SearchResultEntry {
 			[$rounded, $thumbnailUrl] = $this->getThumbnailUrl($entry);
-			return new TmdbSearchResultEntry(
+			return new SearchResultEntry(
 				$thumbnailUrl,
 				$this->getMainText($entry),
 				$this->getSubline($entry),

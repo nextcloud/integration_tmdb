@@ -103,17 +103,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 	 * @inheritDoc
 	 */
 	public function getSupportedSearchProviderIds(): array {
-		$searchProviderIds = [
-			'tmdb-search-multi',
-		];
-		if ($this->userId !== null) {
-			$searchItemsEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_enabled', '1') === '1';
-			if ($searchItemsEnabled) {
-				return $searchProviderIds;
-			}
-			return [];
-		}
-		return $searchProviderIds;
+		return ['tmdb-search-multi'];
 	}
 
 	/**
