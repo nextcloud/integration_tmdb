@@ -2,6 +2,8 @@ const path = require('path')
 const webpackConfig = require('@nextcloud/webpack-vue-config')
 const ESLintPlugin = require('eslint-webpack-plugin')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
+// eslint-disable-next-line n/no-extraneous-require
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
 
 const buildMode = process.env.NODE_ENV
 const isDev = buildMode === 'development'
@@ -33,5 +35,9 @@ webpackConfig.plugins.push(
 		failOnError: !isDev,
 	}),
 )
+// [1] is NodePolyfillPlugin
+webpackConfig.plugins[1] = new NodePolyfillPlugin({
+	excludeAliases: ['console'],
+})
 
 module.exports = webpackConfig
