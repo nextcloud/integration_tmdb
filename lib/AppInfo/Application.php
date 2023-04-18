@@ -25,8 +25,6 @@ use OCP\INavigationManager;
 use OCP\IURLGenerator;
 use OCP\IUserSession;
 
-use OCA\Tmdb\Search\TmdbSearchMovieProvider;
-
 class Application extends App implements IBootstrap {
 
 	public const APP_ID = 'integration_tmdb';
@@ -37,10 +35,6 @@ class Application extends App implements IBootstrap {
 
 	public function __construct(array $urlParams = []) {
 		parent::__construct(self::APP_ID, $urlParams);
-
-		$container = $this->getContainer();
-		$this->container = $container;
-		$this->config = $container->query(IConfig::class);
 	}
 
 	public function register(IRegistrationContext $context): void {
@@ -54,13 +48,13 @@ class Application extends App implements IBootstrap {
 		$context->injectFn(Closure::fromCallable([$this, 'registerNavigation']));
 	}
 
-	public function registerNavigation(IUserSession $userSession): void {
+	public function registerNavigation(IUserSession $userSession, IConfig $config): void {
 		$user = $userSession->getUser();
 		if ($user !== null) {
 			$userId = $user->getUID();
 			$container = $this->getContainer();
 
-			if ($this->config->getUserValue($userId, self::APP_ID, 'navigation_enabled', '0') === '1') {
+			if ($config->getUserValue($userId, self::APP_ID, 'navigation_enabled', '0') === '1') {
 				$l10n = $container->get(IL10N::class);
 				$navName = $l10n->t('The Movie Database');
 				$container->get(INavigationManager::class)->add(function () use ($container, $navName) {

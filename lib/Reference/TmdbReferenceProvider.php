@@ -42,31 +42,14 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 	private const RICH_OBJECT_TYPE_PERSON = Application::APP_ID . '_person';
 	private const RICH_OBJECT_TYPE_TV = Application::APP_ID . '_tv';
 
-	private TmdbAPIService $tmdbAPIService;
-	private ?string $userId;
-	private IConfig $config;
-	private ReferenceManager $referenceManager;
-	private IL10N $l10n;
-	private IURLGenerator $urlGenerator;
-	private LinkReferenceProvider $linkReferenceProvider;
-	private UtilsService $utilsService;
-
-	public function __construct(TmdbAPIService $tmdbAPIService,
-								IConfig $config,
-								IL10N $l10n,
-								IURLGenerator $urlGenerator,
-								ReferenceManager $referenceManager,
-								LinkReferenceProvider $linkReferenceProvider,
-								UtilsService $utilsService,
-								?string $userId) {
-		$this->tmdbAPIService = $tmdbAPIService;
-		$this->userId = $userId;
-		$this->config = $config;
-		$this->referenceManager = $referenceManager;
-		$this->l10n = $l10n;
-		$this->urlGenerator = $urlGenerator;
-		$this->linkReferenceProvider = $linkReferenceProvider;
-		$this->utilsService = $utilsService;
+	public function __construct(private TmdbAPIService $tmdbAPIService,
+								private IConfig $config,
+								private IL10N $l10n,
+								private IURLGenerator $urlGenerator,
+								private ReferenceManager $referenceManager,
+								private LinkReferenceProvider $linkReferenceProvider,
+								private UtilsService $utilsService,
+								private ?string $userId) {
 	}
 
 	/**

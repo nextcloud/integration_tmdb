@@ -10,16 +10,9 @@ use OCA\Tmdb\AppInfo\Application;
 
 class Admin implements ISettings {
 
-	private IConfig $config;
-	private IInitialState $initialStateService;
-	private ?string $userId;
-
-	public function __construct(IConfig       $config,
-								IInitialState $initialStateService,
+	public function __construct(private IConfig       $config,
+								private IInitialState $initialStateService,
 								?string       $userId) {
-		$this->config = $config;
-		$this->initialStateService = $initialStateService;
-		$this->userId = $userId;
 	}
 
 	/**

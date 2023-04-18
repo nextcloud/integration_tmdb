@@ -39,25 +39,12 @@ use OCP\Search\SearchResultEntry;
 
 class TmdbSearchProvider implements IProvider {
 
-	private IAppManager $appManager;
-	private IL10N $l10n;
-	private IConfig $config;
-	private TmdbAPIService $tmdbAPIService;
-	private IURLGenerator $urlGenerator;
-	private UtilsService $utilsService;
-
-	public function __construct(IAppManager        $appManager,
-								IL10N              $l10n,
-								IConfig            $config,
-								IURLGenerator      $urlGenerator,
-								UtilsService       $utilsService,
-								TmdbAPIService     $tmdbAPIService) {
-		$this->appManager = $appManager;
-		$this->l10n = $l10n;
-		$this->config = $config;
-		$this->tmdbAPIService = $tmdbAPIService;
-		$this->urlGenerator = $urlGenerator;
-		$this->utilsService = $utilsService;
+	public function __construct(private IAppManager        $appManager,
+								private IL10N              $l10n,
+								private IConfig            $config,
+								private IURLGenerator      $urlGenerator,
+								private UtilsService       $utilsService,
+								private TmdbAPIService     $tmdbAPIService) {
 	}
 
 	/**

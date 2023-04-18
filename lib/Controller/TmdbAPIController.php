@@ -21,19 +21,12 @@ use OCP\IURLGenerator;
 
 class TmdbAPIController extends OCSController {
 
-	private TmdbAPIService $tmdbAPIService;
-	private IURLGenerator $urlGenerator;
-	private ?string $userId;
-
-	public function __construct(string          $appName,
-								IRequest        $request,
-								TmdbAPIService   $tmdbAPIService,
-								IURLGenerator   $urlGenerator,
-								?string         $userId) {
+	public function __construct(string                 $appName,
+								IRequest               $request,
+								private TmdbAPIService $tmdbAPIService,
+								private IURLGenerator  $urlGenerator,
+								?string                $userId) {
 		parent::__construct($appName, $request);
-		$this->tmdbAPIService = $tmdbAPIService;
-		$this->urlGenerator = $urlGenerator;
-		$this->userId = $userId;
 	}
 
 	/**
