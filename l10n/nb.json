@@ -1,0 +1,7 @@
+{ "translations": {
+    "Bad credentials" : "Påloggingsdetaljene er feil",
+    "Bad HTTP method" : "HTTP-metode er feil",
+    "..." : "…",
+    "Unknown error" : "Ukjent feil"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

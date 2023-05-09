@@ -1,0 +1,9 @@
+{ "translations": {
+    "Bad credentials" : "Virheelliset kirjautumistiedot",
+    "Bad HTTP method" : "Virheellinen HTTP-metodi",
+    "Connected accounts" : "Yhdistetyt tilit",
+    "..." : "...",
+    "Enable navigation link" : "Näytä navigointipalkissa",
+    "Unknown error" : "Tuntematon virhe"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

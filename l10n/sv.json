@@ -1,0 +1,9 @@
+{ "translations": {
+    "Bad credentials" : "Ogiltiga inloggningsuppgifter",
+    "Bad HTTP method" : "Felaktig HTTP-metod",
+    "Connected accounts" : "Anslutna konton",
+    "..." : "...",
+    "Enable navigation link" : "Aktivera navigeringslänk",
+    "Unknown error" : "Okänt fel"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

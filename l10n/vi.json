@@ -1,0 +1,5 @@
+{ "translations": {
+    "Bad HTTP method" : "Phương thức HTTP không hợp lệ",
+    "Unknown error" : "Lỗi không xác định"
+},"pluralForm" :"nplurals=1; plural=0;"
+}

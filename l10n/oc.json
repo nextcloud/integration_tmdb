@@ -1,0 +1,6 @@
+{ "translations": {
+    "Bad credentials" : "Marrits identificants",
+    "Connected accounts" : "Comptes connectats",
+    "Unknown error" : "Error desconeguda"
+},"pluralForm" :"nplurals=2; plural=(n > 1);"
+}
