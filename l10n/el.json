@@ -1,0 +1,9 @@
+{ "translations": {
+    "Bad credentials" : "Εσφαλμένα διαπιστευτήρια",
+    "Bad HTTP method" : "Κακή μέθοδος HTTP",
+    "Connected accounts" : "Συνδεδεμένοι λογαριασμοί",
+    "..." : "...",
+    "Enable navigation link" : "Ενεργοποίηση συνδέσμου πλοήγησης",
+    "Unknown error" : "Άγνωστο σφάλμα"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

@@ -1,0 +1,10 @@
+OC.L10N.register(
+    "integration_tmdb",
+    {
+    "Bad credentials" : "옳지 않은 자격 증명",
+    "Bad HTTP method" : "옳지 않은 HTTP 메소드",
+    "Connected accounts" : "계정 연결됨",
+    "..." : "...",
+    "Unknown error" : "알 수 없는 오류"
+},
+"nplurals=1; plural=0;");

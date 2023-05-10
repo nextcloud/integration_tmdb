@@ -1,4 +1,25 @@
 { "translations": {
-    "Connected accounts" : "Verbundene Konten"
+    "Bad credentials" : "Falsche Anmeldeinformationen",
+    "Bad HTTP method" : "Ungültige HTTP-Methode",
+    "Connected accounts" : "Verbundene Konten",
+    "TMDB integration" : "TMDB-Integration",
+    "TMDB API key" : "TMDB-API-Schlüssel",
+    "..." : "…",
+    "TMDB options saved" : "TMDB-Einstellungen gespeichert",
+    "Enable TMDB/IMDB link previews" : "TMDB/IMDB-Linkvorschauen aktivieren",
+    "Enable navigation link" : "Navigations-Link aktivieren",
+    "OpenStreetMap options saved" : "OpenStreetMap-Einstellungen gespeichert",
+    "TMDB API error" : "TMDB-API-Fehler",
+    "Unknown error" : "Unbekannter Fehler",
+    "Released on {date}" : "Veröffentlicht am {date}",
+    "{hours}h {minutes}min" : "{hours}h {minutes} Min.",
+    "Born {date} at {place}" : "Geboren am {date} in {place}",
+    "Born {date}" : "Geboren am {date}",
+    "Dead {date}" : "Gestorben am {date}",
+    "Known for {profession}" : "Bekannt für {profession}",
+    "First air date: {date}" : "Datum der Erstausstrahlung: {date}",
+    "Last air date: {date}" : "Datum der letzten Ausstrahlung: {date}",
+    "{nb} episodes" : "{nb} Folgen",
+    "{nb} seasons" : "{nb} Staffeln"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

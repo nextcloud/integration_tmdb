@@ -1,0 +1,9 @@
+{ "translations": {
+    "Bad credentials" : "Falsche Anmeldeinformationen",
+    "Bad HTTP method" : "Ungültige HTTP-Methode",
+    "Connected accounts" : "Verbundene Konten",
+    "..." : "…",
+    "Enable navigation link" : "Navigations-Link aktivieren",
+    "Unknown error" : "Unbekannter Fehler"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

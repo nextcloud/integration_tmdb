@@ -1,0 +1,9 @@
+{ "translations": {
+    "Bad credentials" : "Foute inloggegevens",
+    "Bad HTTP method" : "Foute HTTP methode",
+    "Connected accounts" : "Verbonden accounts",
+    "..." : "...",
+    "Enable navigation link" : "Inschakelen navigatielink",
+    "Unknown error" : "Onbekende fout"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
