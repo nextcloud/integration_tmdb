@@ -1,5 +1,6 @@
 { "translations": {
-    "..." : "...",
-    "Unknown error" : "Fallu desconocíu"
+    "..." : "…",
+    "{nb} episodes" : "{nb} episodios",
+    "{nb} seasons" : "{nb} temporaes"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

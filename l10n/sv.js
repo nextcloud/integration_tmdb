@@ -6,6 +6,8 @@ OC.L10N.register(
     "Connected accounts" : "Anslutna konton",
     "..." : "...",
     "Enable navigation link" : "Aktivera navigeringslänk",
+    "OpenStreetMap options saved" : "OpenStreetMap-alternativ sparade",
+    "Failed to save OpenStreetMap options" : "Det gick inte att spara OpenStreetMap-alternativ",
     "Unknown error" : "Okänt fel"
 },
 "nplurals=2; plural=(n != 1);");

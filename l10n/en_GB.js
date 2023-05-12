@@ -9,7 +9,6 @@ OC.L10N.register(
     "Connected accounts" : "Connected accounts",
     "The Movie Database integration" : "The Movie Database integration",
     "Integration of The Movie Database" : "Integration of The Movie Database",
-    "TMDB integration provides..." : "TMDB integration provides...",
     "TMDB integration" : "TMDB integration",
     "TMDB API key" : "TMDB API key",
     "..." : "...",
