@@ -9,6 +9,7 @@ OC.L10N.register(
     "Connected accounts" : "Повезани налози",
     "The Movie Database integration" : "The Movie Database интеграција",
     "Integration of The Movie Database" : "Интеграција сервиса The Movie Database",
+    "TMDB integration provides a smart picker provider to search for movies, series or actors and link previews for them." : "TMDB  интеграција обезбеђује пружаоца услуге паметног бирача за претрагу филмова, серија или глумаца, као и преглед линкова на њих.",
     "TMDB integration" : "TMDB интеграција",
     "TMDB API key" : "TMDB API кључ",
     "..." : "...",

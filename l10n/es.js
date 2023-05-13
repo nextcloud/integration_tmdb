@@ -9,6 +9,7 @@ OC.L10N.register(
     "Connected accounts" : "Cuentas conectadas",
     "The Movie Database integration" : "Integración con The Movie Database",
     "Integration of The Movie Database" : "Integración de The Movie Database",
+    "TMDB integration provides a smart picker provider to search for movies, series or actors and link previews for them." : "La integración con TMDB proporciona un selector inteligente para buscar películas, series o actores y enlazar vistas previas para los mismos.",
     "TMDB integration" : "Integración TMDB",
     "TMDB API key" : "Llave API TMDB",
     "..." : "...",
