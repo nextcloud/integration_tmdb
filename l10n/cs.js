@@ -10,6 +10,7 @@ OC.L10N.register(
     "Failed to save OpenStreetMap options" : "Nepodařilo se uložit předvolby pro OpenStreetMap",
     "Unknown error" : "Neznámá chyba",
     "Released on {date}" : "Vydáno {date}",
+    "Born {date} at {place}" : "Narozen(a) {date} v {place}",
     "Born {date}" : "Narozen(a) {date}",
     "Dead {date}" : "Zemřel(a) {date}",
     "First air date: {date}" : "Poprvé odvysíláno: {date}",
