@@ -1,7 +1,7 @@
 OC.L10N.register(
     "integration_tmdb",
     {
-    "Bad credentials" : "رموز التعريف غير صحيحة",
+    "Bad credentials" : "معلومات تسجيل الدخول غير صحيحة",
     "Bad HTTP method" : "دالة HTTP  غير صحيحة",
     "Connected accounts" : "حسابات مترابطة",
     "..." : "...",
