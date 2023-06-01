@@ -31,7 +31,7 @@ OC.L10N.register(
     "Born {date} at {place}" : "Geboren am {date} in {place}",
     "Born {date}" : "Geboren am {date}",
     "Dead {date}" : "Gestorben am {date}",
-    "Known for {profession}" : "Bekannt als{profession}",
+    "Known for {profession}" : "Bekannt als {profession}",
     "First air date: {date}" : "Datum der Erstausstrahlung: {date}",
     "Last air date: {date}" : "Datum der letzten Ausstrahlung: {date}",
     "{nb} episodes" : "{nb} Folgen",
