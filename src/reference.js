@@ -19,8 +19,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-// with nc/vue 7.8.0, if we remove this, we get "Uncaught TypeError: inspect is undefined"
-import {} from '@nextcloud/vue-richtext'
 import { registerWidget } from '@nextcloud/vue/dist/Components/NcRichText.js'
 import { linkTo } from '@nextcloud/router'
 import { getRequestToken } from '@nextcloud/auth'
