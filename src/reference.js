@@ -22,9 +22,11 @@
 // with nc/vue 7.8.0, if we remove this, we get "Uncaught TypeError: inspect is undefined"
 import {} from '@nextcloud/vue-richtext'
 import { registerWidget } from '@nextcloud/vue/dist/Components/NcRichText.js'
+import { linkTo } from '@nextcloud/router'
+import { getRequestToken } from '@nextcloud/auth'
 
-__webpack_nonce__ = btoa(OC.requestToken) // eslint-disable-line
-__webpack_public_path__ = OC.linkTo('integration_tmdb', 'js/') // eslint-disable-line
+__webpack_nonce__ = btoa(getRequestToken()) // eslint-disable-line
+__webpack_public_path__ = linkTo('integration_tmdb', 'js/') // eslint-disable-line
 
 registerWidget('integration_tmdb_movie', async (el, { richObjectType, richObject, accessible }) => {
 	const { default: Vue } = await import(/* webpackChunkName: "vue-lazy" */'vue')
