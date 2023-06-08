@@ -5,6 +5,7 @@
     "..." : "...",
     "Enable navigation link" : "Näytä navigointipalkissa",
     "OpenStreetMap options saved" : "OpenStreetMap-asetukset tallennettu",
+    "Failed to save OpenStreetMap options" : "OpenStreetMap-asetusten tallentaminen epäonnistui",
     "Unknown error" : "Tuntematon virhe"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -6,6 +6,8 @@ OC.L10N.register(
     "Connected accounts" : "Kapcsolt fiókok",
     "..." : "...",
     "Enable navigation link" : "Navigációs hivatkozás engedélyezése",
+    "OpenStreetMap options saved" : "OpenStreetMap beállításai mentve",
+    "Failed to save OpenStreetMap options" : "Az OpenStreetMap beállításainak mentése sikertelen",
     "Unknown error" : "Ismeretlen hiba"
 },
 "nplurals=2; plural=(n != 1);");
