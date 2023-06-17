@@ -4,7 +4,7 @@ OC.L10N.register(
     "Bad credentials" : "Credenciais incorrectas",
     "Bad HTTP method" : "Método HTTP incorrecto",
     "Connected accounts" : "Contas conectadas",
-    "..." : "...",
+    "..." : "…",
     "Enable navigation link" : "Activar a ligazón de navegación",
     "Unknown error" : "Erro descoñecido"
 },
