@@ -1,6 +1,8 @@
 OC.L10N.register(
     "integration_tmdb",
     {
+    "Bad credentials" : "Credenciales incorrectas",
+    "Bad HTTP method" : "Método HTTP incorrecto",
     "..." : "...",
     "Unknown error" : "Error desconocido"
 },
