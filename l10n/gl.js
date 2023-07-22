@@ -24,7 +24,7 @@ OC.L10N.register(
     "OpenStreetMap options saved" : "Gardáronse as opcións de OpenStreetMap",
     "Failed to save OpenStreetMap options" : "Produciuse un erro ao gardar as opcións de OpenStreetMap",
     "TMDB API error" : "Produciuse un erro da API de TMDB",
-    "Unknown error" : "Erro descoñecido",
+    "Unknown error" : "Produciuse un erro descoñecido",
     "TMDB connected accounts settings" : "Axustes das contas conectadas de TMDB",
     "Released on {date}" : "Publicado o {date}",
     "{hours}h {minutes}min" : "{hours}h {minutes}min",
