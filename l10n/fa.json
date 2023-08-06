@@ -1,4 +1,6 @@
 { "translations": {
+    "Bad credentials" : "اعتبارنامه بد",
+    "Bad HTTP method" : "روش HTTP بد",
     "Connected accounts" : "حساب‌های متصل",
     "Unknown error" : "خطای ناشناخته"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
