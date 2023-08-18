@@ -1,7 +1,9 @@
 { "translations": {
     "Bad credentials" : "Påloggingsdetaljene er feil",
     "Bad HTTP method" : "HTTP-metode er feil",
+    "Connected accounts" : "Tilknyttede kontoer",
     "..." : "…",
+    "Enable navigation link" : "Aktiver navigasjonskobling",
     "Unknown error" : "Ukjent feil"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
