@@ -12,7 +12,7 @@ OC.L10N.register(
     "TMDB integration provides a smart picker provider to search for movies, series or actors and link previews for them." : "Napojení na TMDB poskytuje poskytovatele pro inteligentní výběr pro vyhledávání ve filmech, seriálech nebo hercích a náhledy odkazů na ně.",
     "TMDB integration" : "Napojení na TMDB",
     "TMDB API key" : "Klíč k API rozhraní TMDB",
-    "..." : "...",
+    "..." : "…",
     "Leave this field empty to use the default API key which has a very large quota." : "Pokud chcete použít výchozí klíč k API (je poskytována opravdu velká kvóta), tuto kolonku nevyplňujte.",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Klíč k API je možné si vytvořit v sekci „API“ v nastavení svého účtu na TMDB.",
     "TMDB options saved" : "Předvolby pro TMDB uloženy",
