@@ -1,13 +1,32 @@
 OC.L10N.register(
     "integration_tmdb",
     {
+    "The Movie Database" : "The Movie Database",
+    "The Movie Database items" : "The Movie Database elemek",
     "Bad credentials" : "Hibás hitelesítő adatok",
     "Bad HTTP method" : "Hibás HTTP metódus",
     "Connected accounts" : "Kapcsolt fiókok",
+    "The Movie Database integration" : "The Movie Database integráció",
+    "TMDB integration" : "TMDB integráció",
+    "TMDB API key" : "TMDB API kulcs",
     "..." : "...",
+    "TMDB options saved" : "TMDB beállítások elmentve",
+    "Enable searching for movies/persons/series" : "Filmek/személyek/sorozatok keresésének enegedélyezése",
+    "Enable TMDB/IMDB link previews" : "TMDB/IMDB hivatkozások előnézetének engedélyezése",
     "Enable navigation link" : "Navigációs hivatkozás engedélyezése",
     "OpenStreetMap options saved" : "OpenStreetMap beállításai mentve",
     "Failed to save OpenStreetMap options" : "Az OpenStreetMap beállításainak mentése sikertelen",
-    "Unknown error" : "Ismeretlen hiba"
+    "TMDB API error" : "TMDB API hiba",
+    "Unknown error" : "Ismeretlen hiba",
+    "TMDB connected accounts settings" : "A TMDB-hez kapcsolt fiók beállításai",
+    "Released on {date}" : "Megjelenés dátuma: {date}",
+    "{hours}h {minutes}min" : "{hours}ó {minutes}perc",
+    "Born {date} at {place}" : "Született {date}, {place}",
+    "Born {date}" : "Született {date}",
+    "Dead {date}" : "Elhunyt {date}",
+    "First air date: {date}" : "Első adásbakerülés: {date}",
+    "Last air date: {date}" : "Utolsó adábakerülés: {date}",
+    "{nb} episodes" : "{nb} epizód",
+    "{nb} seasons" : "{nb} évad"
 },
 "nplurals=2; plural=(n != 1);");
