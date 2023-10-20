@@ -2,6 +2,7 @@ OC.L10N.register(
     "integration_tmdb",
     {
     "The Movie Database" : "The Movie Database",
+    "Movies, series and people (by The Movie Database)" : "Filmek, sorozatok és emberek (a The Movie Database által)",
     "The Movie Database items" : "The Movie Database elemek",
     "Bad credentials" : "Hibás hitelesítő adatok",
     "Bad HTTP method" : "Hibás HTTP metódus",
