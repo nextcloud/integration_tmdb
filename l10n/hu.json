@@ -13,6 +13,7 @@
     "TMDB options saved" : "TMDB beállítások elmentve",
     "Failed to save TMDB options" : "A TMDB beállítások mentése sikertelen",
     "Enable searching for movies/persons/series" : "Filmek/személyek/sorozatok keresésének enegedélyezése",
+    "Warning, everything you type in the search bar will be sent to TMDB." : "Figyelem, minden el lesz küldve a TMDB-nek, amit a keresősávba ír.",
     "Enable TMDB/IMDB link previews" : "TMDB/IMDB hivatkozások előnézetének engedélyezése",
     "Enable navigation link" : "Navigációs hivatkozás engedélyezése",
     "OpenStreetMap options saved" : "OpenStreetMap beállításai mentve",
