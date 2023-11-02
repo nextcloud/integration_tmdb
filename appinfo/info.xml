@@ -4,7 +4,7 @@
     <name>The Movie Database integration</name>
     <summary>Integration of The Movie Database</summary>
     <description><![CDATA[TMDB integration provides a smart picker provider to search for movies, series or actors and link previews for them.]]></description>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <licence>agpl</licence>
     <author>Julien Veyssier</author>
     <namespace>Tmdb</namespace>
