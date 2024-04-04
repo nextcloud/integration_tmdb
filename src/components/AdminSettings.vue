@@ -85,10 +85,7 @@ export default {
 			axios.put(url, req).then((response) => {
 				showSuccess(t('integration_tmdb', 'TMDB options saved'))
 			}).catch((error) => {
-				showError(
-					t('integration_tmdb', 'Failed to save TMDB options')
-					+ ': ' + (error.response?.data?.error ?? '')
-				)
+				showError(t('integration_tmdb', 'Failed to save TMDB options'))
 				console.error(error)
 			}).then(() => {
 				this.loading = false

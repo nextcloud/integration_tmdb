@@ -105,10 +105,7 @@ export default {
 			axios.put(url, req).then((response) => {
 				showSuccess(t('integration_tmdb', 'OpenStreetMap options saved'))
 			}).catch((error) => {
-				showError(
-					t('integration_tmdb', 'Failed to save OpenStreetMap options')
-					+ ': ' + (error.response?.data?.error ?? '')
-				)
+				showError(t('integration_tmdb', 'Failed to save OpenStreetMap options'))
 				console.debug(error)
 			})
 		},
