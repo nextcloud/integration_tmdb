@@ -23,12 +23,12 @@
 namespace OCA\Tmdb\Reference;
 
 use OC\Collaboration\Reference\LinkReferenceProvider;
-use OC\Collaboration\Reference\ReferenceManager;
 use OCA\Tmdb\AppInfo\Application;
 use OCA\Tmdb\Service\TmdbAPIService;
 use OCA\Tmdb\Service\UtilsService;
 use OCP\Collaboration\Reference\ADiscoverableReferenceProvider;
 use OCP\Collaboration\Reference\IReference;
+use OCP\Collaboration\Reference\IReferenceManager;
 use OCP\Collaboration\Reference\ISearchableReferenceProvider;
 use OCP\Collaboration\Reference\Reference;
 use OCP\IConfig;
@@ -46,7 +46,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 		private IConfig $config,
 		private IL10N $l10n,
 		private IURLGenerator $urlGenerator,
-		private ReferenceManager $referenceManager,
+		private IReferenceManager $referenceManager,
 		private LinkReferenceProvider $linkReferenceProvider,
 		private UtilsService $utilsService,
 		private ?string $userId) {

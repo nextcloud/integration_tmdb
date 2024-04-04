@@ -12,8 +12,10 @@
 namespace OCA\Tmdb\Controller;
 
 use OCA\Tmdb\Service\TmdbAPIService;
-use OCP\AppFramework\Http\DataDownloadResponse;
+use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\DataDisplayResponse;
 use OCP\AppFramework\Http\RedirectResponse;
+use OCP\AppFramework\Http\Response;
 use OCP\AppFramework\OCSController;
 
 use OCP\IRequest;
@@ -36,18 +38,19 @@ class TmdbAPIController extends OCSController {
 	 * @param string $size
 	 * @param string $imagePath
 	 * @param string $fallbackName
-	 * @return DataDownloadResponse|RedirectResponse
+	 * @return Response
 	 */
-	public function getImage(string $size, string $imagePath, string $fallbackName) {
+	public function getImage(string $size, string $imagePath, string $fallbackName): Response {
 		$result = $this->tmdbAPIService->getImage($size, $imagePath);
 		if (isset($result['error'])) {
 			$fallbackAvatarUrl = $this->urlGenerator->linkToRouteAbsolute('core.GuestAvatar.getAvatar', ['guestName' => $fallbackName, 'size' => 44]);
 			return new RedirectResponse($fallbackAvatarUrl);
 		} else {
-			$response = new DataDownloadResponse(
+			$contentType = $result['headers']['Content-Type'][0] ?? 'image/jpeg';
+			$response = new DataDisplayResponse(
 				$result['body'],
-				'tmdb-image',
-				$result['headers']['Content-Type'][0] ?? 'image/jpeg'
+				Http::STATUS_OK,
+				['Content-Type' => $contentType]
 			);
 			$response->cacheFor(60 * 60 * 24);
 			return $response;

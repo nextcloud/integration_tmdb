@@ -127,13 +127,13 @@ class TmdbSearchProvider implements IProvider {
 			if (isset($entry['title'], $entry['original_title']) && $entry['title'] !== $entry['original_title']) {
 				return '🎥 ' . $entry['title'] . ' (' . $entry['original_title'] . ')';
 			} else {
-				return '🎥 ' . $entry['title'] ?? $entry['original_title'] ?? '???';
+				return '🎥 ' . ($entry['title'] ?? $entry['original_title'] ?? '???');
 			}
 		} elseif ($entry['media_type'] === 'tv') {
 			if (isset($entry['name'], $entry['original_name']) && $entry['name'] !== $entry['original_name']) {
 				return '📺 ' . $entry['name'] . ' (' . $entry['original_name'] . ')';
 			} else {
-				return '📺 ' . $entry['name'] ?? $entry['original_name'] ?? '???';
+				return '📺 ' . ($entry['name'] ?? $entry['original_name'] ?? '???');
 			}
 		} elseif ($entry['media_type'] === 'person') {
 			return '👤 ' . $entry['name'];

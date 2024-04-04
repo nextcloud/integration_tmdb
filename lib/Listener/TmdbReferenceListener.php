@@ -28,6 +28,9 @@ use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\Util;
 
+/**
+ * @implements IEventListener<RenderReferenceEvent>
+ */
 class TmdbReferenceListener implements IEventListener {
 
 	public function __construct() {
