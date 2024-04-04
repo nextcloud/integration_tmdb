@@ -16,11 +16,11 @@ use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use OCA\Tmdb\AppInfo\Application;
 use OCP\Http\Client\IClient;
+use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\L10N\IFactory;
 use Psr\Log\LoggerInterface;
-use OCP\Http\Client\IClientService;
 use Throwable;
 
 /**
@@ -30,12 +30,12 @@ class TmdbAPIService {
 
 	private IClient $client;
 
-	public function __construct (string $appName,
-								private LoggerInterface $logger,
-								private IL10N $l10n,
-								private IConfig $config,
-								private IFactory $l10nFactory,
-								IClientService $clientService) {
+	public function __construct(string $appName,
+		private LoggerInterface $logger,
+		private IL10N $l10n,
+		private IConfig $config,
+		private IFactory $l10nFactory,
+		IClientService $clientService) {
 		$this->client = $clientService->newClient();
 	}
 
@@ -270,11 +270,11 @@ class TmdbAPIService {
 
 			if ($method === 'GET') {
 				$response = $this->client->get($url, $options);
-			} else if ($method === 'POST') {
+			} elseif ($method === 'POST') {
 				$response = $this->client->post($url, $options);
-			} else if ($method === 'PUT') {
+			} elseif ($method === 'PUT') {
 				$response = $this->client->put($url, $options);
-			} else if ($method === 'DELETE') {
+			} elseif ($method === 'DELETE') {
 				$response = $this->client->delete($url, $options);
 			} else {
 				return ['error' => $this->l10n->t('Bad HTTP method')];

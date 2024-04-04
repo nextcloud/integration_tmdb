@@ -11,21 +11,21 @@
 
 namespace OCA\Tmdb\Controller;
 
+use OCA\Tmdb\Service\TmdbAPIService;
 use OCP\AppFramework\Http\DataDownloadResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\OCSController;
-use OCP\IRequest;
 
-use OCA\Tmdb\Service\TmdbAPIService;
+use OCP\IRequest;
 use OCP\IURLGenerator;
 
 class TmdbAPIController extends OCSController {
 
 	public function __construct(string                 $appName,
-								IRequest               $request,
-								private TmdbAPIService $tmdbAPIService,
-								private IURLGenerator  $urlGenerator,
-								?string                $userId) {
+		IRequest               $request,
+		private TmdbAPIService $tmdbAPIService,
+		private IURLGenerator  $urlGenerator,
+		?string                $userId) {
 		parent::__construct($appName, $request);
 	}
 

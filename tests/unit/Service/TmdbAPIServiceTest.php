@@ -2,9 +2,7 @@
 
 namespace OCA\Tmdb\Tests;
 
-
 use OCA\Tmdb\AppInfo\Application;
-use OCA\Tmdb\Service\TmdbAPIService;
 
 class TmdbAPIServiceTest extends \PHPUnit\Framework\TestCase {
 

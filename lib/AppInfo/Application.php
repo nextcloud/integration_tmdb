@@ -13,13 +13,13 @@ use Closure;
 use OCA\Tmdb\Listener\TmdbReferenceListener;
 use OCA\Tmdb\Reference\TmdbReferenceProvider;
 use OCA\Tmdb\Search\TmdbSearchProvider;
+use OCP\AppFramework\App;
+use OCP\AppFramework\Bootstrap\IBootContext;
+
+use OCP\AppFramework\Bootstrap\IBootstrap;
+use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\Collaboration\Reference\RenderReferenceEvent;
 use OCP\IConfig;
-
-use OCP\AppFramework\App;
-use OCP\AppFramework\Bootstrap\IRegistrationContext;
-use OCP\AppFramework\Bootstrap\IBootContext;
-use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\IL10N;
 use OCP\INavigationManager;
 use OCP\IURLGenerator;
@@ -72,4 +72,3 @@ class Application extends App implements IBootstrap {
 		}
 	}
 }
-

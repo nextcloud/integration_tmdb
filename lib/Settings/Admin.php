@@ -1,18 +1,19 @@
 <?php
+
 namespace OCA\Tmdb\Settings;
 
+use OCA\Tmdb\AppInfo\Application;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
-use OCP\Settings\ISettings;
 
-use OCA\Tmdb\AppInfo\Application;
+use OCP\Settings\ISettings;
 
 class Admin implements ISettings {
 
 	public function __construct(private IConfig       $config,
-								private IInitialState $initialStateService,
-								?string       $userId) {
+		private IInitialState $initialStateService,
+		?string       $userId) {
 	}
 
 	/**

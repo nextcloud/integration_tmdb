@@ -24,12 +24,12 @@ declare(strict_types=1);
  */
 namespace OCA\Tmdb\Search;
 
-use OCA\Tmdb\Service\TmdbAPIService;
 use OCA\Tmdb\AppInfo\Application;
+use OCA\Tmdb\Service\TmdbAPIService;
 use OCA\Tmdb\Service\UtilsService;
 use OCP\App\IAppManager;
-use OCP\IL10N;
 use OCP\IConfig;
+use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\IUser;
 use OCP\Search\IProvider;
@@ -40,11 +40,11 @@ use OCP\Search\SearchResultEntry;
 class TmdbSearchProvider implements IProvider {
 
 	public function __construct(private IAppManager        $appManager,
-								private IL10N              $l10n,
-								private IConfig            $config,
-								private IURLGenerator      $urlGenerator,
-								private UtilsService       $utilsService,
-								private TmdbAPIService     $tmdbAPIService) {
+		private IL10N              $l10n,
+		private IConfig            $config,
+		private IURLGenerator      $urlGenerator,
+		private UtilsService       $utilsService,
+		private TmdbAPIService     $tmdbAPIService) {
 	}
 
 	/**
