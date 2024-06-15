@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Bad credentials" : "Dintiúir dona",
     "Bad HTTP method" : "Droch-mhodh HTTP",
+    "Connected accounts" : "Cuntais nasctha",
     "Unknown error" : "Earráid anaithnid"
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");
