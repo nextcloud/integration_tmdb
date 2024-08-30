@@ -25,7 +25,6 @@ OC.L10N.register(
     "Failed to save OpenStreetMap options" : "Failed to save OpenStreetMap options",
     "TMDB API error" : "TMDB API error",
     "Unknown error" : "خطای ناشناخته",
-    "TMDB connected accounts settings" : "TMDB connected accounts settings",
     "Released on {date}" : "Released on {date}",
     "{hours}h {minutes}min" : "{hours}h {minutes}min",
     "Born {date} at {place}" : "Born {date} at {place}",
