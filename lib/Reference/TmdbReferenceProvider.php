@@ -291,7 +291,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 		if (count($matches) > 1) {
 			return [
 				'type' => 'tmdb-movie',
-				'id' => (int) $matches[1],
+				'id' => (int)$matches[1],
 			];
 		}
 
@@ -299,7 +299,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 		if (count($matches) > 1) {
 			return [
 				'type' => 'tmdb-tv',
-				'id' => (int) $matches[1],
+				'id' => (int)$matches[1],
 			];
 		}
 
@@ -307,7 +307,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 		if (count($matches) > 1) {
 			return [
 				'type' => 'tmdb-person',
-				'id' => (int) $matches[1],
+				'id' => (int)$matches[1],
 			];
 		}
 

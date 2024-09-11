@@ -221,7 +221,7 @@ class TmdbAPIService {
 					'headers' => $response->getHeaders(),
 				];
 			}
-		} catch (Exception | Throwable $e) {
+		} catch (Exception|Throwable $e) {
 			$this->logger->warning('Tmdb get image error : ' . $e->getMessage(), ['app' => Application::APP_ID]);
 			return ['error' => $e->getMessage()];
 		}
@@ -313,7 +313,7 @@ class TmdbAPIService {
 					return json_decode($body, true) ?: [];
 				}
 			}
-		} catch (ClientException | ServerException $e) {
+		} catch (ClientException|ServerException $e) {
 			$responseBody = $e->getResponse()->getBody();
 			$parsedResponseBody = json_decode($responseBody, true);
 			if ($e->getResponse()->getStatusCode() === 404) {
@@ -326,7 +326,7 @@ class TmdbAPIService {
 				'error' => $e->getMessage(),
 				'body' => $parsedResponseBody,
 			];
-		} catch (Exception | Throwable $e) {
+		} catch (Exception|Throwable $e) {
 			$this->logger->warning('Tmdb API error : ' . $e->getMessage(), ['app' => Application::APP_ID]);
 			return ['error' => $e->getMessage()];
 		}
