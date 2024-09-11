@@ -231,26 +231,42 @@ class TmdbAPIService {
 	 * @param string|null $userId
 	 * @return string
 	 */
-	private function getApiKey(?string $userId): string {
-		$adminApiKey = $this->config->getAppValue(Application::APP_ID, 'api_key', Application::DEFAULT_API_KEY_V3) ?: Application::DEFAULT_API_KEY_V3;
+	private function getApiKeyV3(?string $userId): string {
+		$adminApiKey = $this->config->getAppValue(Application::APP_ID, 'api_key_v3');
 		if ($userId === null) {
 			return $adminApiKey;
 		}
-		return $this->config->getUserValue($userId, Application::APP_ID, 'api_key', $adminApiKey) ?: $adminApiKey;
+		return $this->config->getUserValue($userId, Application::APP_ID, 'api_key_v3', $adminApiKey) ?: $adminApiKey;
+	}
+
+	/**
+	 * @param string|null $userId
+	 * @return string
+	 */
+	private function getApiKeyV4(?string $userId): string {
+		$adminApiKey = $this->config->getAppValue(Application::APP_ID, 'api_key_v4');
+		if ($userId === null) {
+			return $adminApiKey;
+		}
+		return $this->config->getUserValue($userId, Application::APP_ID, 'api_key_v4', $adminApiKey) ?: $adminApiKey;
 	}
 
 	/**
 	 * Make an HTTP request to the Tmdb API
+	 *
 	 * @param string|null $userId
-	 * @param string $endPoint The path to reach in api.github.com
+	 * @param string $endPoint The path to reach in https://api.themoviedb.org/3/
 	 * @param array $params Query parameters (key/val pairs)
 	 * @param string $method HTTP query method
 	 * @param bool $rawResponse
 	 * @return array decoded request result or error
 	 */
 	public function request(?string $userId, string $endPoint, array $params = [], string $method = 'GET', bool $rawResponse = false): array {
-		$apiKey = $this->getApiKey($userId);
-		$params['api_key'] = $apiKey;
+		$apiKeyV3 = $this->getApiKeyV3($userId);
+		$apiKeyV4 = $this->getApiKeyV4($userId);
+		if ($apiKeyV3) {
+			$params['api_key'] = $apiKeyV3;
+		}
 		try {
 			$url = 'https://api.themoviedb.org/3/' . $endPoint;
 			$options = [
@@ -258,6 +274,9 @@ class TmdbAPIService {
 					'User-Agent' => 'Nextcloud TMDB integration',
 				],
 			];
+			if ($apiKeyV4 && $apiKeyV3 === '') {
+				$options['headers']['Authorization'] = 'Bearer ' . $apiKeyV4;
+			}
 
 			if (count($params) > 0) {
 				if ($method === 'GET') {
