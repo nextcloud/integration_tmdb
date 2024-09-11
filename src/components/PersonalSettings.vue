@@ -6,27 +6,50 @@
 		</h2>
 		<div id="tmdb-content">
 			<div class="line">
-				<label for="tmdb-api-key">
+				<label for="tmdb-api-key-v3">
 					<KeyIcon :size="20" class="icon" />
 					{{ t('integration_tmdb', 'TMDB API key') }}
 				</label>
-				<input id="tmdb-api-key"
-					v-model="state.api_key"
+				<input id="tmdb-api-key-v3"
+					v-model="state.api_key_v3"
 					type="password"
 					:placeholder="t('integration_tmdb', '...')"
 					@input="onInput">
 			</div>
+			<NcNoteCard v-if="state.has_admin_api_key_v3" type="info">
+				{{ t('integration_tmdb', 'Leave the API key empty to use the one set by your administrator.') }}
+			</NcNoteCard>
+			<div class="line">
+				<label for="tmdb-api-key-v4">
+					<KeyIcon :size="20" class="icon" />
+					{{ t('integration_tmdb', 'TMDB API Read Access Token') }}
+				</label>
+				<input id="tmdb-api-key-v4"
+					v-model="state.api_key_v4"
+					type="password"
+					:placeholder="t('integration_tmdb', '...')"
+					@input="onInput">
+			</div>
+			<NcNoteCard v-if="state.has_admin_api_key_v4" type="info">
+				{{ t('integration_tmdb', 'Leave the API Read Access Token empty to use the one set by your administrator.') }}
+			</NcNoteCard>
+			<NcNoteCard type="info">
+				<a href="https://themoviedb.org" target="_blank" class="external">
+					{{ t('integration_tmdb', 'You can create an app and API key in the "API" section of your TMDB account settings.') }}
+				</a>
+				<p>
+					{{ t('integration_tmdb', 'If you set both the API key and the token, the API key will be used in priority.') }}
+				</p>
+			</NcNoteCard>
 			<div id="tmdb-search-block">
 				<NcCheckboxRadioSwitch
 					:checked="state.search_enabled"
 					@update:checked="onCheckboxChanged($event, 'search_enabled')">
 					{{ t('integration_tmdb', 'Enable searching for movies/persons/series') }}
 				</NcCheckboxRadioSwitch>
-				<br>
-				<p v-if="state.search_enabled" class="settings-hint">
-					<InformationOutlineIcon :size="20" class="icon" />
+				<NcNoteCard v-if="state.search_enabled" type="warning">
 					{{ t('integration_tmdb', 'Warning, everything you type in the search bar will be sent to TMDB.') }}
-				</p>
+				</NcNoteCard>
 				<NcCheckboxRadioSwitch
 					:checked="state.link_preview_enabled"
 					@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
@@ -44,16 +67,18 @@
 
 <script>
 import KeyIcon from 'vue-material-design-icons/Key.vue'
-import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
 
 import TmdbIcon from './icons/TmdbIcon.vue'
+
+import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
 
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
 import axios from '@nextcloud/axios'
 import { showSuccess, showError } from '@nextcloud/dialogs'
+import { confirmPassword } from '@nextcloud/password-confirmation'
 
-import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
 import { delay } from '../utils.js'
 
 export default {
@@ -62,8 +87,8 @@ export default {
 	components: {
 		TmdbIcon,
 		NcCheckboxRadioSwitch,
-		InformationOutlineIcon,
 		KeyIcon,
+		NcNoteCard,
 	},
 
 	props: [],
@@ -89,23 +114,29 @@ export default {
 			this.loading = true
 			delay(() => {
 				this.saveOptions({
-					api_key: this.state.api_key,
+					api_key_v3: this.state.api_key_v3,
+					api_key_v4: this.state.api_key_v4,
 				})
 			}, 2000)()
 		},
 		onCheckboxChanged(newValue, key) {
 			this.state[key] = newValue
-			this.saveOptions({ [key]: this.state[key] ? '1' : '0' })
+			this.saveOptions({ [key]: this.state[key] ? '1' : '0' }, false)
 		},
-		saveOptions(values) {
+		async saveOptions(values, sensitive = true) {
+			if (sensitive) {
+				await confirmPassword()
+			}
 			const req = {
 				values,
 			}
-			const url = generateUrl('/apps/integration_tmdb/config')
+			const url = sensitive
+				? generateUrl('/apps/integration_tmdb/sensitive-config')
+				: generateUrl('/apps/integration_tmdb/config')
 			axios.put(url, req).then((response) => {
-				showSuccess(t('integration_tmdb', 'OpenStreetMap options saved'))
+				showSuccess(t('integration_tmdb', 'TMDB options saved'))
 			}).catch((error) => {
-				showError(t('integration_tmdb', 'Failed to save OpenStreetMap options'))
+				showError(t('integration_tmdb', 'Failed to save TMDB options'))
 				console.debug(error)
 			})
 		},

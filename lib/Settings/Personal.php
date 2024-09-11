@@ -23,14 +23,19 @@ class Personal implements ISettings {
 		$searchEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_enabled', '1') === '1';
 		$navigationEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'navigation_enabled', '0') === '1';
 		$linkPreviewEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'link_preview_enabled', '1') === '1';
-		$adminApiKey = $this->config->getAppValue(Application::APP_ID, 'api_key', Application::DEFAULT_API_KEY_V3) ?: Application::DEFAULT_API_KEY_V3;
-		$apiKey = $this->config->getUserValue($this->userId, Application::APP_ID, 'api_key', $adminApiKey) ?: $adminApiKey;
+		$adminApiKeyV3 = $this->config->getAppValue(Application::APP_ID, 'api_key_v3');
+		$apiKeyV3 = $this->config->getUserValue($this->userId, Application::APP_ID, 'api_key_v3');
+		$adminApiKeyV4 = $this->config->getAppValue(Application::APP_ID, 'api_key_v4');
+		$apiKeyV4 = $this->config->getUserValue($this->userId, Application::APP_ID, 'api_key_v4');
 
 		$userConfig = [
 			'search_enabled' => $searchEnabled,
 			'navigation_enabled' => $navigationEnabled ,
 			'link_preview_enabled' => $linkPreviewEnabled,
-			'api_key' => $apiKey,
+			'api_key_v3' => $apiKeyV3,
+			'has_admin_api_key_v3' => $adminApiKeyV3 !== '',
+			'api_key_v4' => $apiKeyV4,
+			'has_admin_api_key_v4' => $adminApiKeyV4 !== '',
 		];
 		$this->initialStateService->provideInitialState('user-config', $userConfig);
 		return new TemplateResponse(Application::APP_ID, 'personalSettings');

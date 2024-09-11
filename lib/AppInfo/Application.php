@@ -30,9 +30,6 @@ class Application extends App implements IBootstrap {
 	public const APP_ID = 'integration_tmdb';
 	public const TMDB_URL = 'https://www.themoviedb.org';
 
-	public const DEFAULT_API_KEY_V3 = 'ea9463b748a30c8127e58636af4decaf';
-	public const DEFAULT_API_KEY_V4 = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYTk0NjNiNzQ4YTMwYzgxMjdlNTg2MzZhZjRkZWNhZiIsInN1YiI6IjYzY2JlZWZjOWE2NDM1MDBhZTAzMTcwNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.v3HqvuSJ2XSvbXbfbo8hQUwgudae29Ay4-qzu9d9OTY';
-
 	public function __construct(array $urlParams = []) {
 		parent::__construct(self::APP_ID, $urlParams);
 	}
