@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.0.0 – 2024-09-11
+
+### Changed
+
+- Remove default API key
+- Bump max NC version to 31
+- Drop NC 26 support
+- Ask password confirmation when setting sensitive setting values
+- Update NPM pkgs
+
 ## 1.0.4 – 2024-04-04
 
 ### Changed
