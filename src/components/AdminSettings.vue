@@ -28,7 +28,7 @@
 					@input="onInput">
 			</div>
 			<NcNoteCard type="info">
-				<a href="https://themoviedb.org" target="_blank">
+				<a href="https://themoviedb.org" target="_blank" class="external">
 					{{ t('integration_tmdb', 'You can create an app and API key in the "API" section of your TMDB account settings.') }}
 				</a>
 				<p>

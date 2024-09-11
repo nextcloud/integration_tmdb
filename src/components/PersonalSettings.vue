@@ -34,7 +34,12 @@
 				{{ t('integration_tmdb', 'Leave the API Read Access Token empty to use the one set by your administrator.') }}
 			</NcNoteCard>
 			<NcNoteCard type="info">
-				{{ t('integration_tmdb', 'If you set both the API key and the token, the API key will be used in priority.') }}
+				<a href="https://themoviedb.org" target="_blank" class="external">
+					{{ t('integration_tmdb', 'You can create an app and API key in the "API" section of your TMDB account settings.') }}
+				</a>
+				<p>
+					{{ t('integration_tmdb', 'If you set both the API key and the token, the API key will be used in priority.') }}
+				</p>
 			</NcNoteCard>
 			<div id="tmdb-search-block">
 				<NcCheckboxRadioSwitch
