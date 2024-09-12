@@ -6,8 +6,6 @@ OC.L10N.register(
     "Connected accounts" : "Yhdistetyt tilit",
     "..." : "...",
     "Enable navigation link" : "Näytä navigointipalkissa",
-    "OpenStreetMap options saved" : "OpenStreetMap-asetukset tallennettu",
-    "Failed to save OpenStreetMap options" : "OpenStreetMap-asetusten tallentaminen epäonnistui",
     "Unknown error" : "Tuntematon virhe"
 },
 "nplurals=2; plural=(n != 1);");

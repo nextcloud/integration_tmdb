@@ -18,8 +18,6 @@ OC.L10N.register(
     "Warning, everything you type in the search bar will be sent to TMDB." : "Figyelem, minden el lesz küldve a TMDB-nek, amit a keresősávba ír.",
     "Enable TMDB/IMDB link previews" : "TMDB/IMDB hivatkozások előnézetének engedélyezése",
     "Enable navigation link" : "Navigációs hivatkozás engedélyezése",
-    "OpenStreetMap options saved" : "OpenStreetMap beállításai mentve",
-    "Failed to save OpenStreetMap options" : "Az OpenStreetMap beállításainak mentése sikertelen",
     "TMDB API error" : "TMDB API hiba",
     "Unknown error" : "Ismeretlen hiba",
     "TMDB connected accounts settings" : "A TMDB-hez kapcsolt fiók beállításai",
