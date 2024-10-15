@@ -17,6 +17,8 @@ OC.L10N.register(
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Klíč k API je možné si vytvořit v sekci „API“ v nastavení svého účtu na TMDB.",
     "TMDB options saved" : "Předvolby pro TMDB uloženy",
     "Failed to save TMDB options" : "Nepodařilo se uložit předvolby pro TMDB",
+    "Leave the API key empty to use the one set by your administrator." : "Pokud chcete využít klíč k API, nastavený vaší správcem, pak ho zde nevyplňujte.",
+    "Leave the API Read Access Token empty to use the one set by your administrator." : "Pokud chcete využít klíč k API (přístup pro čtení), nastavený vaší správcem, pak ho zde nevyplňujte.",
     "Enable searching for movies/persons/series" : "Zapnout vyhledávání ve filmech/osobách/sériích",
     "Warning, everything you type in the search bar will be sent to TMDB." : "Varování – cokoli zadáte do kolonky vyhledávání bude odesláno do TMDB.",
     "Enable TMDB/IMDB link previews" : "Zapnout náhledy odkazů do TMDB/IMDB",
