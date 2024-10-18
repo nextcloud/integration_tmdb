@@ -4,7 +4,7 @@ OC.L10N.register(
     "The Movie Database" : "قاعدة بيانات الأفلام The Movie Database",
     "Movies, series and people (by The Movie Database)" : "أفلام، و مسلسلات، و ممثلين (من قاعدة بيانات الأفلام tmdb)",
     "The Movie Database items" : "عناصر قاعدة بيانات الأفلام tmdb",
-    "Bad credentials" : "حيثيّات الدخول credentials غير صحيحة",
+    "Bad credentials" : "بيانات تسجيل الدخول غير صحيحة",
     "Bad HTTP method" : "دالة HTTP  غير صحيحة",
     "Connected accounts" : "حسابات مترابطة",
     "The Movie Database integration" : "مٌكاملة قاعدة بيانات الأفلام tmdb",
