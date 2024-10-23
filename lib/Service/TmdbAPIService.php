@@ -20,6 +20,7 @@ use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\L10N\IFactory;
+use OCP\Security\ICrypto;
 use Psr\Log\LoggerInterface;
 use Throwable;
 
@@ -30,12 +31,15 @@ class TmdbAPIService {
 
 	private IClient $client;
 
-	public function __construct(string $appName,
+	public function __construct(
+		string $appName,
 		private LoggerInterface $logger,
 		private IL10N $l10n,
 		private IConfig $config,
+		private ICrypto $crypto,
 		private IFactory $l10nFactory,
-		IClientService $clientService) {
+		IClientService $clientService
+	) {
 		$this->client = $clientService->newClient();
 	}
 
@@ -234,9 +238,10 @@ class TmdbAPIService {
 	private function getApiKeyV3(?string $userId): string {
 		$adminApiKey = $this->config->getAppValue(Application::APP_ID, 'api_key_v3');
 		if ($userId === null) {
-			return $adminApiKey;
+			return $adminApiKey !== '' ? $this->crypto->decrypt($adminApiKey) : '';
 		}
-		return $this->config->getUserValue($userId, Application::APP_ID, 'api_key_v3', $adminApiKey) ?: $adminApiKey;
+		$userApiKey = $this->config->getUserValue($userId, Application::APP_ID, 'api_key_v3', $adminApiKey) ?: $adminApiKey;
+		return $userApiKey !== '' ? $this->crypto->decrypt($userApiKey): '';
 	}
 
 	/**
@@ -246,9 +251,10 @@ class TmdbAPIService {
 	private function getApiKeyV4(?string $userId): string {
 		$adminApiKey = $this->config->getAppValue(Application::APP_ID, 'api_key_v4');
 		if ($userId === null) {
-			return $adminApiKey;
+			return $adminApiKey !== '' ? $this->crypto->decrypt($adminApiKey) : '';
 		}
-		return $this->config->getUserValue($userId, Application::APP_ID, 'api_key_v4', $adminApiKey) ?: $adminApiKey;
+		$userApiKey = $this->config->getUserValue($userId, Application::APP_ID, 'api_key_v4', $adminApiKey) ?: $adminApiKey;
+		return $userApiKey !== '' ? $this->crypto->decrypt($userApiKey) : '';
 	}
 
 	/**

@@ -7,13 +7,17 @@ use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
 
+use OCP\Security\ICrypto;
 use OCP\Settings\ISettings;
 
 class Personal implements ISettings {
 
-	public function __construct(private IConfig       $config,
+	public function __construct(
+		private IConfig $config,
 		private IInitialState $initialStateService,
-		private ?string       $userId) {
+		private ICrypto $crypto,
+		private ?string $userId
+	) {
 	}
 
 	/**
@@ -24,9 +28,21 @@ class Personal implements ISettings {
 		$navigationEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'navigation_enabled', '0') === '1';
 		$linkPreviewEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'link_preview_enabled', '1') === '1';
 		$adminApiKeyV3 = $this->config->getAppValue(Application::APP_ID, 'api_key_v3');
+		if ($adminApiKeyV3 !== '') {
+			$adminApiKeyV3 = $this->crypto->decrypt($adminApiKeyV3);
+		}
 		$apiKeyV3 = $this->config->getUserValue($this->userId, Application::APP_ID, 'api_key_v3');
+		if ($apiKeyV3 !== '') {
+			$apiKeyV3 = $this->crypto->decrypt($apiKeyV3);
+		}
 		$adminApiKeyV4 = $this->config->getAppValue(Application::APP_ID, 'api_key_v4');
+		if ($adminApiKeyV4 !== '') {
+			$adminApiKeyV4 = $this->crypto->decrypt($adminApiKeyV4);
+		}
 		$apiKeyV4 = $this->config->getUserValue($this->userId, Application::APP_ID, 'api_key_v4');
+		if ($apiKeyV4 !== '') {
+			$apiKeyV4 = $this->crypto->decrypt($apiKeyV4);
+		}
 
 		$userConfig = [
 			'search_enabled' => $searchEnabled,
