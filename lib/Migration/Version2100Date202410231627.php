@@ -36,15 +36,15 @@ class Version2100Date202410231627 extends SimpleMigrationStep {
 	 */
 	public function postSchemaChange(IOutput $output, Closure $schemaClosure, array $options) {
 		// encrypt appconfig client_id and client_secret
-		$clientId = $this->config->getAppValue(Application::APP_ID, 'api_key_v3');
-		if ($clientId !== '') {
-			$clientId = $this->crypto->encrypt($clientId);
-			$this->config->setAppValue(Application::APP_ID, 'api_key_v3', $clientId);
+		$apiKeyV3 = $this->config->getAppValue(Application::APP_ID, 'api_key_v3');
+		if ($apiKeyV3 !== '') {
+			$apiKeyV3 = $this->crypto->encrypt($apiKeyV3);
+			$this->config->setAppValue(Application::APP_ID, 'api_key_v3', $apiKeyV3);
 		}
-		$clientSecret = $this->config->getAppValue(Application::APP_ID, 'api_key_v4');
-		if ($clientSecret !== '') {
-			$clientSecret = $this->crypto->encrypt($clientSecret);
-			$this->config->setAppValue(Application::APP_ID, 'api_key_v4', $clientSecret);
+		$apiKeyV4 = $this->config->getAppValue(Application::APP_ID, 'api_key_v4');
+		if ($apiKeyV4 !== '') {
+			$apiKeyV4 = $this->crypto->encrypt($apiKeyV4);
+			$this->config->setAppValue(Application::APP_ID, 'api_key_v4', $apiKeyV4);
 		}
 
 		// encrypt user tokens
