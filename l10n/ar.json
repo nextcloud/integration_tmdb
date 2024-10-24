@@ -17,7 +17,7 @@
     "TMDB options saved" : "تمّ حفظ خيارات TMDB",
     "Failed to save TMDB options" : "فشل في حفظ خيارات TMDB",
     "Leave the API key empty to use the one set by your administrator." : "أترُك مفتاح الواجهة API فارغاً ليتم استعمال المفتاح المُدخَل من قِبَل مُشرِف النظام.",
-    "Leave the API Read Access Token empty to use the one set by your administrator." : "أترُك أَمَارَة حق قراءة الواجهة API فارغةً ليتم استعمال الأَمَارَة المُدخَلة من قِبَل مُشرِف النظام.",
+    "Leave the API Read Access Token empty to use the one set by your administrator." : "أترُك أَمَارَة حق قراءة الواجهة API فارغةً ليتم استعمال الأَمَارَة المُدخَلة من قِبَل مسؤول النظام.",
     "Enable searching for movies/persons/series" : "تمكين البحث في الأفلام و المسلسلات و الممثلين",
     "Warning, everything you type in the search bar will be sent to TMDB." : "تحذير، كل ما تكتبه في شريط البحث سيقع إرساله إلى TMDB.",
     "Enable TMDB/IMDB link previews" : "تمكين معاينة روابط TMDB/IMDB",
