@@ -13,6 +13,7 @@
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Вы можете создать приложение и ключ API в разделе «API» настроек вашей учетной записи TMDB.",
     "TMDB options saved" : "Параметры TMDB сохранены",
     "Failed to save TMDB options" : "Не удалось сохранить параметры TMDB",
+    "Leave the API key empty to use the one set by your administrator." : "Оставьте ключ API пустым, чтобы использовать установленный администратором.",
     "Enable searching for movies/persons/series" : "Включить поиск фильмов/персон/сериалов",
     "Warning, everything you type in the search bar will be sent to TMDB." : "Внимание: все, что вы вводите в строку поиска, будет отправлено в TMDB.",
     "Enable TMDB/IMDB link previews" : "Включить предварительный просмотр ссылок TMDB/IMDB",
