@@ -17,6 +17,7 @@ OC.L10N.register(
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Vous pouvez créer une application et une clé API dans la section API des paramètres de votre compte TMDB",
     "TMDB options saved" : "Options TMDB enregistrées",
     "Failed to save TMDB options" : "Impossible d'enregistrer les options TMDB",
+    "Leave the API key empty to use the one set by your administrator." : "Laissez la clé API vide pour utiliser celle définie par votre administrateur.",
     "Enable searching for movies/persons/series" : "Activer la recherche des films/individus/séries",
     "Warning, everything you type in the search bar will be sent to TMDB." : "Attention, tout ce que vous tapez dans la barre de recherche sera envoyé à TMDB.",
     "Enable TMDB/IMDB link previews" : "Activer les aperçus des liens TMDB/IMDB",
