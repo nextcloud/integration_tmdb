@@ -27,7 +27,7 @@ OC.L10N.register(
     "TMDB API error" : "Produciuse un erro da API de TMDB",
     "Unknown error" : "Produciuse un erro descoñecido",
     "TMDB connected accounts settings" : "Axustes das contas conectadas de TMDB",
-    "Released on {date}" : "Publicado o {date}",
+    "Released on {date}" : "Editado o {date}",
     "{hours}h {minutes}min" : "{hours}h {minutes}min",
     "Born {date} at {place}" : "Naceu o {data} en {place}",
     "Born {date}" : "Naceu o {date}",
