@@ -14,7 +14,7 @@ OC.L10N.register(
     "TMDB API key" : "TMDB-API-Schlüssel",
     "..." : "…",
     "TMDB API Read Access Token" : "TMDB API-Lesezugriffstoken",
-    "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Sie können im Abschnitt „API“ Ihrer TMDB-Kontoeinstellungen einen App- und API-Schlüssel erstellen.",
+    "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Sie können im Abschnitt \"API\" Ihrer TMDB-Kontoeinstellungen einen App- und API-Schlüssel erstellen.",
     "If you set both the API key and the token, the API key will be used in priority." : "Wenn Sie sowohl den API-Schlüssel als auch das Token festlegen, wird der API-Schlüssel vorrangig verwendet.",
     "TMDB options saved" : "TMDB-Einstellungen gespeichert",
     "Failed to save TMDB options" : "Fehler beim Speichern der TMDB-Einstellungen",
