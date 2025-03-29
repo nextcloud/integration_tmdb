@@ -14,8 +14,26 @@
     "TMDB API key" : "Kľúč API k TMDB",
     "..." : "...",
     "TMDB API Read Access Token" : "Prístupový token na čítanie TMDB API",
+    "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Kľúč k API môžete vytvoriť' v API sekcii nastavenia vašeho TMDB účtu.",
+    "If you set both the API key and the token, the API key will be used in priority." : "Ak nastavíte kľúč API a súčasne token, prioritne sa použije API kľúč.",
+    "Leave the API key empty to use the one set by your administrator." : "Ponechajte kľúč k API prázdny pre použitie kľúča nastaveného vašim administrátorom.",
+    "Leave the API Read Access Token empty to use the one set by your administrator." : "Ponechajte API token na čítanie prázdny pre použitie kľúča nastaveného vašim administrátorom.",
+    "Enable searching for movies/persons/series" : "Povoliť vyhľadávanie filmov/osôb/seriálov",
+    "Warning, everything you type in the search bar will be sent to TMDB." : "Varovanie, všetko čo napíšete do vyhľadávania bude odoslané do TMDB.",
+    "Enable TMDB/IMDB link previews" : "Povoliť ukážky odkazov TMDB/IMDB.",
     "Enable navigation link" : "Povoliť navigačný odkaz",
     "{hours}h {minutes}min" : "{hours} h {minutes} min",
-    "Unknown error" : "Neznáma chyba"
+    "TMDB API error" : "Chyba TMDB API",
+    "Unknown error" : "Neznáma chyba",
+    "TMDB connected accounts settings" : "Nastavenia pripojených účtov TMDB",
+    "Released on {date}" : "Vydané {date}",
+    "Born {date} at {place}" : "Narodený/á {date} v {place}",
+    "Born {date}" : "Narodený/á {date}",
+    "Dead {date}" : "Úmrtie {date}",
+    "Known for {profession}" : "Známy/a ako {profession}",
+    "{nb} episodes" : "{nb} epizód",
+    "{nb} seasons" : "{nb} sérií",
+    "First air date: {date}" : "Prvé vysielanie {date}",
+    "Last air date: {date}" : "Naposledy vysielané {date}"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);"
 }
