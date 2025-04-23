@@ -1,0 +1,6 @@
+{ "translations": {
+    "Bad credentials" : "Akkaunt ma'lumotlari xato",
+    "Bad HTTP method" : "Yomon HTTP usuli",
+    "Unknown error" : "Unknown error"
+},"pluralForm" :"nplurals=1; plural=0;"
+}
