@@ -9,7 +9,7 @@
     "Integration of The Movie Database" : "Integration der Film-Datenbank",
     "TMDB integration provides a smart picker provider to search for movies, series or actors and link previews for them." : "Die TMDB-Integration bietet einen Smart Picker-Anbieter, mit dem Sie nach Filmen, Serien oder Schauspielern suchen und Vorschauen für diese verknüpfen können.",
     "TMDB options saved" : "TMDB-Einstellungen gespeichert",
-    "Failed to save TMDB options" : "Fehler beim Speichern der TMDB-Einstellungen",
+    "Failed to save TMDB options" : "TMDB-Einstellungen konnten nicht gespeichert werden",
     "TMDB integration" : "TMDB-Integration",
     "TMDB API key" : "TMDB-API-Schlüssel",
     "..." : "…",
