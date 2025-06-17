@@ -6,6 +6,8 @@ OC.L10N.register(
     "Connected accounts" : "Sasaistītie konti",
     "..." : "...",
     "Unknown error" : "Nezināma kļūda",
-    "TMDB connected accounts settings" : "Sasaistīto TMDB kontu iestatījumi"
+    "TMDB connected accounts settings" : "Sasaistīto TMDB kontu iestatījumi",
+    "First air date: {date}" : "Pirmās pārraides datums: {date}",
+    "Last air date: {date}" : "Pēdējās pārraides datums: {date}"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");
