@@ -5,6 +5,7 @@ OC.L10N.register(
     "Bad HTTP method" : "Vigane HTTP-meetod",
     "Connected accounts" : "Ühendatud kasutajakontod",
     "..." : "...",
+    "Enable navigation link" : "Lisa menüülink",
     "Unknown error" : "Tundmatu viga"
 },
 "nplurals=2; plural=(n != 1);");
