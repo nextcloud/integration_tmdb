@@ -1,7 +1,7 @@
 OC.L10N.register(
     "integration_tmdb",
     {
-    "The Movie Database" : "Film veritabanı",
+    "The Movie Database" : "Film veri tabanı",
     "Movies, series and people (by The Movie Database)" : "Filmler, diziler ve kişiler (The Movie Database ile)",
     "The Movie Database items" : "The Movie Database ögeleri",
     "Bad credentials" : "Kimlik doğrulama bilgileri hatalı",
