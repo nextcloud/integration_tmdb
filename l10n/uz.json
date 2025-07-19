@@ -1,6 +1,7 @@
 { "translations": {
     "Bad credentials" : "Akkaunt ma'lumotlari xato",
     "Bad HTTP method" : "Yomon HTTP usuli",
+    "Connected accounts" : "Ulangan akkauntlar",
     "Unknown error" : "Unknown error"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
