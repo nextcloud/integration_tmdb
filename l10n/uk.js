@@ -5,6 +5,7 @@ OC.L10N.register(
     "Bad HTTP method" : "Поганий метод HTTP",
     "Connected accounts" : "Підключені облікові записи",
     "..." : "...",
+    "Enable navigation link" : "Увімкнути навігаційне посилання",
     "{hours}h {minutes}min" : "{hours} год {minutes} хв",
     "Unknown error" : "Невідома помилка"
 },
