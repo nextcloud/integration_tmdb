@@ -21,9 +21,9 @@
 
 import { registerWidget } from '@nextcloud/vue/dist/Components/NcRichText.js'
 import { linkTo } from '@nextcloud/router'
-import { getRequestToken } from '@nextcloud/auth'
+import { getCSPNonce } from '@nextcloud/auth'
 
-__webpack_nonce__ = btoa(getRequestToken()) // eslint-disable-line
+__webpack_nonce__ = getCSPNonce() // eslint-disable-line
 __webpack_public_path__ = linkTo('integration_tmdb', 'js/') // eslint-disable-line
 
 registerWidget('integration_tmdb_movie', async (el, { richObjectType, richObject, accessible }) => {
