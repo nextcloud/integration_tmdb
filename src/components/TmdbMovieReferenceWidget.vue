@@ -49,13 +49,13 @@
 				<div class="title">
 					<strong>
 						<a :href="richObject.tmdb_url" target="_blank" class="line">
-							<FilmstripIcon :size="20" class="icon" />
+							<MovieOpenOutlineIcon :size="20" class="icon" />
 							{{ richObject.formatted_title }}
 						</a>
 					</strong>
 				</div>
 				<p v-if="richObject.formatted_release_date" class="release-date line">
-					<CalendarIcon :size="20" class="icon" />
+					<CalendarOutlineIcon :size="20" class="icon" />
 					{{ t('integration_tmdb', 'Released on {date}' , { date: richObject.formatted_release_date }) }}
 				</p>
 				<p v-if="duration" class="release-date line">
@@ -63,7 +63,7 @@
 					{{ duration }}
 				</p>
 				<p v-if="genres" class="release-date line">
-					<ShapeIcon :size="20" class="icon" />
+					<ShapeOutlineIcon :size="20" class="icon" />
 					{{ genres }}
 				</p>
 				<p v-if="richObject.tagline" class="tagline">
@@ -78,11 +78,11 @@
 </template>
 
 <script>
-import ShapeIcon from 'vue-material-design-icons/Shape.vue'
+import ShapeOutlineIcon from 'vue-material-design-icons/ShapeOutline.vue'
 import ClockOutlineIcon from 'vue-material-design-icons/ClockOutline.vue'
-import CalendarIcon from 'vue-material-design-icons/Calendar.vue'
+import CalendarOutlineIcon from 'vue-material-design-icons/CalendarOutline.vue'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
-import FilmstripIcon from 'vue-material-design-icons/Filmstrip.vue'
+import MovieOpenOutlineIcon from 'vue-material-design-icons/MovieOpenOutline.vue'
 
 import TmdbIcon from './icons/TmdbIcon.vue'
 
@@ -98,10 +98,10 @@ export default {
 	components: {
 		TmdbIcon,
 		OpenInNewIcon,
-		FilmstripIcon,
-		CalendarIcon,
+		MovieOpenOutlineIcon,
+		CalendarOutlineIcon,
 		ClockOutlineIcon,
-		ShapeIcon,
+		ShapeOutlineIcon,
 	},
 
 	props: {
