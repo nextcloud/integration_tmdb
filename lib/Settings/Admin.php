@@ -16,7 +16,7 @@ class Admin implements ISettings {
 		private IConfig $config,
 		private IInitialState $initialStateService,
 		private ICrypto $crypto,
-		?string $userId
+		?string $userId,
 	) {
 	}
 

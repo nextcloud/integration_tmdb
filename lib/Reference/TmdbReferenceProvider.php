@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Copyright (c) 2023 Julien Veyssier <eneiluj@posteo.net>
  *
@@ -42,14 +43,16 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 	private const RICH_OBJECT_TYPE_PERSON = Application::APP_ID . '_person';
 	private const RICH_OBJECT_TYPE_TV = Application::APP_ID . '_tv';
 
-	public function __construct(private TmdbAPIService $tmdbAPIService,
+	public function __construct(
+		private TmdbAPIService $tmdbAPIService,
 		private IConfig $config,
 		private IL10N $l10n,
 		private IURLGenerator $urlGenerator,
 		private IReferenceManager $referenceManager,
 		private LinkReferenceProvider $linkReferenceProvider,
 		private UtilsService $utilsService,
-		private ?string $userId) {
+		private ?string $userId,
+	) {
 	}
 
 	/**

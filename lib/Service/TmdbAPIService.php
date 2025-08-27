@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Nextcloud - Tmdb
  *
@@ -38,7 +39,7 @@ class TmdbAPIService {
 		private IConfig $config,
 		private ICrypto $crypto,
 		private IFactory $l10nFactory,
-		IClientService $clientService
+		IClientService $clientService,
 	) {
 		$this->client = $clientService->newClient();
 	}
