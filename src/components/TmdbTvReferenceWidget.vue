@@ -55,7 +55,7 @@
 					</strong>
 				</div>
 				<p v-if="richObject.formatted_first_air_date" class="release-date line">
-					<CalendarIcon :size="20" class="icon" />
+					<CalendarOutlineIcon :size="20" class="icon" />
 					{{ t('integration_tmdb', 'First air date: {date}' , { date: richObject.formatted_first_air_date }) }}
 				</p>
 				<p v-if="richObject.formatted_last_air_date" class="release-date line">
@@ -63,7 +63,7 @@
 					{{ t('integration_tmdb', 'Last air date: {date}' , { date: richObject.formatted_last_air_date }) }}
 				</p>
 				<p v-if="genres" class="line">
-					<ShapeIcon :size="20" class="icon" />
+					<ShapeOutlineIcon :size="20" class="icon" />
 					{{ genres }}
 				</p>
 				<p v-if="nbEpisodes && nbSeasons" class="line">
@@ -82,11 +82,11 @@
 </template>
 
 <script>
-import ShapeIcon from 'vue-material-design-icons/Shape.vue'
+import ShapeOutlineIcon from 'vue-material-design-icons/ShapeOutline.vue'
 import InformationOutlineIcon from 'vue-material-design-icons/InformationOutline.vue'
 import TelevisionClassicIcon from 'vue-material-design-icons/TelevisionClassic.vue'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
-import CalendarIcon from 'vue-material-design-icons/Calendar.vue'
+import CalendarOutlineIcon from 'vue-material-design-icons/CalendarOutline.vue'
 import CalendarBlankOutlineIcon from 'vue-material-design-icons/CalendarBlankOutline.vue'
 
 import TmdbIcon from './icons/TmdbIcon.vue'
@@ -103,10 +103,10 @@ export default {
 	components: {
 		TmdbIcon,
 		OpenInNewIcon,
-		CalendarIcon,
+		CalendarOutlineIcon,
 		CalendarBlankOutlineIcon,
 		TelevisionClassicIcon,
-		ShapeIcon,
+		ShapeOutlineIcon,
 		InformationOutlineIcon,
 	},
 

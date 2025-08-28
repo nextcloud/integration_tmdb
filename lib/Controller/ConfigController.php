@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Nextcloud - Tmdb
  *
@@ -28,9 +29,9 @@ class ConfigController extends Controller {
 	public function __construct(
 		string $appName,
 		IRequest $request,
-		private IConfig  $config,
+		private IConfig $config,
 		private ICrypto $crypto,
-		private ?string  $userId
+		private ?string $userId,
 	) {
 		parent::__construct($appName, $request);
 	}

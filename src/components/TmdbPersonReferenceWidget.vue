@@ -49,14 +49,14 @@
 				<div class="name">
 					<strong>
 						<a :href="richObject.tmdb_url" target="_blank" class="line">
-							<FaceManIcon v-if="richObject.gender === 2" :size="20" class="icon" />
-							<FaceWomanIcon v-else :size="20" class="icon" />
+							<FaceManOutlineIcon v-if="richObject.gender === 2" :size="20" class="icon" />
+							<FaceWomanOutlineIcon v-else :size="20" class="icon" />
 							{{ richObject.name }}
 						</a>
 					</strong>
 				</div>
 				<p v-if="richObject.birthday" class="dates line">
-					<CalendarIcon :size="20" class="icon" />
+					<CalendarOutlineIcon :size="20" class="icon" />
 					<span v-if="richObject.place_of_birth">
 						{{ t('integration_tmdb', 'Born {date} at {place}' , { date: richObject.formatted_birthday, place: richObject.place_of_birth }) }}
 					</span>
@@ -82,10 +82,10 @@
 </template>
 
 <script>
-import FaceManIcon from 'vue-material-design-icons/FaceMan.vue'
-import FaceWomanIcon from 'vue-material-design-icons/FaceWoman.vue'
+import FaceManOutlineIcon from 'vue-material-design-icons/FaceManOutline.vue'
+import FaceWomanOutlineIcon from 'vue-material-design-icons/FaceWomanOutline.vue'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
-import CalendarIcon from 'vue-material-design-icons/Calendar.vue'
+import CalendarOutlineIcon from 'vue-material-design-icons/CalendarOutline.vue'
 import CalendarBlankOutlineIcon from 'vue-material-design-icons/CalendarBlankOutline.vue'
 
 import TmdbIcon from './icons/TmdbIcon.vue'
@@ -102,10 +102,10 @@ export default {
 	components: {
 		TmdbIcon,
 		OpenInNewIcon,
-		CalendarIcon,
+		CalendarOutlineIcon,
 		CalendarBlankOutlineIcon,
-		FaceManIcon,
-		FaceWomanIcon,
+		FaceManOutlineIcon,
+		FaceWomanOutlineIcon,
 	},
 
 	props: {

@@ -7,7 +7,7 @@
 		<div id="tmdb-content">
 			<div class="line">
 				<label for="tmdb-api-key-v3">
-					<KeyIcon :size="20" class="icon" />
+					<KeyOutlineIcon :size="20" class="icon" />
 					{{ t('integration_tmdb', 'TMDB API key') }}
 				</label>
 				<input id="tmdb-api-key-v3"
@@ -18,7 +18,7 @@
 			</div>
 			<div class="line">
 				<label for="tmdb-api-key-v4">
-					<KeyIcon :size="20" class="icon" />
+					<KeyOutlineIcon :size="20" class="icon" />
 					{{ t('integration_tmdb', 'TMDB API Read Access Token') }}
 				</label>
 				<input id="tmdb-api-key-v4"
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import KeyIcon from 'vue-material-design-icons/Key.vue'
+import KeyOutlineIcon from 'vue-material-design-icons/KeyOutline.vue'
 
 import TmdbIcon from './icons/TmdbIcon.vue'
 
@@ -58,7 +58,7 @@ export default {
 
 	components: {
 		TmdbIcon,
-		KeyIcon,
+		KeyOutlineIcon,
 		NcNoteCard,
 	},
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Nextcloud - Tmdb
  *
@@ -16,8 +17,10 @@ use OCP\IDateTimeFormatter;
 
 class UtilsService {
 
-	public function __construct(string                     $appName,
-		private IDateTimeFormatter $dateTimeFormatter) {
+	public function __construct(
+		string $appName,
+		private IDateTimeFormatter $dateTimeFormatter,
+	) {
 	}
 
 	public function formatDate(string $date, string $format = 'long'): string {

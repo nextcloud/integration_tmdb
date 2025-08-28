@@ -32,19 +32,22 @@ use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\IUser;
+use OCP\Search\IExternalProvider;
 use OCP\Search\IProvider;
 use OCP\Search\ISearchQuery;
 use OCP\Search\SearchResult;
 use OCP\Search\SearchResultEntry;
 
-class TmdbSearchProvider implements IProvider {
+class TmdbSearchProvider implements IProvider, IExternalProvider {
 
-	public function __construct(private IAppManager        $appManager,
-		private IL10N              $l10n,
-		private IConfig            $config,
-		private IURLGenerator      $urlGenerator,
-		private UtilsService       $utilsService,
-		private TmdbAPIService     $tmdbAPIService) {
+	public function __construct(
+		private IAppManager $appManager,
+		private IL10N $l10n,
+		private IConfig $config,
+		private IURLGenerator $urlGenerator,
+		private UtilsService $utilsService,
+		private TmdbAPIService $tmdbAPIService,
+	) {
 	}
 
 	/**
@@ -196,5 +199,9 @@ class TmdbSearchProvider implements IProvider {
 			['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]
 		);
 		return [false, $url];
+	}
+
+	public function isExternalProvider(): bool {
+		return true;
 	}
 }

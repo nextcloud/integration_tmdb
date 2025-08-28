@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Nextcloud - Tmdb
  *
@@ -23,11 +24,13 @@ use OCP\IURLGenerator;
 
 class TmdbAPIController extends OCSController {
 
-	public function __construct(string                 $appName,
-		IRequest               $request,
+	public function __construct(
+		string $appName,
+		IRequest $request,
 		private TmdbAPIService $tmdbAPIService,
-		private IURLGenerator  $urlGenerator,
-		?string                $userId) {
+		private IURLGenerator $urlGenerator,
+		?string $userId,
+	) {
 		parent::__construct($appName, $request);
 	}
 
