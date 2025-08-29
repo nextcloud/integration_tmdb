@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 2.2.0 – 2024-08-29
+
+### Added
+- search providers marked as external sources 
+
+### Changed
+- npm packages updated 
+- max NC version bumped to 32
+- CSP Nonce updated
+- change icons to outlined versions
+
 ## 2.1.0 – 2024-10-23
 
 ### Fixed
