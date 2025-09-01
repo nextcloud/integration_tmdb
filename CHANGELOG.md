@@ -6,7 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## 2.2.0 – 2024-08-29
+## 3.0.0 – 2025-09-01
+
+### Changed
+
+- Drop support for NC < 32
+- Add psalm matrix checks
+
+## 2.2.0 – 2025-08-29
 
 ### Added
 - search providers marked as external sources 
