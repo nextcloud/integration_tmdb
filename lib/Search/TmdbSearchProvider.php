@@ -32,13 +32,12 @@ use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\IUser;
-use OCP\Search\IExternalProvider;
 use OCP\Search\IProvider;
 use OCP\Search\ISearchQuery;
 use OCP\Search\SearchResult;
 use OCP\Search\SearchResultEntry;
 
-class TmdbSearchProvider implements IProvider, IExternalProvider {
+class TmdbSearchProvider implements IProvider {
 
 	public function __construct(
 		private IAppManager $appManager,
@@ -199,9 +198,5 @@ class TmdbSearchProvider implements IProvider, IExternalProvider {
 			['size' => 'w500', 'imagePath' => $imagePath, 'fallbackName' => $fallbackName]
 		);
 		return [false, $url];
-	}
-
-	public function isExternalProvider(): bool {
-		return true;
 	}
 }
