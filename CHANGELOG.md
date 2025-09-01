@@ -6,7 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-## 2.2.0 – 2024-08-29
+## 2.2.1 – 2025-09-01
+
+### Changed
+
+- Lower max NC version to 31
+- Do not use IExternalProvider anymore
+
+## 2.2.0 – 2025-08-29
 
 ### Added
 - search providers marked as external sources 
