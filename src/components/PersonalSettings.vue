@@ -13,7 +13,7 @@
 				<input id="tmdb-api-key-v3"
 					v-model="state.api_key_v3"
 					type="password"
-					:placeholder="t('integration_tmdb', '...')"
+					:placeholder="t('integration_tmdb', 'TMDB API key')"
 					@input="onInput">
 			</div>
 			<NcNoteCard v-if="state.has_admin_api_key_v3" type="info">
@@ -27,7 +27,7 @@
 				<input id="tmdb-api-key-v4"
 					v-model="state.api_key_v4"
 					type="password"
-					:placeholder="t('integration_tmdb', '...')"
+					:placeholder="t('integration_tmdb', 'TMDB API Read Access Token')"
 					@input="onInput">
 			</div>
 			<NcNoteCard v-if="state.has_admin_api_key_v4" type="info">
