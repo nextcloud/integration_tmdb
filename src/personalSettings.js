@@ -9,9 +9,9 @@
  * @copyright Julien Veyssier 2023
  */
 
-import Vue from 'vue'
-import './bootstrap.js'
+import { createApp } from 'vue'
 import PersonalSettings from './components/PersonalSettings.vue'
 
-const VueSettings = Vue.extend(PersonalSettings)
-new VueSettings().$mount('#tmdb_prefs')
+const app = createApp(PersonalSettings)
+app.mixin({ methods: { t, n } })
+app.mount('#tmdb_prefs')

@@ -43,22 +43,22 @@
 			</NcNoteCard>
 			<div id="tmdb-search-block">
 				<NcCheckboxRadioSwitch
-					:checked="state.search_enabled"
-					@update:checked="onCheckboxChanged($event, 'search_enabled')">
+					:model-value="state.search_enabled"
+					@update:model-value="onCheckboxChanged($event, 'search_enabled')">
 					{{ t('integration_tmdb', 'Enable searching for movies/persons/series') }}
 				</NcCheckboxRadioSwitch>
 				<NcNoteCard v-if="state.search_enabled" type="warning">
 					{{ t('integration_tmdb', 'Warning, everything you type in the search bar will be sent to TMDB.') }}
 				</NcNoteCard>
 				<NcCheckboxRadioSwitch
-					:checked="state.link_preview_enabled"
-					@update:checked="onCheckboxChanged($event, 'link_preview_enabled')">
+					:model-value="state.link_preview_enabled"
+					@update:model-value="onCheckboxChanged($event, 'link_preview_enabled')">
 					{{ t('integration_tmdb', 'Enable TMDB/IMDB link previews') }}
 				</NcCheckboxRadioSwitch>
 			</div>
 			<NcCheckboxRadioSwitch
-				:checked="state.navigation_enabled"
-				@update:checked="onCheckboxChanged($event, 'navigation_enabled')">
+				:model-value="state.navigation_enabled"
+				@update:model-value="onCheckboxChanged($event, 'navigation_enabled')">
 				{{ t('integration_tmdb', 'Enable navigation link') }}
 			</NcCheckboxRadioSwitch>
 		</div>
@@ -70,8 +70,8 @@ import KeyOutlineIcon from 'vue-material-design-icons/KeyOutline.vue'
 
 import TmdbIcon from './icons/TmdbIcon.vue'
 
-import NcCheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
-import NcNoteCard from '@nextcloud/vue/dist/Components/NcNoteCard.js'
+import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
+import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
 
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
