@@ -92,10 +92,6 @@ import TmdbIcon from './icons/TmdbIcon.vue'
 
 import { generateUrl } from '@nextcloud/router'
 
-import Tooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
-import Vue from 'vue'
-Vue.directive('tooltip', Tooltip)
-
 export default {
 	name: 'TmdbPersonReferenceWidget',
 
