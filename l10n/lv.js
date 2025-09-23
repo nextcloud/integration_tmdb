@@ -4,7 +4,6 @@ OC.L10N.register(
     "Bad credentials" : "Nederīgi pieteikšanās dati",
     "Bad HTTP method" : "Nederīgs HTTP pieprasījuma veids",
     "Connected accounts" : "Sasaistītie konti",
-    "..." : "...",
     "Unknown error" : "Nezināma kļūda",
     "TMDB connected accounts settings" : "Sasaistīto TMDB kontu iestatījumi",
     "First air date: {date}" : "Pirmās pārraides datums: {date}",

@@ -12,7 +12,6 @@
     "Failed to save TMDB options" : "Impossible d'enregistrer les options TMDB",
     "TMDB integration" : "Intégration TMDB",
     "TMDB API key" : "Clé API TMDB",
-    "..." : "…",
     "TMDB API Read Access Token" : "Token d'accès de lecture d'API TMDB",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Vous pouvez créer une application et une clé API dans la section API des paramètres de votre compte TMDB",
     "If you set both the API key and the token, the API key will be used in priority." : "Si vous définissez à la fois la clé API et le jeton, la clé API sera utilisée en priorité.",

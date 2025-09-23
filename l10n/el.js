@@ -14,7 +14,6 @@ OC.L10N.register(
     "Failed to save TMDB options" : "Αποτυχία αποθήκευσης των επιλογών TMDB",
     "TMDB integration" : "Ενσωμάτωση TMDB",
     "TMDB API key" : "Κλειδί API της TMDB",
-    "..." : "...",
     "TMDB API Read Access Token" : "Διακριτικό Πρόσβασης Ανάγνωσης API της TMDB",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Μπορείτε να δημιουργήσετε μια εφαρμογή και ένα κλειδί API στην ενότητα \"API\" των ρυθμίσεων του λογαριασμού σας στην TMDB.",
     "If you set both the API key and the token, the API key will be used in priority." : "Εάν ορίσετε και το κλειδί API και το διακριτικό, το κλειδί API θα χρησιμοποιηθεί με προτεραιότητα.",

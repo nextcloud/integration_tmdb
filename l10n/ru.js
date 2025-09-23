@@ -13,7 +13,6 @@ OC.L10N.register(
     "Failed to save TMDB options" : "Не удалось сохранить параметры TMDB",
     "TMDB integration" : "Интеграция TMDB",
     "TMDB API key" : "Ключ API TMDB",
-    "..." : "...",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Вы можете создать приложение и ключ API в разделе «API» настроек вашей учетной записи TMDB.",
     "Leave the API key empty to use the one set by your administrator." : "Оставьте ключ API пустым, чтобы использовать установленный администратором.",
     "Enable searching for movies/persons/series" : "Включить поиск фильмов/персон/сериалов",

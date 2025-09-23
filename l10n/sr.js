@@ -14,7 +14,6 @@ OC.L10N.register(
     "Failed to save TMDB options" : "Није успело чување TMDB опција",
     "TMDB integration" : "TMDB интеграција",
     "TMDB API key" : "TMDB API кључ",
-    "..." : "...",
     "TMDB API Read Access Token" : "TMDB API Жетон за приступ читања",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Апликацију и API кључ можете да креирате у „API” одељку подешавања свог TMDB налога.",
     "If you set both the API key and the token, the API key will be used in priority." : "Ако сте поставили и API кључ и жетон, приоритетно ће се користити API кључ.",

@@ -12,7 +12,6 @@
     "Failed to save TMDB options" : "Не вдалося зберегти параметри TMDB",
     "TMDB integration" : "Інтеграція з TMDB",
     "TMDB API key" : "Ключ API TMDB",
-    "..." : "...",
     "TMDB API Read Access Token" : "Токен доступу до API читання TMDB",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Ви можете створити додаток і ключ API в розділі \"API\" в налаштуваннях вашого облікового запису TMDB.",
     "If you set both the API key and the token, the API key will be used in priority." : "Якщо ви встановите і ключ API, і токен, то ключ API буде використовуватися в пріоритеті.",

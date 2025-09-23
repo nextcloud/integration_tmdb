@@ -12,7 +12,6 @@
     "Failed to save TMDB options" : "فشل في حفظ خيارات TMDB",
     "TMDB integration" : "مُكاملة TMDB",
     "TMDB API key" : "مفتاح  TMDB API",
-    "..." : "...",
     "TMDB API Read Access Token" : "أَمَارَة حق قراءة واجهة TMDB API ",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "يمكنك إنشاء تطبيق ومفتاح API في قسم \"API\" لإعدادات حساب TMDB الخاص بك.",
     "If you set both the API key and the token, the API key will be used in priority." : "إذا قمت بتعيين كل من مفتاح الواجهة API والأَمَارَة، فسيتم استخدام مفتاح الواجهة API في الأولوية.",

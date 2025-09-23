@@ -4,7 +4,6 @@ OC.L10N.register(
     "Bad credentials" : "Neustrezna poverila",
     "Bad HTTP method" : "Neustrezen način HTTP",
     "Connected accounts" : "Povezani računi",
-    "..." : "...",
     "Enable navigation link" : "Omogoči povezave za krmarjenje",
     "Unknown error" : "Neznana napaka"
 },

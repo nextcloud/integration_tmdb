@@ -4,7 +4,6 @@ OC.L10N.register(
     "Bad credentials" : "Vale kasutajanimi, salasõna või tunnusluba",
     "Bad HTTP method" : "Vigane HTTP-meetod",
     "Connected accounts" : "Ühendatud kasutajakontod",
-    "..." : "...",
     "Enable navigation link" : "Lisa menüülink",
     "Unknown error" : "Tundmatu viga"
 },
