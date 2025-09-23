@@ -14,7 +14,6 @@ OC.L10N.register(
     "Failed to save TMDB options" : "Theip ar shábháil roghanna TMDB",
     "TMDB integration" : "Comhtháthú TMDB",
     "TMDB API key" : "Eochair TMDB API",
-    "..." : "...",
     "TMDB API Read Access Token" : "Comhartha Rochtana Léigh TMDB API",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Is féidir leat aip agus eochair API a chruthú sa chuid \"API\" de do shocruithe cuntais TMDB.",
     "If you set both the API key and the token, the API key will be used in priority." : "Má shocraigh tú an eochair API agus an comhartha, úsáidfear an eochair API mar thosaíocht.",

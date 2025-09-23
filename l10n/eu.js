@@ -14,7 +14,6 @@ OC.L10N.register(
     "Failed to save TMDB options" : "Ezin izan dira TMDB aukerak gorde",
     "TMDB integration" : "TMDB integrazioa",
     "TMDB API key" : "TMDB API gakoa",
-    "..." : "...",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Aplikazio bat eta API gakoa sor ditzakezu zure TMDB kontuko ezarpenetan, \"API\" atalean.",
     "Enable searching for movies/persons/series" : "Gaitu film/pertsona/telesailak bilatzeko aukera",
     "Warning, everything you type in the search bar will be sent to TMDB." : "Abisua: bilaketa-barran idazten duzun oro TMDB-ra bidaliko da.",

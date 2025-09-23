@@ -14,7 +14,6 @@ OC.L10N.register(
     "Failed to save TMDB options" : "Nepodařilo se uložit předvolby pro TMDB",
     "TMDB integration" : "Napojení na TMDB",
     "TMDB API key" : "Klíč k API rozhraní TMDB",
-    "..." : "…",
     "TMDB API Read Access Token" : "Přístupový token pro čtení z TMDB API",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Klíč k API je možné si vytvořit v sekci „API“ v nastavení svého účtu na TMDB.",
     "If you set both the API key and the token, the API key will be used in priority." : "Pokud nastavíte jak klíč k API, tak token, pak klíč k API bude použit přednostně.",

@@ -12,7 +12,6 @@
     "Failed to save TMDB options" : "Kunne ikke gemme TMDB indstillinger",
     "TMDB integration" : "TMDB integration",
     "TMDB API key" : "TMDB API nøgle",
-    "..." : "...",
     "TMDB API Read Access Token" : "TMDB API Læse adgangstoken",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Du kan oprette en app og API nøgle i afsnittet \"API\" i dine TMDB kontoindstillinger.",
     "If you set both the API key and the token, the API key will be used in priority." : "Hvis du angiver både API nøglen og token, så vil API nøglen blive anvendt i prioritet.",

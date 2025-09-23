@@ -12,7 +12,6 @@
     "Failed to save TMDB options" : "儲存 TMDB 選項失敗",
     "TMDB integration" : "TMDB 整合",
     "TMDB API key" : "TMDB API 金鑰",
-    "..." : "...",
     "TMDB API Read Access Token" : "TMDB API 讀取權限權杖",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "您可以在您 TMDB 帳號設定的「API」部份建立應用程式與 API 金鑰。",
     "If you set both the API key and the token, the API key will be used in priority." : "若您同時設定 API 金鑰與權杖，將會優先使用 API 金鑰。",

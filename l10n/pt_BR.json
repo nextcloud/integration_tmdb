@@ -12,7 +12,6 @@
     "Failed to save TMDB options" : "Falha ao salvar as opções do TMDB",
     "TMDB integration" : "Integração TMDB",
     "TMDB API key" : "Chave API do TMDB",
-    "..." : "...",
     "TMDB API Read Access Token" : "Token de Acesso de Leitura da API TMDB",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Você pode criar um aplicativo e uma chave API na seção \"API\" das configurações da sua conta TMDB.",
     "If you set both the API key and the token, the API key will be used in priority." : "Se você definir a chave API e o token, a chave API será usada com prioridade.",

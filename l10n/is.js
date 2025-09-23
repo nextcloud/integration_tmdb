@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Bad credentials" : "Gölluð auðkenni",
     "Connected accounts" : "Tengdir aðgangar",
-    "..." : "...",
     "Enable navigation link" : "Virkja flakktengil",
     "Unknown error" : "Óþekkt villa"
 },

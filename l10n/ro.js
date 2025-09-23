@@ -4,7 +4,6 @@ OC.L10N.register(
     "Bad credentials" : "Credențiale greșite",
     "Bad HTTP method" : "Metodă HTTP nepotrivită",
     "Connected accounts" : "Conturile conectate",
-    "..." : "...",
     "Enable navigation link" : "Pornește link-ul de navifare",
     "{hours}h {minutes}min" : "{ore}o {minute}min",
     "Unknown error" : "Eroare necunoscută"

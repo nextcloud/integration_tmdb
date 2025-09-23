@@ -12,7 +12,6 @@
     "Failed to save TMDB options" : "The Movie Database ayarları kaydedilemedi",
     "TMDB integration" : "TMDB bütünleştirmesi",
     "TMDB API key" : "TMDB API anahtarı",
-    "..." : "...",
     "TMDB API Read Access Token" : "TMDB API okuma erişim kodu",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "The Movie Database hesap ayarlarınızın \"API\" bölümünde bir uygulama ve API anahtarı oluşturabilirsiniz.",
     "If you set both the API key and the token, the API key will be used in priority." : "Hem API anahtarını hem de kodu ayarlarsanız öncelikli olarak API anahtarı kullanılır.",

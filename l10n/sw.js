@@ -14,7 +14,6 @@ OC.L10N.register(
     "Failed to save TMDB options" : "Imeshindwa kuhifadhi chaguo za TMDB",
     "TMDB integration" : "muunganisho wa TMDB",
     "TMDB API key" : "Ufunguo wa API ya TMDB",
-    "..." : "...",
     "TMDB API Read Access Token" : "Tokeni ya Ufikiaji wa Kusoma ya TMDB API",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "Unaweza kuunda programu na ufunguo wa API katika sehemu ya \"API\" ya mipangilio ya akaunti yako ya TMDB.",
     "If you set both the API key and the token, the API key will be used in priority." : "Ukiweka ufunguo wa API na tokeni, ufunguo wa API utatumika kwa kipaumbele.",

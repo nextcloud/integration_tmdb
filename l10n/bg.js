@@ -4,7 +4,6 @@ OC.L10N.register(
     "Bad credentials" : "Лоши идентификационни данни",
     "Bad HTTP method" : "Лош HTTP метод",
     "Connected accounts" : "Свързани профили",
-    "..." : "...",
     "Enable navigation link" : "Активиране на връзка за навигация",
     "Unknown error" : "Неизвестна грешка"
 },

@@ -13,7 +13,6 @@ OC.L10N.register(
     "Failed to save TMDB options" : "A TMDB beállítások mentése sikertelen",
     "TMDB integration" : "TMDB integráció",
     "TMDB API key" : "TMDB API kulcs",
-    "..." : "...",
     "Enable searching for movies/persons/series" : "Filmek/személyek/sorozatok keresésének enegedélyezése",
     "Warning, everything you type in the search bar will be sent to TMDB." : "Figyelem, minden el lesz küldve a TMDB-nek, amit a keresősávba ír.",
     "Enable TMDB/IMDB link previews" : "TMDB/IMDB hivatkozások előnézetének engedélyezése",

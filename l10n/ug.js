@@ -14,7 +14,6 @@ OC.L10N.register(
     "Failed to save TMDB options" : "TMDB تاللانمىلىرىنى ساقلاش مەغلۇب بولدى",
     "TMDB integration" : "TMDB بىرلەشتۈرۈش",
     "TMDB API key" : "TMDB API ئاچقۇچى",
-    "..." : "...",
     "TMDB API Read Access Token" : "TMDB API زىيارەت توكىنى ئوقۇش",
     "You can create an app and API key in the \"API\" section of your TMDB account settings." : "سىز TMDB ھېسابات تەڭشىكىڭىزنىڭ «API» بۆلىكىدە ئەپ ۋە API ئاچقۇچى قۇرالايسىز.",
     "If you set both the API key and the token, the API key will be used in priority." : "ئەگەر سىز API ئاچقۇچى ۋە بەلگە بەلگىسىنى تەڭشىسىڭىز ، API ئاچقۇچى ئالدى بىلەن ئىشلىتىلىدۇ.",

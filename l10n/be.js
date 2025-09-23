@@ -1,0 +1,9 @@
+OC.L10N.register(
+    "integration_tmdb",
+    {
+    "TMDB API Read Access Token" : "Токен доступу для чытання API TMDB",
+    "If you set both the API key and the token, the API key will be used in priority." : "Калі вы зададзіце і ключ API, і токен, ключ API будзе выкарыстоўвацца ў прыярытэце.",
+    "Leave the API Read Access Token empty to use the one set by your administrator." : "Пакіньце поле Токен доступу для чытання API пустым, каб выкарыстоўваць токен, зададзены адміністратарам.",
+    "Unknown error" : "Невядомая памылка"
+},
+"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");
