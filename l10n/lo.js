@@ -1,0 +1,10 @@
+OC.L10N.register(
+    "integration_tmdb",
+    {
+    "Bad credentials" : "ຂໍ້ມູນຢືນຢັນຕົວຕົນບໍ່ຖືກຕ້ອງ",
+    "Bad HTTP method" : "HTTP method ບໍ່ຖືກຕ້ອງ",
+    "Connected accounts" : "ບັນຊີທີ່ເຊື່ອມຕໍ່",
+    "Enable navigation link" : "ເປີດໃຊ້ລິ້ງນຳທາງ",
+    "Unknown error" : "ຜິດພາດທີ່ບໍ່ຮູ້ຈັກ"
+},
+"nplurals=1; plural=0;");
