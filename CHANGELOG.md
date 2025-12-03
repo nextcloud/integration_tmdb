@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.0.1 – 2025-12-04
+
+### Changed
+
+- Update npm packages
+- Migrate to Vue 3 and @nextcloud/vue 9
+- Bump max NC version to 33
+- Remove ellipses
+- Update license
+
 ## 3.0.0 – 2025-09-01
 
 ### Changed
@@ -16,10 +26,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## 2.2.0 – 2025-08-29
 
 ### Added
-- search providers marked as external sources 
+
+- search providers marked as external sources
 
 ### Changed
-- npm packages updated 
+
+- npm packages updated
 - max NC version bumped to 32
 - CSP Nonce updated
 - change icons to outlined versions
@@ -59,11 +71,15 @@ Maintenance update
 - Updated l10n (localization)
 
 ## 1.0.2 – 2023-03-14
+
 ### Changed
+
 * lazy load reference stuff
 * add NC 27 compat
 * persons -> people
 
 ## 1.0.0 – 2022-12-19
+
 ### Added
+
 * the app
