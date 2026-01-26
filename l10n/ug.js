@@ -28,7 +28,7 @@ OC.L10N.register(
     "Unknown error" : "يوچۇن خاتالىق",
     "TMDB connected accounts settings" : "TMDB ئۇلانغان ھېسابات تەڭشىكى",
     "Released on {date}" : "{date} ئېلان قىلىندى",
-    "Born {date} at {place}" : "{جايدا} تۇغۇلغان",
+    "Born {date} at {place}" : "{place} دا {date} كۈنى تۇغۇلغان",
     "Born {date}" : "تۇغۇلغان {date}",
     "Dead {date}" : "Dead {date}",
     "Known for {profession}" : "{profession} بىلەن داڭلىق",
