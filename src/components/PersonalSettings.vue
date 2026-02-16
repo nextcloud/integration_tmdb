@@ -5,31 +5,33 @@
 			{{ t('integration_tmdb', 'TMDB integration') }}
 		</h2>
 		<div id="tmdb-content">
-			<div class="line">
-				<label for="tmdb-api-key-v3">
-					<KeyOutlineIcon :size="20" class="icon" />
-					{{ t('integration_tmdb', 'TMDB API key') }}
-				</label>
-				<input id="tmdb-api-key-v3"
-					v-model="state.api_key_v3"
-					type="password"
-					:placeholder="t('integration_tmdb', 'TMDB API key')"
-					@input="onInput">
-			</div>
+			<NcTextField
+				v-model="state.api_key_v3"
+				type="password"
+				:label="t('integration_tmdb', 'TMDB API key')"
+				:placeholder="t('integration_tmdb', 'TMDB API key')"
+				:show-trailing-button="!!state.api_key_v3"
+				@update:model-value="onInput"
+				@trailing-button-click="state.api_key_v3 = ''; onInput()">
+				<template #icon>
+					<KeyOutlineIcon :size="20" />
+				</template>
+			</NcTextField>
 			<NcNoteCard v-if="state.has_admin_api_key_v3" type="info">
 				{{ t('integration_tmdb', 'Leave the API key empty to use the one set by your administrator.') }}
 			</NcNoteCard>
-			<div class="line">
-				<label for="tmdb-api-key-v4">
-					<KeyOutlineIcon :size="20" class="icon" />
-					{{ t('integration_tmdb', 'TMDB API Read Access Token') }}
-				</label>
-				<input id="tmdb-api-key-v4"
-					v-model="state.api_key_v4"
-					type="password"
-					:placeholder="t('integration_tmdb', 'TMDB API Read Access Token')"
-					@input="onInput">
-			</div>
+			<NcTextField
+				v-model="state.api_key_v4"
+				type="password"
+				:label="t('integration_tmdb', 'TMDB API Read Access Token')"
+				:placeholder="t('integration_tmdb', 'TMDB API Read Access Token')"
+				:show-trailing-button="!!state.api_key_v4"
+				@update:model-value="onInput"
+				@trailing-button-click="state.api_key_v4 = ''; onInput()">
+				<template #icon>
+					<KeyOutlineIcon :size="20" />
+				</template>
+			</NcTextField>
 			<NcNoteCard v-if="state.has_admin_api_key_v4" type="info">
 				{{ t('integration_tmdb', 'Leave the API Read Access Token empty to use the one set by your administrator.') }}
 			</NcNoteCard>
@@ -37,30 +39,27 @@
 				<a href="https://themoviedb.org" target="_blank" class="external">
 					{{ t('integration_tmdb', 'You can create an app and API key in the "API" section of your TMDB account settings.') }}
 				</a>
-				<p>
+				<p class="info-description">
 					{{ t('integration_tmdb', 'If you set both the API key and the token, the API key will be used in priority.') }}
 				</p>
 			</NcNoteCard>
-			<div id="tmdb-search-block">
-				<NcCheckboxRadioSwitch
-					:model-value="state.search_enabled"
-					@update:model-value="onCheckboxChanged($event, 'search_enabled')">
-					{{ t('integration_tmdb', 'Enable searching for movies/persons/series') }}
-				</NcCheckboxRadioSwitch>
+			<NcFormBox id="tmdb-search-block">
+				<NcFormBoxSwitch
+					v-model="state.search_enabled"
+					:label="t('integration_tmdb', 'Enable searching for movies/persons/series')"
+					@update:model-value="onCheckboxChanged($event, 'search_enabled')" />
 				<NcNoteCard v-if="state.search_enabled" type="warning">
 					{{ t('integration_tmdb', 'Warning, everything you type in the search bar will be sent to TMDB.') }}
 				</NcNoteCard>
-				<NcCheckboxRadioSwitch
-					:model-value="state.link_preview_enabled"
-					@update:model-value="onCheckboxChanged($event, 'link_preview_enabled')">
-					{{ t('integration_tmdb', 'Enable TMDB/IMDB link previews') }}
-				</NcCheckboxRadioSwitch>
-			</div>
-			<NcCheckboxRadioSwitch
-				:model-value="state.navigation_enabled"
-				@update:model-value="onCheckboxChanged($event, 'navigation_enabled')">
-				{{ t('integration_tmdb', 'Enable navigation link') }}
-			</NcCheckboxRadioSwitch>
+				<NcFormBoxSwitch
+					v-model="state.link_preview_enabled"
+					:label="t('integration_tmdb', 'Enable TMDB/IMDB link previews')"
+					@update:model-value="onCheckboxChanged($event, 'link_preview_enabled')" />
+			</NcFormBox>
+			<NcFormBoxSwitch
+				v-model="state.navigation_enabled"
+				:label="t('integration_tmdb', 'Enable navigation link')"
+				@update:model-value="onCheckboxChanged($event, 'navigation_enabled')" />
 		</div>
 	</div>
 </template>
@@ -70,8 +69,10 @@ import KeyOutlineIcon from 'vue-material-design-icons/KeyOutline.vue'
 
 import TmdbIcon from './icons/TmdbIcon.vue'
 
-import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
+import NcFormBox from '@nextcloud/vue/components/NcFormBox'
+import NcFormBoxSwitch from '@nextcloud/vue/components/NcFormBoxSwitch'
 import NcNoteCard from '@nextcloud/vue/components/NcNoteCard'
+import NcTextField from '@nextcloud/vue/components/NcTextField'
 
 import { loadState } from '@nextcloud/initial-state'
 import { generateUrl } from '@nextcloud/router'
@@ -85,10 +86,12 @@ export default {
 	name: 'PersonalSettings',
 
 	components: {
-		TmdbIcon,
-		NcCheckboxRadioSwitch,
 		KeyOutlineIcon,
+		TmdbIcon,
+		NcFormBox,
+		NcFormBoxSwitch,
 		NcNoteCard,
+		NcTextField,
 	},
 
 	props: [],
@@ -149,8 +152,8 @@ export default {
 	#tmdb-content {
 		margin-left: 40px;
 	}
+
 	h2,
-	.line,
 	.settings-hint {
 		display: flex;
 		align-items: center;
@@ -163,15 +166,8 @@ export default {
 		margin-right: 8px;
 	}
 
-	.line {
-		> label {
-			width: 300px;
-			display: flex;
-			align-items: center;
-		}
-		> input {
-			width: 300px;
-		}
+	.info-description {
+		margin-bottom: 0;
 	}
 }
 </style>
