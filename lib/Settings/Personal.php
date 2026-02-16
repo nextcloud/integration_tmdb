@@ -5,6 +5,7 @@ namespace OCA\Tmdb\Settings;
 use OCA\Tmdb\AppInfo\Application;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
+use OCP\IAppConfig;
 use OCP\IConfig;
 
 use OCP\Security\ICrypto;
@@ -13,6 +14,7 @@ use OCP\Settings\ISettings;
 class Personal implements ISettings {
 
 	public function __construct(
+		private IAppConfig $appConfig,
 		private IConfig $config,
 		private IInitialState $initialStateService,
 		private ICrypto $crypto,
@@ -27,7 +29,7 @@ class Personal implements ISettings {
 		$searchEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'search_enabled', '1') === '1';
 		$navigationEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'navigation_enabled', '0') === '1';
 		$linkPreviewEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'link_preview_enabled', '1') === '1';
-		$adminApiKeyV3 = $this->config->getAppValue(Application::APP_ID, 'api_key_v3');
+		$adminApiKeyV3 = $this->appConfig->getValueString(Application::APP_ID, 'api_key_v3', lazy: true);
 		if ($adminApiKeyV3 !== '') {
 			$adminApiKeyV3 = $this->crypto->decrypt($adminApiKeyV3);
 		}
@@ -35,7 +37,7 @@ class Personal implements ISettings {
 		if ($apiKeyV3 !== '') {
 			$apiKeyV3 = $this->crypto->decrypt($apiKeyV3);
 		}
-		$adminApiKeyV4 = $this->config->getAppValue(Application::APP_ID, 'api_key_v4');
+		$adminApiKeyV4 = $this->appConfig->getValueString(Application::APP_ID, 'api_key_v4', lazy: true);
 		if ($adminApiKeyV4 !== '') {
 			$adminApiKeyV4 = $this->crypto->decrypt($adminApiKeyV4);
 		}

@@ -5,7 +5,7 @@ namespace OCA\Tmdb\Settings;
 use OCA\Tmdb\AppInfo\Application;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
-use OCP\IConfig;
+use OCP\IAppConfig;
 
 use OCP\Security\ICrypto;
 use OCP\Settings\ISettings;
@@ -13,7 +13,7 @@ use OCP\Settings\ISettings;
 class Admin implements ISettings {
 
 	public function __construct(
-		private IConfig $config,
+		private IAppConfig $appConfig,
 		private IInitialState $initialStateService,
 		private ICrypto $crypto,
 		?string $userId,
@@ -24,11 +24,11 @@ class Admin implements ISettings {
 	 * @return TemplateResponse
 	 */
 	public function getForm(): TemplateResponse {
-		$apiKeyV3 = $this->config->getAppValue(Application::APP_ID, 'api_key_v3');
+		$apiKeyV3 = $this->appConfig->getValueString(Application::APP_ID, 'api_key_v3', lazy: true);
 		if ($apiKeyV3 !== '') {
 			$apiKeyV3 = $this->crypto->decrypt($apiKeyV3);
 		}
-		$apiKeyV4 = $this->config->getAppValue(Application::APP_ID, 'api_key_v4');
+		$apiKeyV4 = $this->appConfig->getValueString(Application::APP_ID, 'api_key_v4', lazy: true);
 		if ($apiKeyV4 !== '') {
 			$apiKeyV4 = $this->crypto->decrypt($apiKeyV4);
 		}

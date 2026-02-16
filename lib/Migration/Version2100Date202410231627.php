@@ -13,7 +13,7 @@ use Closure;
 use OCA\Tmdb\AppInfo\Application;
 use OCP\DB\ISchemaWrapper;
 use OCP\DB\QueryBuilder\IQueryBuilder;
-use OCP\IConfig;
+use OCP\IAppConfig;
 use OCP\IDBConnection;
 use OCP\Migration\IOutput;
 use OCP\Migration\SimpleMigrationStep;
@@ -24,7 +24,7 @@ class Version2100Date202410231627 extends SimpleMigrationStep {
 	public function __construct(
 		private IDBConnection $connection,
 		private ICrypto $crypto,
-		private IConfig $config,
+		private IAppConfig $appConfig,
 	) {
 	}
 
@@ -37,15 +37,15 @@ class Version2100Date202410231627 extends SimpleMigrationStep {
 	 */
 	public function postSchemaChange(IOutput $output, Closure $schemaClosure, array $options) {
 		// encrypt appconfig client_id and client_secret
-		$apiKeyV3 = $this->config->getAppValue(Application::APP_ID, 'api_key_v3');
+		$apiKeyV3 = $this->appConfig->getValueString(Application::APP_ID, 'api_key_v3');
 		if ($apiKeyV3 !== '') {
 			$apiKeyV3 = $this->crypto->encrypt($apiKeyV3);
-			$this->config->setAppValue(Application::APP_ID, 'api_key_v3', $apiKeyV3);
+			$this->appConfig->setValueString(Application::APP_ID, 'api_key_v3', $apiKeyV3);
 		}
-		$apiKeyV4 = $this->config->getAppValue(Application::APP_ID, 'api_key_v4');
+		$apiKeyV4 = $this->appConfig->getValueString(Application::APP_ID, 'api_key_v4');
 		if ($apiKeyV4 !== '') {
 			$apiKeyV4 = $this->crypto->encrypt($apiKeyV4);
-			$this->config->setAppValue(Application::APP_ID, 'api_key_v4', $apiKeyV4);
+			$this->appConfig->setValueString(Application::APP_ID, 'api_key_v4', $apiKeyV4);
 		}
 
 		// encrypt user tokens

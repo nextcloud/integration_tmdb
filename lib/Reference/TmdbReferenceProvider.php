@@ -32,6 +32,7 @@ use OCP\Collaboration\Reference\IReference;
 use OCP\Collaboration\Reference\IReferenceManager;
 use OCP\Collaboration\Reference\ISearchableReferenceProvider;
 use OCP\Collaboration\Reference\Reference;
+use OCP\IAppConfig;
 use OCP\IConfig;
 use OCP\IL10N;
 
@@ -45,6 +46,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 
 	public function __construct(
 		private TmdbAPIService $tmdbAPIService,
+		private IAppConfig $appConfig,
 		private IConfig $config,
 		private IL10N $l10n,
 		private IURLGenerator $urlGenerator,
@@ -96,7 +98,7 @@ class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements IS
 	 * @inheritDoc
 	 */
 	public function matchReference(string $referenceText): bool {
-		$adminLinkPreviewEnabled = $this->config->getAppValue(Application::APP_ID, 'link_preview_enabled', '1') === '1';
+		$adminLinkPreviewEnabled = $this->appConfig->getValueString(Application::APP_ID, 'link_preview_enabled', '1', lazy: true) === '1';
 		$userLinkPreviewEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'link_preview_enabled', '1') === '1';
 		if (!$adminLinkPreviewEnabled || !$userLinkPreviewEnabled) {
 			return false;

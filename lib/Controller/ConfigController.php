@@ -18,8 +18,8 @@ use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\Attribute\PasswordConfirmationRequired;
 use OCP\AppFramework\Http\DataResponse;
+use OCP\IAppConfig;
 use OCP\IConfig;
-
 use OCP\IRequest;
 use OCP\PreConditionNotMetException;
 use OCP\Security\ICrypto;
@@ -29,6 +29,7 @@ class ConfigController extends Controller {
 	public function __construct(
 		string $appName,
 		IRequest $request,
+		private IAppConfig $appConfig,
 		private IConfig $config,
 		private ICrypto $crypto,
 		private ?string $userId,
@@ -79,7 +80,7 @@ class ConfigController extends Controller {
 			if (in_array($key, ['api_key_v3', 'api_key_v4']) && $value !== '') {
 				$value = $this->crypto->encrypt($value);
 			}
-			$this->config->setAppValue(Application::APP_ID, $key, $value);
+			$this->appConfig->setValueString(Application::APP_ID, $key, $value, lazy: true);
 		}
 		return new DataResponse('');
 	}
