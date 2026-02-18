@@ -39,9 +39,10 @@
 				<a href="https://themoviedb.org" target="_blank" class="external">
 					{{ t('integration_tmdb', 'You can create an app and API key in the "API" section of your TMDB account settings.') }}
 				</a>
-				<p class="info-description">
+				<br>
+				<span>
 					{{ t('integration_tmdb', 'If you set both the API key and the token, the API key will be used in priority.') }}
-				</p>
+				</span>
 			</NcNoteCard>
 			<NcFormBox id="tmdb-search-block">
 				<NcFormBoxSwitch
@@ -153,21 +154,12 @@ export default {
 		margin-left: 40px;
 	}
 
-	h2,
-	.settings-hint {
+	h2 {
 		display: flex;
 		align-items: center;
 		.icon {
-			margin-right: 4px;
+			margin-right: 8px;
 		}
-	}
-
-	h2 .icon {
-		margin-right: 8px;
-	}
-
-	.info-description {
-		margin-bottom: 0;
 	}
 }
 </style>
