@@ -1,7 +1,7 @@
 <template>
 	<div id="tmdb_prefs" class="section">
 		<h2>
-			<TmdbIcon class="icon" />
+			<TmdbIcon />
 			{{ t('integration_tmdb', 'TMDB integration') }}
 		</h2>
 		<div id="tmdb-content">
@@ -151,15 +151,17 @@ export default {
 <style scoped lang="scss">
 #tmdb_prefs {
 	#tmdb-content {
-		margin-left: 40px;
+		margin-inline-start: 40px;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		max-width: 800px;
 	}
 
 	h2 {
 		display: flex;
-		align-items: center;
-		.icon {
-			margin-right: 8px;
-		}
+		justify-content: start;
+		gap: 12px;
 	}
 }
 </style>
