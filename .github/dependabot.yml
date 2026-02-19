@@ -19,14 +19,3 @@ updates:
       day: saturday
       time: "03:00"
       timezone: Europe/Paris
-  - package-ecosystem: composer
-    target-branch: stable31
-    directory: "/"
-    ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-major", "version-update:semver-minor"]
-    schedule:
-      interval: weekly
-      day: saturday
-      time: "03:00"
-      timezone: Europe/Paris
