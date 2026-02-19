@@ -18,6 +18,7 @@ use GuzzleHttp\Exception\ServerException;
 use OCA\Tmdb\AppInfo\Application;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
+use OCP\IAppConfig;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\L10N\IFactory;
@@ -36,6 +37,7 @@ class TmdbAPIService {
 		string $appName,
 		private LoggerInterface $logger,
 		private IL10N $l10n,
+		private IAppConfig $appConfig,
 		private IConfig $config,
 		private ICrypto $crypto,
 		private IFactory $l10nFactory,
@@ -237,7 +239,7 @@ class TmdbAPIService {
 	 * @return string
 	 */
 	private function getApiKeyV3(?string $userId): string {
-		$adminApiKey = $this->config->getAppValue(Application::APP_ID, 'api_key_v3');
+		$adminApiKey = $this->appConfig->getValueString(Application::APP_ID, 'api_key_v3', lazy: true);
 		if ($userId === null) {
 			return $adminApiKey !== '' ? $this->crypto->decrypt($adminApiKey) : '';
 		}
@@ -250,7 +252,7 @@ class TmdbAPIService {
 	 * @return string
 	 */
 	private function getApiKeyV4(?string $userId): string {
-		$adminApiKey = $this->config->getAppValue(Application::APP_ID, 'api_key_v4');
+		$adminApiKey = $this->appConfig->getValueString(Application::APP_ID, 'api_key_v4', lazy: true);
 		if ($userId === null) {
 			return $adminApiKey !== '' ? $this->crypto->decrypt($adminApiKey) : '';
 		}
