@@ -7,6 +7,6 @@ js/
 .*.sw*
 node_modules
 
-/vendor/
+vendor/
 /.php*.cache
 /tests/.phpunit.result.cache
