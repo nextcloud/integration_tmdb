@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.1.0 – 2026-04-13
+
+### Changed
+
+- Bump max NC version to 34
+- Modernize settings design
+- Lazy load app config values
+- Update npm packages
+- Update composer packages
+
 ## 3.0.1 – 2025-12-04
 
 ### Changed
