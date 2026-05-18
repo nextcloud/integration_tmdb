@@ -26,7 +26,7 @@ OC.L10N.register(
     "{hours}h {minutes}min" : "{hours} saat {minutes} dakika",
     "TMDB API error" : "The Movie Database API sorunu",
     "Unknown error" : "Bilinmeyen sorun",
-    "TMDB connected accounts settings" : "The Movie Database bağlantılı hesapların ayarları",
+    "TMDB connected accounts settings" : "The Movie Database bağlı hesaplar ayarları",
     "Released on {date}" : "Yayınlanma tarihi: {date}",
     "Born {date} at {place}" : "Doğum tarihi: {date} yeri: {place}",
     "Born {date}" : "Doğum tarihi: {date}",
