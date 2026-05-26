@@ -35,7 +35,6 @@ use OCP\Collaboration\Reference\Reference;
 use OCP\IAppConfig;
 use OCP\IConfig;
 use OCP\IL10N;
-
 use OCP\IURLGenerator;
 
 class TmdbReferenceProvider extends ADiscoverableReferenceProvider implements ISearchableReferenceProvider {
