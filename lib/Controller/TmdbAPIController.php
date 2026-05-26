@@ -18,7 +18,6 @@ use OCP\AppFramework\Http\DataDisplayResponse;
 use OCP\AppFramework\Http\RedirectResponse;
 use OCP\AppFramework\Http\Response;
 use OCP\AppFramework\OCSController;
-
 use OCP\IRequest;
 use OCP\IURLGenerator;
 

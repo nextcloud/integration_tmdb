@@ -6,7 +6,6 @@ use OCA\Tmdb\AppInfo\Application;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\IAppConfig;
-
 use OCP\Security\ICrypto;
 use OCP\Settings\ISettings;
 
