@@ -29,7 +29,7 @@
     "Born {date} at {place}" : "Naceu o {data} en {place}",
     "Born {date}" : "Naceu o {date}",
     "Dead {date}" : "Faleceu o {date}",
-    "Known for {profession}" : "Coñecido/a por {profesión}",
+    "Known for {profession}" : "Coñecido/a por {profession}",
     "{nb} episodes" : "{nb} episodios",
     "{nb} seasons" : "{nb} tempadas",
     "First air date: {date}" : "Primeira data de emisión: {date}",
