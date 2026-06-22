@@ -4,8 +4,9 @@ OC.L10N.register(
     "Bad credentials" : "Blogi prisijungimo duomenys",
     "Bad HTTP method" : "Blogas HTTP metodas",
     "Connected accounts" : "Prijungtos paskyros",
-    "TMDB API Read Access Token" : "TMDB API skaitymo prieigos raktas",
-    "Leave the API Read Access Token empty to use the one set by your administrator." : "Palikite API skaitymo prieigos raktą tuščią, jei norite naudoti administratoriaus nustatytą raktą.",
+    "TMDB API Read Access Token" : "TMDB API skaitymo prieigos žymuo",
+    "If you set both the API key and the token, the API key will be used in priority." : "Jei nustatysite ir API raktą, ir žymenį, pirmenybė bus teikiama API raktui.",
+    "Leave the API Read Access Token empty to use the one set by your administrator." : "Palikite API skaitymo prieigos žymenį tuščią, jei norite naudoti administratoriaus nustatytą žymenį.",
     "Enable navigation link" : "Įjungti navigacijos nuorodą",
     "Unknown error" : "Nežinoma klaida"
 },
