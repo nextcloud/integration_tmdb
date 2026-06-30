@@ -3,7 +3,16 @@
     "Bad credentials" : "Credenciais inválidas",
     "Bad HTTP method" : "Método HTTP incorreto",
     "Connected accounts" : "Contas conectadas",
+    "The Movie Database integration" : "Integração The Movie Database",
     "TMDB integration provides a smart picker provider to search for movies, series or actors and link previews for them." : "A integração TMDB fornece um provedor de seletor inteligente para pesquisar filmes, séries ou atores e pré-visualizar links para eles.",
-    "Unknown error" : "Erro desconhecido"
+    "TMDB integration" : "Integração TMDB",
+    "Leave the API key empty to use the one set by your administrator." : "Deixe a chave API vazia para usar a chave definida por seu administrador.",
+    "Warning, everything you type in the search bar will be sent to TMDB." : "Atenção, tudo o que você digitar na barra de pesquisa será enviado ao TMDB.",
+    "Enable navigation link" : "Ativar link de navegação",
+    "{hours}h {minutes}min" : "{hours}h {minutes}min",
+    "Unknown error" : "Erro desconhecido",
+    "Born {date} at {place}" : "Nasceu em {date} em {place}",
+    "Known for {profession}" : "Conhecido por {profession}",
+    "First air date: {date}" : "Data da primeira exibição: {date}"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }
