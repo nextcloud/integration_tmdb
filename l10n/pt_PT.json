@@ -4,15 +4,21 @@
     "Bad HTTP method" : "Método HTTP incorreto",
     "Connected accounts" : "Contas conectadas",
     "The Movie Database integration" : "Integração The Movie Database",
+    "Integration of The Movie Database" : "Integração do The Movie Database",
     "TMDB integration provides a smart picker provider to search for movies, series or actors and link previews for them." : "A integração TMDB fornece um provedor de seletor inteligente para pesquisar filmes, séries ou atores e pré-visualizar links para eles.",
     "TMDB integration" : "Integração TMDB",
+    "TMDB API key" : "Chave API do TMDB",
     "Leave the API key empty to use the one set by your administrator." : "Deixe a chave API vazia para usar a chave definida por seu administrador.",
+    "Leave the API Read Access Token empty to use the one set by your administrator." : "Deixe o token de acesso de leitura da API vazio para usar o token definido por seu administrador.",
     "Warning, everything you type in the search bar will be sent to TMDB." : "Atenção, tudo o que você digitar na barra de pesquisa será enviado ao TMDB.",
     "Enable navigation link" : "Ativar link de navegação",
     "{hours}h {minutes}min" : "{hours}h {minutes}min",
+    "TMDB API error" : "Erro na API TMDB",
     "Unknown error" : "Erro desconhecido",
     "Born {date} at {place}" : "Nasceu em {date} em {place}",
+    "Born {date}" : "Nasceu em {date}",
     "Known for {profession}" : "Conhecido por {profession}",
-    "First air date: {date}" : "Data da primeira exibição: {date}"
+    "First air date: {date}" : "Data da primeira exibição: {date}",
+    "Last air date: {date}" : "Data da última exibição: {date}"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }
