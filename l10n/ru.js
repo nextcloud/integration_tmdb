@@ -28,7 +28,7 @@ OC.L10N.register(
     "Unknown error" : "Неизвестная ошибка",
     "TMDB connected accounts settings" : "Параметры подключённых учётных записей TMDB",
     "Released on {date}" : "Выпущено {date}",
-    "Born {date} at {place}" : "Родился(-ась) {date} в {place}",
+    "Born {date} at {place}" : "Родился(-ась): {date}, {place}",
     "Born {date}" : "Родился(-ась) {date}",
     "Dead {date}" : "Умер(-ла) {date}",
     "Known for {profession}" : "Известен(-на) как {profession}",
