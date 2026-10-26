@@ -9,7 +9,7 @@ OC.L10N.register(
     "Connected accounts" : "Forbundne konti",
     "The Movie Database integration" : "Integration af filmdatabase",
     "Integration of The Movie Database" : "Integration af filmdatabasen",
-    "TMDB integration provides a smart picker provider to search for movies, series or actors and link previews for them." : "TMDB integration leverer en smartvælger til at søge efter film, serier eller skuespillere og linke til forhåndsvisninger af dem.",
+    "TMDB integration provides a smart picker provider to search for movies, series or actors and link previews for them." : "TMDB-integrationen giver en udbyder til Smart Picker, der kan søge efter film, serier eller skuespillere, og forhåndsvisninger af links til dem.",
     "TMDB options saved" : "TMDB indstillinger gemt",
     "Failed to save TMDB options" : "Kunne ikke gemme TMDB indstillinger",
     "TMDB integration" : "TMDB integration",
